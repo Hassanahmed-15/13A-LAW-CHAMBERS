@@ -376,6 +376,41 @@
   .person-name{font-family:var(--serif);font-size:22px}
   .person-role{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-top:6px}
   .person-bio{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.55}
+  .person-links{display:flex;gap:10px;margin-top:16px}
+  .person-links a{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--line);color:var(--muted);transition:all .2s}
+  .person-links a:hover{border-color:var(--brass);color:var(--brass)}
+  .associates-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .associate{padding:20px 22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel);display:flex;align-items:center;gap:14px;transition:background .2s}
+  .associate:hover{background:var(--panel-2)}
+  .assoc-ava{width:40px;height:40px;border-radius:50%;background:var(--parchment-2);display:grid;place-items:center;font-family:var(--serif);color:var(--brass);font-size:18px;flex-shrink:0}
+  html[data-theme="dark"] .assoc-ava{background:var(--ink-3)}
+  .assoc-name{font-size:14px;font-weight:500}
+  .assoc-qual{font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:3px}
+
+  /* ── CAREERS ── */
+  .careers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+  .career-card{background:var(--panel);border:1px solid var(--line);padding:32px;display:flex;flex-direction:column;gap:12px;transition:all .3s}
+  .career-card:hover{border-color:var(--brass);transform:translateY(-3px);box-shadow:var(--shadow-md)}
+  .career-type{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
+  .career-title{font-family:var(--serif);font-size:22px}
+  .career-desc{font-size:13.5px;color:var(--muted)}
+  .career-list{list-style:none;padding:0;margin-top:4px;font-size:13px;color:var(--muted)}
+  .career-list li{padding:6px 0;padding-left:18px;position:relative}
+  .career-list li::before{content:"";position:absolute;left:0;top:14px;width:8px;height:1px;background:var(--brass)}
+
+  /* ── OFFICES / NEWSLETTER ── */
+  .offices{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+  .office-card{padding:20px;border:1px solid var(--line-inv);transition:border-color .2s}
+  .office-card:hover{border-color:var(--brass)}
+  .office-city{font-family:var(--serif);font-size:20px;color:var(--parchment)}
+  .office-addr{font-size:13px;color:rgba(242,230,193,.55);margin-top:8px;line-height:1.55}
+  .office-phone{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--brass);margin-top:10px;display:block}
+  .newsletter{display:flex;gap:0;margin-top:16px;max-width:420px}
+  .newsletter input{flex:1;padding:12px 14px;background:transparent;border:1px solid var(--line-inv);color:var(--parchment);font-size:13px}
+  .newsletter input:focus{outline:none;border-color:var(--brass)}
+  .newsletter button{padding:12px 18px;background:var(--brass);color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;transition:background .2s;border:1px solid var(--brass)}
+  .newsletter button:hover{background:var(--brass-2);border-color:var(--brass-2)}
+  @media(max-width:700px){.offices{grid-template-columns:1fr}}
 
   /* ── CALCULATOR ── */
   .calc{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
@@ -513,7 +548,8 @@
     <a href="#practice" data-sec="practice">Practice</a>
     <a href="#method" data-sec="method">Method</a>
     <a href="#cases" data-sec="cases">Matters</a>
-    <a href="#people" data-sec="people">Chambers</a>
+    <a href="#people" data-sec="people">Counsel</a>
+    <a href="#careers" data-sec="careers">Careers</a>
     <a href="#estimate" data-sec="estimate">Fees</a>
     <a href="#journal" data-sec="journal">Journal</a>
     <a href="#faq" data-sec="faq">FAQ</a>
@@ -536,8 +572,10 @@
   <a href="#practice">Practice</a>
   <a href="#method">Method</a>
   <a href="#cases">Matters</a>
-  <a href="#people">Chambers</a>
+  <a href="#people">Counsel</a>
+  <a href="#careers">Careers</a>
   <a href="#estimate">Fees</a>
+  <a href="#journal">Journal</a>
   <a href="#faq">FAQ</a>
   <a href="#contact">Book</a>
 </div>
@@ -791,30 +829,56 @@
     <div class="num">§ 06</div>
   </div>
 
-  <div class="people-grid">
-    <div class="person">
-      <div class="avatar">A</div>
-      <div class="person-name">Ayaan Rehman</div>
-      <div class="person-role">Head of Chambers</div>
-      <div class="person-bio">Commercial disputes and arbitration. LLM (Cambridge). Called to the Bar 2006.</div>
+  <h3 style="font-size:22px;margin-bottom:20px;font-family:var(--serif)">Partners</h3>
+  <div class="people-grid" id="partnersGrid"></div>
+
+  <h3 style="font-size:22px;margin:56px 0 20px;font-family:var(--serif)">Associates</h3>
+  <div class="associates-grid" id="associatesGrid"></div>
+</section>
+
+<!-- CAREERS -->
+<section id="careers">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">06·B / Careers</div>
+      <h2>Join the <em>chambers</em>.</h2>
     </div>
-    <div class="person">
-      <div class="avatar">S</div>
-      <div class="person-name">Sarah Niazi</div>
-      <div class="person-role">Senior Counsel</div>
-      <div class="person-bio">Constitutional and public law. Appeared in over forty reported matters. LLM (LUMS).</div>
+    <div class="num">§ 06·B</div>
+  </div>
+
+  <div class="careers-grid">
+    <div class="career-card">
+      <div class="career-type">Pupillage · 12 months</div>
+      <h3 class="career-title">Pupil Barrister (2026 Intake)</h3>
+      <p class="career-desc">Two pupillages offered annually. Rotations across commercial, public, and criminal practice, with a dedicated supervisor from day one.</p>
+      <ul class="career-list">
+        <li>LL.B. or equivalent, with excellent written work</li>
+        <li>Enrolment with a provincial Bar Council</li>
+        <li>Demonstrable interest in advocacy</li>
+      </ul>
+      <a href="#contact" class="btn ghost" style="padding:12px 18px;font-size:11px">Apply</a>
     </div>
-    <div class="person">
-      <div class="avatar">H</div>
-      <div class="person-name">Haris Shah</div>
-      <div class="person-role">Counsel · Criminal</div>
-      <div class="person-bio">Trial advocacy and white-collar defence. Former prosecutor.</div>
+    <div class="career-card">
+      <div class="career-type">Associate · 2–5 years PQE</div>
+      <h3 class="career-title">Associate — Disputes</h3>
+      <p class="career-desc">A seat on live commercial and regulatory matters. Drafting-heavy; court attendance from the first month.</p>
+      <ul class="career-list">
+        <li>2–5 years post-enrolment at a reputable set</li>
+        <li>Experience of High Court practice</li>
+        <li>Post-graduate qualification preferred</li>
+      </ul>
+      <a href="#contact" class="btn ghost" style="padding:12px 18px;font-size:11px">Apply</a>
     </div>
-    <div class="person">
-      <div class="avatar">Z</div>
-      <div class="person-name">Zoya Imran</div>
-      <div class="person-role">Counsel · Family</div>
-      <div class="person-bio">Guardianship, succession, and private client. Mediator (IMI).</div>
+    <div class="career-card">
+      <div class="career-type">Clerk · Full-time</div>
+      <h3 class="career-title">Junior Clerk — Lahore</h3>
+      <p class="career-desc">Diary management, court filings, and liaison with instructing solicitors. Training provided.</p>
+      <ul class="career-list">
+        <li>Graduate, in any discipline</li>
+        <li>Strong organisational and written English</li>
+        <li>Familiarity with court systems is a plus</li>
+      </ul>
+      <a href="#contact" class="btn ghost" style="padding:12px 18px;font-size:11px">Apply</a>
     </div>
   </div>
 </section>
@@ -1026,12 +1090,37 @@
         <div class="brand-text"><div class="brand-name" style="color:var(--parchment)">13A Law Chambers</div><div class="brand-sub">Counsel · Advocacy · Chambers</div></div>
       </div>
       <p>A set of advocates instructed on matters where the quality of reasoning determines the outcome. Based in Lahore; engaged nationally.</p>
+      <h5 style="margin-top:24px">Chambers Brief — Quarterly</h5>
+      <form class="newsletter" id="nlForm" onsubmit="return false">
+        <input type="email" placeholder="your@email.com" required id="nlEmail">
+        <button type="submit">Subscribe</button>
+      </form>
     </div>
-    <div><h5>Chambers</h5><a href="#about">About</a><a href="#people">Counsel</a><a href="#method">Method</a><a href="#cases">Matters</a></div>
-    <div><h5>Practice</h5><a href="#practice">Areas</a><a href="#estimate">Fees</a><a href="#faq">FAQ</a></div>
-    <div><h5>Instruct</h5><a href="#contact">Book Consultation</a><a href="mailto:clerks@13alaw.pk">clerks@13alaw.pk</a><a href="tel:+924235000000">+92 42 3500 0000</a></div>
+    <div><h5>Chambers</h5><a href="#about">About</a><a href="#people">Counsel</a><a href="#method">Method</a><a href="#cases">Matters</a><a href="#careers">Careers</a></div>
+    <div><h5>Practice</h5><a href="#practice">Areas</a><a href="#estimate">Fees</a><a href="#journal">Journal</a><a href="#faq">FAQ</a></div>
+    <div><h5>Instruct</h5><a href="#contact">Book Consultation</a><a href="mailto:clerks@13alaw.pk">clerks@13alaw.pk</a><a href="tel:+924235000000">+92 42 3500 0000</a><a href="#" onclick="document.getElementById('paletteBtn').click();return false">Search (⌘K)</a></div>
   </div>
-  <div class="footer-bottom">
+
+  <h5 style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin:48px 0 4px">Offices</h5>
+  <div class="offices">
+    <div class="office-card">
+      <div class="office-city">Lahore · Principal</div>
+      <div class="office-addr">№ 13·A, The Mall<br>Lahore 54000, Pakistan</div>
+      <a class="office-phone" href="tel:+924235000000">+92 42 3500 0000</a>
+    </div>
+    <div class="office-card">
+      <div class="office-city">Islamabad</div>
+      <div class="office-addr">Plot 23, Street 4, F-7/3<br>Islamabad 44000, Pakistan</div>
+      <a class="office-phone" href="tel:+92512000000">+92 51 200 0000</a>
+    </div>
+    <div class="office-card">
+      <div class="office-city">Karachi · Liaison</div>
+      <div class="office-addr">2nd Floor, Clifton Block 9<br>Karachi 75600, Pakistan</div>
+      <a class="office-phone" href="tel:+922135000000">+92 21 3500 0000</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom" style="margin-top:48px">
     <span>© 2026 · 13A LAW CHAMBERS</span>
     <span>REGISTERED WITH THE PUNJAB BAR COUNCIL</span>
     <span>PRIVACY · TERMS · IMPRINT</span>
@@ -1050,6 +1139,42 @@
 
 <script>
 /* ── DATA ── */
+const PARTNERS = [
+  {n:"Ayaan Rehman",r:"Head of Chambers",b:"Commercial disputes and arbitration. Appears regularly in the High Court and Supreme Court. LLM, Cambridge. Called to the Bar 2006."},
+  {n:"Sarah Niazi",r:"Senior Counsel · Public Law",b:"Constitutional and public law. Forty-plus reported matters. LLM, LUMS. Called to the Bar 2008."},
+  {n:"Haris Shah",r:"Senior Counsel · Criminal",b:"Trial advocacy and white-collar defence. Former Deputy Prosecutor. LLB (Hons), University of London."},
+  {n:"Zoya Imran",r:"Senior Counsel · Family",b:"Guardianship, succession, and private client. Accredited mediator (IMI). BCL, Oxford."},
+  {n:"Faisal Qureshi",r:"Partner · Corporate",b:"M&A, joint ventures and regulatory advisory for listed companies. Former in-house GC at a Karachi conglomerate."},
+  {n:"Mariam Khan",r:"Partner · Arbitration",b:"International commercial arbitration under ICC, LCIA and SIAC rules. Registered counsel at several institutions."},
+];
+const ASSOCIATES = [
+  {n:"Bilal Ahmed",q:"LL.M. · Punjab"},{n:"Hina Raza",q:"LL.B. · LUMS"},{n:"Omar Farooq",q:"LL.M. · Harvard"},
+  {n:"Sana Tariq",q:"LL.B. · UCL"},{n:"Arham Jamal",q:"LL.M. · King's College"},{n:"Noor Siddiqui",q:"LL.B. · Punjab"},
+  {n:"Usman Malik",q:"BCL · Oxford"},{n:"Fatima Ali",q:"LL.M. · NYU"},{n:"Hamza Iqbal",q:"LL.B. · LUMS"},
+  {n:"Aisha Baig",q:"LL.M. · Cornell"},{n:"Zain Abbas",q:"LL.B. · IIUI"},{n:"Laiba Hussain",q:"LL.M. · Cambridge"},
+  {n:"Kamran Sheikh",q:"LL.B. · Punjab"},{n:"Rida Nawaz",q:"LL.M. · LSE"},{n:"Taha Yousaf",q:"LL.B. · Punjab"},
+  {n:"Sidra Aslam",q:"LL.M. · Edinburgh"},{n:"Daniyal Khan",q:"LL.B. · LUMS"},{n:"Mehr Fatima",q:"BCL · Oxford"},
+];
+function renderPeople(){
+  const pg=document.getElementById('partnersGrid');
+  if(pg)pg.innerHTML=PARTNERS.map(p=>`<div class="person">
+    <div class="avatar">${p.n[0]}</div>
+    <div class="person-name">${p.n}</div>
+    <div class="person-role">${p.r}</div>
+    <div class="person-bio">${p.b}</div>
+    <div class="person-links">
+      <a href="#" aria-label="LinkedIn" title="LinkedIn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v16H4zM6 2a2 2 0 110 4 2 2 0 010-4zM10 9h3.5v2h.05c.5-.95 1.7-2 3.45-2 3.7 0 4.4 2.4 4.4 5.5V20h-4v-5c0-1.2-.05-2.7-1.65-2.7-1.65 0-1.9 1.3-1.9 2.6V20h-4z"/></svg></a>
+      <a href="mailto:clerks@13alaw.pk" aria-label="Email" title="Email"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></a>
+    </div>
+  </div>`).join('');
+  const ag=document.getElementById('associatesGrid');
+  if(ag)ag.innerHTML=ASSOCIATES.map(a=>`<div class="associate">
+    <div class="assoc-ava">${a.n[0]}</div>
+    <div><div class="assoc-name">${a.n}</div><div class="assoc-qual">${a.q}</div></div>
+  </div>`).join('');
+}
+renderPeople();
+
 const ICONS = {
   commercial:'<path d="M4 20h16M6 20V9l6-4 6 4v11M10 20v-6h4v6"/>',
   public:'<path d="M4 20h16M6 20V9M18 20V9M4 9h16M6 9l6-5 6 5M10 13h4M10 17h4"/>',
@@ -1247,6 +1372,15 @@ const td=new Date();td.setDate(td.getDate()+1);
 di.min=td.toISOString().split('T')[0];
 
 /* ── TOAST ── */
+/* Newsletter */
+const nlForm=document.getElementById('nlForm');
+if(nlForm)nlForm.querySelector('button').addEventListener('click',()=>{
+  const v=document.getElementById('nlEmail').value.trim();
+  if(!v||!v.includes('@')){toast('Please enter a valid email.');return}
+  document.getElementById('nlEmail').value='';
+  toast('Subscribed to the Chambers Brief.');
+});
+
 const toastEl=document.getElementById('toast');let tt;
 function toast(m){toastEl.textContent=m;toastEl.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toastEl.classList.remove('show'),3400)}
 
@@ -1254,7 +1388,7 @@ function toast(m){toastEl.textContent=m;toastEl.classList.add('show');clearTimeo
 const PAL=[
   {l:"Go to About",h:"#about"},{l:"Go to Practice Areas",h:"#practice"},{l:"Go to Method",h:"#method"},
   {l:"Go to Matters",h:"#cases"},{l:"Go to Counsel",h:"#people"},{l:"Go to Fee Estimator",h:"#estimate"},
-  {l:"Go to FAQ",h:"#faq"},{l:"Book Consultation",h:"#contact"},
+  {l:"Go to Journal",h:"#journal"},{l:"Go to Careers",h:"#careers"},{l:"Go to FAQ",h:"#faq"},{l:"Book Consultation",h:"#contact"},
   {l:"Toggle Theme",a:()=>themeBtn.click()},{l:"Toggle Language",a:()=>document.getElementById('langBtn').click()}
 ];
 const pal=document.getElementById('palette'),palIn=document.getElementById('paletteInput'),palList=document.getElementById('paletteList');
