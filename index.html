@@ -3,1415 +3,838 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>13A Law Chambers — Counsel, Advocacy & Chambers Practice</title>
-<meta name="description" content="13A Law Chambers — a modern barristers' chambers delivering rigorous counsel across commercial, constitutional, criminal and family law.">
+<title>13-A Law Chambers — Islamabad</title>
+<meta name="description" content="13-A Law Chambers — a shared chambers of independent advocates of the Supreme Court of Pakistan, based in Islamabad.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
-    --ink:#0E1410;
-    --ink-2:#141C18;
-    --ink-3:#1C2621;
-    --emerald:#0F3A2E;
-    --emerald-2:#1A5544;
-    --brass:#C8A24B;
-    --brass-2:#E6C77A;
-    --brass-pale:#F2E6C1;
-    --parchment:#F4EFE4;
-    --parchment-2:#E8E0CE;
-    --line:rgba(14,20,16,0.12);
-    --line-inv:rgba(242,230,193,0.18);
-    --muted:#5C6B62;
-    --red:#8B2A2A;
-    --serif:'Fraunces',Georgia,serif;
+    --bg:#1F1B16;
+    --bg-2:#2A2520;
+    --bg-3:#332D27;
+    --ink:#F4ECD8;
+    --ink-soft:#D4CBB5;
+    --muted:#8C8472;
+    --line:rgba(244,236,216,0.14);
+    --line-soft:rgba(244,236,216,0.08);
+    --gold:#D4B370;
+    --gold-soft:#E6CC92;
+    --serif:'EB Garamond',Georgia,serif;
     --sans:'Inter',system-ui,sans-serif;
-    --mono:'JetBrains Mono',monospace;
-    --bg:var(--parchment);
-    --fg:var(--ink);
-    --panel:#FFFFFF;
-    --panel-2:var(--parchment-2);
-    --shadow-sm:0 1px 2px rgba(14,20,16,.04),0 2px 8px rgba(14,20,16,.04);
-    --shadow-md:0 10px 30px rgba(14,20,16,.08);
-  }
-  html[data-theme="dark"]{
-    --bg:var(--ink);
-    --fg:var(--parchment);
-    --panel:var(--ink-2);
-    --panel-2:var(--ink-3);
-    --line:rgba(242,230,193,0.12);
-    --muted:#9AAAA0;
   }
   html{scroll-behavior:smooth}
   body{
     font-family:var(--sans);
-    background:var(--bg);color:var(--fg);
-    line-height:1.55;-webkit-font-smoothing:antialiased;
-    overflow-x:hidden;transition:background .4s,color .4s;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
   }
   a{color:inherit;text-decoration:none}
-  img,svg{display:block;max-width:100%}
-  button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
-  input,textarea,select{font:inherit;color:inherit}
+  img,video{display:block;max-width:100%}
+  button,input,textarea{font:inherit;color:inherit}
 
-  ::selection{background:var(--brass);color:var(--ink)}
-  ::-webkit-scrollbar{width:10px;height:10px}
-  ::-webkit-scrollbar-track{background:transparent}
-  ::-webkit-scrollbar-thumb{background:var(--brass);border-radius:0}
+  /* ── LIVE VIDEO BACKGROUND ── */
+  .bg-video{
+    position:fixed;inset:0;z-index:-3;
+    width:100vw;height:100vh;object-fit:cover;
+    filter:grayscale(0.35) brightness(0.55) contrast(1.05) sepia(0.15);
+  }
+  .bg-overlay{
+    position:fixed;inset:0;z-index:-2;
+    background:linear-gradient(180deg,rgba(31,27,22,0.65) 0%,rgba(31,27,22,0.82) 50%,rgba(31,27,22,0.9) 100%);
+  }
+  .bg-grain{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.06;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+    animation:grain 8s steps(8) infinite;
+  }
+  @keyframes grain{
+    0%,100%{transform:translate(0,0)}
+    10%{transform:translate(-5%,-10%)} 20%{transform:translate(-15%,5%)}
+    30%{transform:translate(7%,-25%)}  40%{transform:translate(-5%,25%)}
+    50%{transform:translate(-15%,10%)} 60%{transform:translate(15%,0)}
+    70%{transform:translate(0,15%)}    80%{transform:translate(3%,35%)}
+    90%{transform:translate(-10%,10%)}
+  }
 
-  /* ── PROGRESS BAR ── */
-  .progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--brass);z-index:200;transition:width .1s linear}
-
-  /* ── TOP BAR ── */
-  .topbar{
-    position:fixed;top:0;left:0;right:0;z-index:100;
+  /* ── NAV ── */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
     display:flex;align-items:center;justify-content:space-between;
-    padding:18px clamp(20px,5vw,56px);
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
+    padding:22px clamp(20px,5vw,72px);
+    background:rgba(31,27,22,0.72);
     backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--line);
-    transition:padding .3s;
+    border-bottom:1px solid var(--line-soft);
+    transition:padding .3s,background .3s;
   }
-  .topbar.scrolled{padding:12px clamp(20px,5vw,56px)}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand-mark{
-    width:42px;height:42px;position:relative;
-    display:grid;place-items:center;
-    border:1px solid var(--brass);
+  .nav.scrolled{padding:14px clamp(20px,5vw,72px);background:rgba(31,27,22,0.92)}
+  .brand{font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:.01em;color:var(--ink)}
+  .brand i{font-style:normal;color:var(--gold)}
+  .nav-right{display:flex;align-items:center;gap:36px}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{
+    font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-soft);font-weight:500;
+    position:relative;padding:4px 0;transition:color .25s;
   }
-  .brand-mark::before{
-    content:"";position:absolute;inset:4px;border:1px solid var(--brass);opacity:.5;
+  .nav-links a:hover{color:var(--gold)}
+  .clock{
+    font-family:var(--serif);font-size:13px;color:var(--gold);
+    letter-spacing:.06em;font-style:italic;
+    border-left:1px solid var(--line);padding-left:24px;
+    display:flex;flex-direction:column;line-height:1.2;
   }
-  .brand-mark span{
-    font-family:var(--serif);font-weight:500;
-    font-size:13px;color:var(--brass);letter-spacing:.04em;
-  }
-  .brand-text{display:flex;flex-direction:column;line-height:1.05}
-  .brand-name{font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:.01em}
-  .brand-sub{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+  .clock small{font-family:var(--sans);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:2px;font-style:normal}
+  .nav-toggle{display:none;font-size:20px;background:none;border:none;cursor:pointer;color:var(--ink)}
 
-  .nav-main{display:flex;align-items:center;gap:28px}
-  .nav-main a{
-    font-size:12.5px;letter-spacing:.02em;color:var(--muted);
-    position:relative;padding:6px 0;transition:color .25s;
+  @media(max-width:900px){.clock{display:none}}
+  @media(max-width:820px){
+    .nav-links{
+      position:absolute;top:100%;left:0;right:0;
+      flex-direction:column;gap:0;
+      background:rgba(31,27,22,0.96);border-bottom:1px solid var(--line);
+      max-height:0;overflow:hidden;transition:max-height .3s;
+    }
+    .nav-links.open{max-height:380px}
+    .nav-links a{padding:18px 28px;border-top:1px solid var(--line-soft);width:100%;letter-spacing:.14em}
+    .nav-toggle{display:block}
   }
-  .nav-main a:hover,.nav-main a.active{color:var(--fg)}
-  .nav-main a::after{
-    content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--brass);transition:right .3s;
-  }
-  .nav-main a:hover::after,.nav-main a.active::after{right:0}
-  .nav-actions{display:flex;align-items:center;gap:10px}
-  .icon-btn{
-    width:36px;height:36px;display:grid;place-items:center;
-    border:1px solid var(--line);border-radius:999px;transition:all .2s;
-  }
-  .icon-btn:hover{border-color:var(--brass);color:var(--brass)}
-  .lang-btn{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;padding:0 10px;width:auto;height:32px;border-radius:0}
-  .cta-nav{
-    font-size:12px;letter-spacing:.12em;text-transform:uppercase;
-    padding:11px 18px;background:var(--fg);color:var(--bg);
-    transition:transform .2s,background .2s;
-  }
-  .cta-nav:hover{transform:translateY(-1px)}
-  .burger{display:none;width:36px;height:36px;flex-direction:column;justify-content:center;gap:4px;padding:0 8px}
-  .burger span{display:block;height:1.5px;background:var(--fg);transition:.3s}
-  .burger.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
-  .burger.open span:nth-child(2){opacity:0}
-  .burger.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
-
-  /* ── SIDE INDEX ── */
-  .side-index{
-    position:fixed;left:24px;top:50%;transform:translateY(-50%);z-index:50;
-    display:flex;flex-direction:column;gap:12px;
-  }
-  .side-index a{
-    font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--muted);
-    display:flex;align-items:center;gap:10px;opacity:.6;transition:opacity .25s,color .25s;
-  }
-  .side-index a::before{
-    content:"";width:18px;height:1px;background:currentColor;transition:width .25s;
-  }
-  .side-index a.active,.side-index a:hover{opacity:1;color:var(--brass)}
-  .side-index a.active::before{width:36px}
-  @media(max-width:1100px){.side-index{display:none}}
-
-  /* ── LAYOUT ── */
-  section{padding:clamp(80px,10vw,140px) clamp(20px,5vw,56px);position:relative}
-  .eyebrow{
-    font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
-    color:var(--brass);display:flex;align-items:center;gap:12px;margin-bottom:24px;
-  }
-  .eyebrow::before{content:"";width:28px;height:1px;background:var(--brass)}
-  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.05}
-  h2{font-size:clamp(34px,5vw,64px)}
-  h2 em{font-style:italic;color:var(--brass)}
-  h3{font-size:clamp(22px,2.5vw,30px)}
-  .section-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:56px;border-bottom:1px solid var(--line);padding-bottom:32px}
-  .section-head .num{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.15em}
 
   /* ── HERO ── */
-  #hero{
-    min-height:100vh;padding-top:160px;padding-bottom:80px;
-    display:flex;flex-direction:column;justify-content:space-between;
-    position:relative;overflow:hidden;
-    background:
-      radial-gradient(ellipse at 85% 20%, rgba(200,162,75,0.10), transparent 50%),
-      radial-gradient(ellipse at 10% 90%, rgba(15,58,46,0.08), transparent 55%),
-      var(--bg);
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:160px clamp(24px,8vw,120px) 100px;
+    position:relative;
+    border-bottom:1px solid var(--line-soft);
   }
-  html[data-theme="dark"] #hero{
-    background:
-      radial-gradient(ellipse at 85% 20%, rgba(200,162,75,0.14), transparent 50%),
-      radial-gradient(ellipse at 10% 90%, rgba(15,58,46,0.22), transparent 55%),
-      var(--bg);
+  .hero-eyebrow{
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:36px;font-weight:500;
+    display:flex;align-items:center;gap:14px;
   }
-  .hero-badge{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:7px 14px;border:1px solid var(--line);
-    border-radius:999px;background:var(--panel);box-shadow:var(--shadow-sm);
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--muted);margin-bottom:28px;
-  }
-  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:#18a36a;box-shadow:0 0 0 0 rgba(24,163,106,.5);animation:pulse-dot 2s infinite}
-  @keyframes pulse-dot{70%{box-shadow:0 0 0 10px rgba(24,163,106,0)}}
-  .hero-grid{
-    position:absolute;inset:0;
-    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-    background-size:80px 80px;
-    mask-image:radial-gradient(ellipse at 70% 30%,#000 30%,transparent 75%);
-    pointer-events:none;
-  }
-  .hero-spotlight{
-    position:absolute;width:700px;height:700px;border-radius:50%;
-    background:radial-gradient(circle,rgba(200,162,75,0.18),transparent 60%);
-    pointer-events:none;transition:transform .15s ease-out;z-index:0;
-  }
-  .hero-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
-  .hero-meta{
-    display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;
-    letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:80px;
-  }
-  .hero-meta span b{color:var(--fg);font-weight:500}
+  .hero-eyebrow::before{content:"";width:42px;height:1px;background:var(--gold)}
   .hero-title{
-    font-family:var(--serif);font-weight:300;
-    font-size:clamp(56px,11vw,168px);line-height:.95;letter-spacing:-.03em;
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(56px,11vw,148px);
+    letter-spacing:-.02em;line-height:0.95;color:var(--ink);
+    text-shadow:0 4px 30px rgba(0,0,0,0.5);
   }
-  .hero-title em{font-style:italic;font-weight:400;color:var(--brass)}
-  .hero-title .line{display:block;overflow:hidden}
-  .hero-title .line > span{display:inline-block;transform:translateY(110%);animation:riseIn 1s cubic-bezier(.2,.8,.2,1) forwards}
-  .hero-title .line:nth-child(2) > span{animation-delay:.15s}
-  .hero-title .line:nth-child(3) > span{animation-delay:.3s}
-  @keyframes riseIn{to{transform:translateY(0)}}
-  .hero-bottom{
-    display:grid;grid-template-columns:1fr auto 1fr;gap:48px;align-items:end;
-    margin-top:64px;padding-top:32px;border-top:1px solid var(--line);
+  .hero-title i{font-style:italic;color:var(--gold);font-weight:400}
+
+  /* live SVG scales */
+  .hero-svg{
+    position:absolute;top:50%;right:clamp(20px,6vw,80px);
+    transform:translateY(-50%);
+    width:clamp(180px,28vw,340px);height:auto;
+    opacity:0.5;pointer-events:none;color:var(--gold);
   }
-  .hero-desc{max-width:420px;color:var(--muted);font-size:15px}
-  .hero-ctas{display:flex;gap:12px;justify-content:center}
-  .btn{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:16px 24px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
-    border:1px solid var(--fg);transition:all .25s;
+  .hero-svg .scale-arm{transform-origin:50% 22%;animation:tilt 6s ease-in-out infinite}
+  @keyframes tilt{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+  .hero-svg .pan{animation:bob-pan 6s ease-in-out infinite}
+  .hero-svg .pan-r{animation-delay:-3s}
+  @keyframes bob-pan{0%,100%{transform:translateY(-4px)}50%{transform:translateY(4px)}}
+  .hero-svg circle{animation:pulse 4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:0.4}50%{opacity:1}}
+  @media(max-width:760px){.hero-svg{opacity:0.22;width:60vw;right:-10vw;top:65%}}
+
+  .hero-down{
+    margin-top:60px;max-width:680px;
+    font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);font-weight:400;
+    color:var(--ink-soft);font-style:italic;line-height:1.5;
+    position:relative;z-index:2;
   }
-  .btn.primary{background:var(--fg);color:var(--bg)}
-  .btn.primary:hover{background:var(--brass);border-color:var(--brass);color:var(--ink)}
-  .btn.ghost:hover{background:var(--fg);color:var(--bg)}
-  .btn svg{transition:transform .25s}
-  .btn:hover svg{transform:translateX(4px)}
-  .hero-quote{
-    text-align:right;font-family:var(--serif);font-style:italic;
-    font-size:16px;color:var(--muted);max-width:320px;margin-left:auto;
+  .hero-meta{
+    margin-top:60px;
+    display:flex;flex-wrap:wrap;gap:48px;
+    border-top:1px solid var(--line);padding-top:32px;
+    font-size:13px;color:var(--ink-soft);
+    position:relative;z-index:2;
   }
-  .hero-quote b{display:block;font-style:normal;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-top:8px}
-
-  /* ── MARQUEE ── */
-  .marquee{
-    overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:18px 0;background:var(--panel);
+  .hero-meta div strong{
+    display:block;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:6px;font-weight:500;
   }
-  .marquee-track{display:flex;gap:56px;white-space:nowrap;animation:scroll 40s linear infinite;font-family:var(--serif);font-size:22px;font-style:italic;color:var(--muted)}
-  .marquee-track span{display:inline-flex;align-items:center;gap:56px}
-  .marquee-track span::after{content:"✦";color:var(--brass);font-style:normal;font-size:14px}
+  .hero-arrow{
+    position:absolute;bottom:36px;right:clamp(24px,8vw,120px);
+    color:var(--muted);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    display:flex;align-items:center;gap:14px;
+  }
+  .hero-arrow::after{content:"";width:30px;height:1px;background:var(--muted);animation:line-slide 2.4s ease-in-out infinite}
+  @keyframes line-slide{0%,100%{width:30px}50%{width:50px;background:var(--gold)}}
 
-  /* ── CRED STRIP ── */
-  .creds{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg)}
-  .cred{padding:28px 20px;text-align:center;border-right:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:color .2s,background .2s}
-  .cred:last-child{border-right:none}
-  .cred:hover{color:var(--fg);background:var(--panel)}
-  .cred b{display:block;font-family:var(--serif);font-size:22px;color:var(--brass);letter-spacing:.02em;margin-bottom:6px;text-transform:none}
-  @media(max-width:700px){.creds{grid-template-columns:repeat(2,1fr)}.cred:nth-child(even){border-right:none}}
+  /* ── SECTIONS ── */
+  section{padding:130px clamp(24px,6vw,80px);border-bottom:1px solid var(--line-soft);position:relative}
+  section:last-of-type{border-bottom:none}
+  .container{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+  .section-head{display:grid;grid-template-columns:200px 1fr;gap:60px;margin-bottom:72px}
+  @media(max-width:780px){.section-head{grid-template-columns:1fr;gap:20px;margin-bottom:48px}}
+  .section-num{
+    font-family:var(--serif);font-size:14px;letter-spacing:.18em;
+    color:var(--gold);font-weight:500;
+    border-top:1px solid var(--gold);padding-top:14px;align-self:start;
+  }
+  .section-title{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(36px,5vw,60px);
+    line-height:1.1;letter-spacing:-.005em;color:var(--ink);
+  }
+  .section-title i{font-style:italic;color:var(--gold);font-weight:400}
+  .section-lede{font-size:17px;color:var(--ink-soft);max-width:680px;margin-top:24px;line-height:1.7}
 
-  /* ── TESTIMONIALS ── */
-  .testimonials{background:var(--panel-2);position:relative;overflow:hidden}
-  .t-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-  .t-card{background:var(--bg);padding:36px 32px;border:1px solid var(--line);position:relative;transition:transform .3s,box-shadow .3s}
-  .t-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-  .t-card::before{content:"“";position:absolute;top:4px;left:16px;font-family:var(--serif);font-size:88px;color:var(--brass);opacity:.35;line-height:1}
-  .t-quote{font-family:var(--serif);font-size:19px;line-height:1.5;margin-bottom:24px;position:relative;z-index:1}
-  .t-meta{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--line)}
-  .t-ava{width:40px;height:40px;border-radius:50%;background:var(--brass);display:grid;place-items:center;font-family:var(--serif);color:var(--ink);font-size:18px}
-  .t-name{font-size:13.5px;font-weight:500}
-  .t-role{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:2px}
-
-  /* ── INSIGHTS / JOURNAL ── */
-  .journal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
-  .journal{background:var(--panel);border:1px solid var(--line);padding:32px;display:flex;flex-direction:column;gap:14px;transition:all .3s;cursor:pointer}
-  .journal:hover{border-color:var(--brass);transform:translateY(-3px);box-shadow:var(--shadow-md)}
-  .j-cat{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
-  .j-title{font-family:var(--serif);font-size:24px;line-height:1.25}
-  .j-excerpt{font-size:13.5px;color:var(--muted);flex-grow:1}
-  .j-foot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;padding-top:14px;border-top:1px solid var(--line)}
-  .j-read{color:var(--fg);transition:color .2s}
-  .journal:hover .j-read{color:var(--brass)}
-
-  /* ── CTA BAND ── */
-  .ctaband{background:var(--fg);color:var(--bg);padding:clamp(60px,8vw,100px) clamp(20px,5vw,56px);text-align:center;position:relative;overflow:hidden}
-  .ctaband::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(200,162,75,.15),transparent 60%)}
-  .ctaband-inner{position:relative;max-width:820px;margin:0 auto}
-  .ctaband h2{color:var(--bg);margin-bottom:20px}
-  .ctaband p{color:color-mix(in srgb,var(--bg) 70%,transparent);font-size:16px;margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto}
-  .ctaband .btn{border-color:var(--bg)}
-  .ctaband .btn.primary{background:var(--brass);border-color:var(--brass);color:var(--ink)}
-  .ctaband .btn.primary:hover{background:var(--brass-2);border-color:var(--brass-2)}
-
-  /* ── PRACTICE CARD ICON ── */
-  .pc-ico{width:32px;height:32px;color:var(--brass);opacity:.85;transition:all .3s}
-  .practice-card:hover .pc-ico{color:var(--brass-2);transform:scale(1.1)}
-  @keyframes scroll{to{transform:translateX(-50%)}}
+  #about{background:rgba(31,27,22,0.55)}
+  #profiles{background:rgba(42,37,32,0.85)}
+  #practice{background:rgba(31,27,22,0.7)}
+  #contact{background:rgba(42,37,32,0.85)}
 
   /* ── ABOUT ── */
-  .about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start}
-  .about-visual{
-    position:relative;aspect-ratio:4/5;background:var(--panel);
-    border:1px solid var(--line);overflow:hidden;
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  @media(max-width:880px){.about-grid{grid-template-columns:1fr;gap:48px}}
+  .about-text p{margin-bottom:20px;color:var(--ink-soft);font-size:16px;line-height:1.8}
+  .about-text p:first-child{
+    font-size:22px;font-family:var(--serif);color:var(--ink);
+    line-height:1.5;font-weight:400;margin-bottom:28px;
   }
-  .crest-svg{position:absolute;inset:0;width:100%;height:100%;padding:15%}
-  .about-visual::after{
-    content:"EST. 2007";position:absolute;bottom:20px;right:24px;
-    font-family:var(--mono);font-size:10px;letter-spacing:.25em;color:var(--muted);
+  .about-text p:first-child::first-letter{
+    font-size:62px;float:left;line-height:0.9;
+    padding:8px 12px 0 0;color:var(--gold);font-weight:500;font-family:var(--serif);
   }
-  .about-visual::before{
-    content:"№ 13·A";position:absolute;top:20px;left:24px;
-    font-family:var(--mono);font-size:10px;letter-spacing:.25em;color:var(--brass);
+  .disclaimer{
+    background:rgba(0,0,0,0.25);
+    border:1px solid var(--line);
+    padding:40px 42px;font-size:13.5px;color:var(--ink-soft);line-height:1.8;position:relative;
   }
-  .about-body p{font-size:17px;margin-bottom:20px;color:var(--fg)}
-  .about-body p.lead{font-family:var(--serif);font-size:clamp(22px,2.4vw,28px);line-height:1.35;margin-bottom:32px;color:var(--fg)}
-  .about-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:48px;border-top:1px solid var(--line)}
-  .fact{padding:24px 0;border-right:1px solid var(--line)}
-  .fact:last-child{border-right:none}
-  .fact-num{font-family:var(--serif);font-size:44px;color:var(--brass);line-height:1}
-  .fact-label{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .disclaimer h4{
+    font-family:var(--serif);font-weight:500;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:20px;
+  }
+  .disclaimer p{margin-bottom:14px}
+  .disclaimer p:last-child{margin-bottom:0}
+
+  /* ── PROFILES ── */
+  .profile-list{display:flex;flex-direction:column;gap:0}
+  .profile-row{
+    display:grid;grid-template-columns:160px 1fr;gap:48px;
+    padding:48px 0;border-top:1px solid var(--line);align-items:start;
+    transition:background .3s;
+  }
+  .profile-row:hover{background:rgba(212,179,112,0.04)}
+  .profile-row:last-child{border-bottom:1px solid var(--line)}
+  @media(max-width:760px){.profile-row{grid-template-columns:1fr;gap:24px;padding:36px 0}}
+  .profile-photo{
+    width:160px;height:200px;background:var(--bg-3);
+    display:grid;place-items:center;
+    color:var(--muted);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    background-size:cover;background-position:center top;border:1px solid var(--line);
+  }
+  @media(max-width:760px){.profile-photo{width:140px;height:180px}}
+  .profile-name{font-family:var(--serif);font-size:32px;font-weight:500;line-height:1.15;color:var(--ink);letter-spacing:-.005em}
+  .profile-role{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:8px;font-weight:500}
+  .profile-bio{font-size:15px;color:var(--ink-soft);line-height:1.75;margin-top:18px;max-width:760px}
+  .profile-areas{margin-top:16px;font-size:12.5px;color:var(--muted);font-style:italic;line-height:1.7}
+  .profile-meta{margin-top:20px;font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:22px;align-items:center}
+  .profile-meta a{color:var(--ink-soft);border-bottom:1px solid var(--line)}
+  .profile-meta a:hover{color:var(--gold);border-bottom-color:var(--gold)}
 
   /* ── PRACTICE ── */
-  .filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
-  .chip{
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
-    padding:8px 14px;border:1px solid var(--line);transition:all .2s;
+  .practice-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;
+    border-top:1px solid var(--line);
   }
-  .chip.active,.chip:hover{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-  .practice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-  .practice-card{
-    padding:36px 32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
-    background:var(--panel);position:relative;transition:all .3s;cursor:pointer;
-    min-height:260px;display:flex;flex-direction:column;justify-content:space-between;
+  .practice-item{
+    padding:40px 36px 44px;
+    border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+    transition:background .35s;position:relative;overflow:hidden;
   }
-  .practice-card:hover{background:var(--fg);color:var(--bg)}
-  .practice-card:hover .pc-num{color:var(--brass)}
-  .practice-card:hover .pc-arrow{transform:translate(6px,-6px);color:var(--brass)}
-  .pc-top{display:flex;justify-content:space-between;align-items:flex-start}
-  .pc-num{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--muted);transition:color .3s}
-  .pc-arrow{width:22px;height:22px;transition:transform .3s,color .3s}
-  .pc-title{font-family:var(--serif);font-size:26px;margin-top:48px}
-  .pc-desc{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.55}
-  .practice-card:hover .pc-desc{color:var(--parchment-2)}
-
-  /* ── METHOD / PROCESS ── */
-  .method{background:var(--fg);color:var(--bg)}
-  .method .eyebrow{color:var(--brass-2)}
-  .method h2{color:var(--bg)}
-  .method .section-head{border-color:var(--line-inv)}
-  .method-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-inv)}
-  .step{padding:36px 28px 36px 0;border-right:1px solid var(--line-inv);position:relative}
-  .step:last-child{border-right:none}
-  .step-num{font-family:var(--serif);font-size:56px;color:var(--brass);line-height:1}
-  .step-title{font-family:var(--serif);font-size:22px;margin-top:24px}
-  .step-desc{font-size:13px;color:color-mix(in srgb,var(--bg) 70%,transparent);margin-top:12px}
-
-  /* ── CASES / TIMELINE ── */
-  .cases{display:grid;grid-template-columns:2fr 1fr;gap:56px}
-  .timeline{position:relative;padding-left:28px}
-  .timeline::before{content:"";position:absolute;left:4px;top:8px;bottom:8px;width:1px;background:var(--line)}
-  .tl-item{position:relative;padding-bottom:40px;cursor:pointer;transition:transform .25s}
-  .tl-item:hover{transform:translateX(4px)}
-  .tl-item::before{content:"";position:absolute;left:-28px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1.5px solid var(--brass)}
-  .tl-item.open::before{background:var(--brass)}
-  .tl-year{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--brass)}
-  .tl-title{font-family:var(--serif);font-size:22px;margin-top:6px}
-  .tl-summary{color:var(--muted);font-size:14px;margin-top:8px}
-  .tl-detail{
-    max-height:0;overflow:hidden;transition:max-height .4s ease,margin .4s;
-    border-left:1px solid var(--brass);padding-left:16px;margin-top:0;
+  .practice-item::before{
+    content:"";position:absolute;left:0;top:0;width:0;height:2px;background:var(--gold);transition:width .5s;
   }
-  .tl-item.open .tl-detail{max-height:400px;margin-top:16px}
-  .tl-detail p{font-size:13.5px;color:var(--muted);margin-bottom:8px}
-  .tl-tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;background:var(--panel-2);margin-right:6px}
-  .cases-side{position:sticky;top:120px;align-self:start;padding:32px;background:var(--panel);border:1px solid var(--line)}
-  .cases-side h4{font-family:var(--serif);font-size:22px;margin-bottom:16px}
-  .cases-side p{font-size:14px;color:var(--muted);margin-bottom:20px}
-
-  /* ── PEOPLE ── */
-  .people-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-  .person{
-    padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
-    background:var(--panel);transition:background .3s;
-  }
-  .person:hover{background:var(--panel-2)}
-  .avatar{
-    width:100%;aspect-ratio:1;background:var(--panel-2);
-    display:grid;place-items:center;margin-bottom:24px;
-    font-family:var(--serif);font-size:72px;color:var(--brass);
-    border:1px solid var(--line);
-  }
-  .person-name{font-family:var(--serif);font-size:22px}
-  .person-role{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-top:6px}
-  .person-bio{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.55}
-  .person-links{display:flex;gap:10px;margin-top:16px}
-  .person-links a{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--line);color:var(--muted);transition:all .2s}
-  .person-links a:hover{border-color:var(--brass);color:var(--brass)}
-  .associates-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-  .associate{padding:20px 22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel);display:flex;align-items:center;gap:14px;transition:background .2s}
-  .associate:hover{background:var(--panel-2)}
-  .assoc-ava{width:40px;height:40px;border-radius:50%;background:var(--parchment-2);display:grid;place-items:center;font-family:var(--serif);color:var(--brass);font-size:18px;flex-shrink:0}
-  html[data-theme="dark"] .assoc-ava{background:var(--ink-3)}
-  .assoc-name{font-size:14px;font-weight:500}
-  .assoc-qual{font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:3px}
-
-  /* ── CAREERS ── */
-  .careers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-  .career-card{background:var(--panel);border:1px solid var(--line);padding:32px;display:flex;flex-direction:column;gap:12px;transition:all .3s}
-  .career-card:hover{border-color:var(--brass);transform:translateY(-3px);box-shadow:var(--shadow-md)}
-  .career-type{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass)}
-  .career-title{font-family:var(--serif);font-size:22px}
-  .career-desc{font-size:13.5px;color:var(--muted)}
-  .career-list{list-style:none;padding:0;margin-top:4px;font-size:13px;color:var(--muted)}
-  .career-list li{padding:6px 0;padding-left:18px;position:relative}
-  .career-list li::before{content:"";position:absolute;left:0;top:14px;width:8px;height:1px;background:var(--brass)}
-
-  /* ── OFFICES / NEWSLETTER ── */
-  .offices{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
-  .office-card{padding:20px;border:1px solid var(--line-inv);transition:border-color .2s}
-  .office-card:hover{border-color:var(--brass)}
-  .office-city{font-family:var(--serif);font-size:20px;color:var(--parchment)}
-  .office-addr{font-size:13px;color:rgba(242,230,193,.55);margin-top:8px;line-height:1.55}
-  .office-phone{font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:var(--brass);margin-top:10px;display:block}
-  .newsletter{display:flex;gap:0;margin-top:16px;max-width:420px}
-  .newsletter input{flex:1;padding:12px 14px;background:transparent;border:1px solid var(--line-inv);color:var(--parchment);font-size:13px}
-  .newsletter input:focus{outline:none;border-color:var(--brass)}
-  .newsletter button{padding:12px 18px;background:var(--brass);color:var(--ink);font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;transition:background .2s;border:1px solid var(--brass)}
-  .newsletter button:hover{background:var(--brass-2);border-color:var(--brass-2)}
-  @media(max-width:700px){.offices{grid-template-columns:1fr}}
-
-  /* ── CALCULATOR ── */
-  .calc{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-  .calc-form{background:var(--panel);padding:36px;border:1px solid var(--line)}
-  .field{margin-bottom:22px}
-  .field label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-  .field select,.field input,.field textarea{
-    width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--line);
-    font-size:14px;transition:border-color .2s;font-family:var(--sans);
-  }
-  .field select:focus,.field input:focus,.field textarea:focus{outline:none;border-color:var(--brass)}
-  .slider{width:100%;accent-color:var(--brass)}
-  .calc-result{background:var(--fg);color:var(--bg);padding:36px;position:sticky;top:120px}
-  .calc-result .label{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-2)}
-  .calc-result .range{font-family:var(--serif);font-size:clamp(36px,5vw,56px);margin:16px 0;color:var(--bg)}
-  .calc-break{margin-top:24px;border-top:1px solid var(--line-inv);padding-top:24px}
-  .calc-break .row{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;color:color-mix(in srgb,var(--bg) 75%,transparent)}
-  .calc-note{font-size:11.5px;color:color-mix(in srgb,var(--bg) 60%,transparent);margin-top:20px;line-height:1.55}
-
-  /* ── FAQ ── */
-  .faq-search{width:100%;padding:16px 20px;background:var(--panel);border:1px solid var(--line);font-size:15px;margin-bottom:24px}
-  .faq-search:focus{outline:none;border-color:var(--brass)}
-  .faq-item{border-bottom:1px solid var(--line);padding:24px 0;cursor:pointer}
-  .faq-q{display:flex;justify-content:space-between;align-items:center;gap:24px;font-family:var(--serif);font-size:21px}
-  .faq-toggle{width:28px;height:28px;border:1px solid var(--line);display:grid;place-items:center;font-size:16px;transition:transform .3s,background .3s}
-  .faq-item.open .faq-toggle{background:var(--brass);color:var(--ink);transform:rotate(45deg);border-color:var(--brass)}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .4s,margin-top .4s;color:var(--muted);font-size:15px;max-width:780px}
-  .faq-item.open .faq-a{max-height:300px;margin-top:16px}
+  .practice-item:hover::before{width:100%}
+  .practice-item:hover{background:rgba(212,179,112,0.05)}
+  .practice-num{font-family:var(--serif);font-size:13px;letter-spacing:.16em;color:var(--gold);margin-bottom:20px;font-weight:500}
+  .practice-name{font-family:var(--serif);font-size:26px;font-weight:500;margin-bottom:14px;color:var(--ink);line-height:1.2;letter-spacing:-.005em}
+  .practice-desc{font-size:14.5px;color:var(--ink-soft);line-height:1.7}
 
   /* ── CONTACT ── */
-  .contact-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:56px}
-  .contact-info{background:var(--panel);padding:40px;border:1px solid var(--line)}
-  .info-row{padding:22px 0;border-top:1px solid var(--line)}
-  .info-row:first-of-type{border-top:none;padding-top:0}
-  .info-label{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  .info-value{font-family:var(--serif);font-size:19px;margin-top:6px}
-  .info-value a:hover{color:var(--brass)}
-  .map{height:220px;margin-top:24px;background:var(--panel-2);position:relative;overflow:hidden;border:1px solid var(--line)}
-  .map svg{width:100%;height:100%}
-  .map-pin{position:absolute;top:50%;left:50%;width:14px;height:14px;border-radius:50%;background:var(--brass);transform:translate(-50%,-50%);box-shadow:0 0 0 0 rgba(200,162,75,.6);animation:pulse 2s infinite}
-  @keyframes pulse{70%{box-shadow:0 0 0 24px rgba(200,162,75,0)}100%{box-shadow:0 0 0 0 rgba(200,162,75,0)}}
-
-  .form-steps{display:flex;gap:8px;margin-bottom:24px}
-  .step-pip{flex:1;height:2px;background:var(--line);transition:background .3s}
-  .step-pip.active{background:var(--brass)}
-  .form-step{display:none}
-  .form-step.active{display:block;animation:fadeIn .4s}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-  .slot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:8px}
-  .slot{padding:10px 8px;border:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-align:center;transition:all .2s}
-  .slot:hover{border-color:var(--brass)}
-  .slot.sel{background:var(--brass);border-color:var(--brass);color:var(--ink)}
-  .form-nav{display:flex;justify-content:space-between;margin-top:28px;gap:12px}
-  .form-nav button{padding:14px 22px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--fg)}
-  .form-nav .back{color:var(--muted);border-color:var(--line)}
-  .form-nav .next,.form-nav .submit{background:var(--fg);color:var(--bg);margin-left:auto}
-  .form-nav .next:hover,.form-nav .submit:hover{background:var(--brass);border-color:var(--brass);color:var(--ink)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px}
+  @media(max-width:880px){.contact-grid{grid-template-columns:1fr;gap:48px}}
+  .contact-info{display:flex;flex-direction:column;gap:28px}
+  .contact-info > div strong{
+    display:block;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:8px;font-weight:500;
+  }
+  .contact-info > div p,.contact-info > div a{color:var(--ink-soft);font-size:15.5px;line-height:1.65}
+  .contact-info a:hover{color:var(--gold)}
+  form{display:flex;flex-direction:column;gap:22px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:520px){.form-row{grid-template-columns:1fr}}
+  form input,form textarea{
+    background:transparent;border:none;border-bottom:1px solid var(--line);
+    padding:14px 0;font-size:15px;outline:none;transition:border-color .25s;color:var(--ink);
+  }
+  form input::placeholder,form textarea::placeholder{color:var(--muted)}
+  form input:focus,form textarea:focus{border-bottom-color:var(--gold)}
+  form textarea{resize:vertical;min-height:120px}
+  form button{
+    margin-top:14px;align-self:flex-start;
+    padding:16px 38px;background:var(--gold);color:var(--bg);
+    font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+    transition:background .25s,letter-spacing .25s,transform .2s;
+  }
+  form button:hover{background:var(--gold-soft);letter-spacing:.28em;transform:translateY(-1px)}
 
   /* ── FOOTER ── */
-  footer{background:var(--ink);color:var(--parchment);padding:80px clamp(20px,5vw,56px) 32px}
-  html[data-theme="dark"] footer{background:var(--ink-2)}
-  .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid var(--line-inv)}
-  .footer-top h5{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:18px}
-  .footer-top a{display:block;font-size:14px;color:rgba(242,230,193,.65);padding:5px 0;transition:color .2s}
-  .footer-top a:hover{color:var(--brass-2)}
-  .footer-brand p{color:rgba(242,230,193,.55);font-size:14px;margin-top:18px;max-width:340px;line-height:1.6}
-  .footer-bottom{display:flex;justify-content:space-between;padding-top:24px;font-family:var(--mono);font-size:11px;letter-spacing:.15em;color:rgba(242,230,193,.45);flex-wrap:wrap;gap:12px}
-
-  /* ── COMMAND PALETTE ── */
-  .palette{
-    position:fixed;inset:0;z-index:300;display:none;
-    align-items:flex-start;justify-content:center;padding-top:15vh;
-    background:rgba(14,20,16,.7);backdrop-filter:blur(6px);
+  footer{
+    background:#15110D;color:#9C9484;
+    padding:80px clamp(24px,6vw,80px) 36px;
+    font-size:13px;line-height:1.75;position:relative;z-index:2;
   }
-  .palette.open{display:flex}
-  .palette-box{width:min(580px,90vw);background:var(--panel);border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.3)}
-  .palette input{width:100%;padding:20px;border:none;background:transparent;font-size:16px;border-bottom:1px solid var(--line)}
-  .palette input:focus{outline:none}
-  .palette-list{max-height:50vh;overflow-y:auto}
-  .palette-item{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;border-bottom:1px solid var(--line)}
-  .palette-item:hover,.palette-item.hl{background:var(--panel-2)}
-  .palette-item .k{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.15em}
-
-  /* ── TOAST ── */
-  .toast{
-    position:fixed;bottom:24px;right:24px;z-index:400;
-    background:var(--fg);color:var(--bg);padding:16px 22px;
-    border-left:3px solid var(--brass);font-size:13.5px;
-    transform:translateY(120px);opacity:0;transition:all .3s;
+  .foot-grid{
+    max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;
   }
-  .toast.show{transform:translateY(0);opacity:1}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:36px}}
+  .foot-brand{font-family:var(--serif);font-size:28px;color:var(--ink);margin-bottom:8px;font-weight:500}
+  .foot-brand i{font-style:normal;color:var(--gold)}
+  .foot-sub{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;font-weight:500}
+  .foot-disclaimer{color:#7A7363;font-size:12.5px;line-height:1.8}
+  .foot-col h5{font-family:var(--serif);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:500}
+  .foot-links{display:flex;flex-direction:column;gap:10px}
+  .foot-links a,.foot-links span{color:#B8AF9C;transition:color .2s;font-size:13.5px}
+  .foot-links a:hover{color:var(--gold)}
+  .foot-bottom{
+    max-width:1200px;margin:56px auto 0;padding-top:28px;
+    border-top:1px solid rgba(255,255,255,0.06);
+    display:flex;justify-content:space-between;color:#5C5648;font-size:12px;letter-spacing:.04em;
+  }
+  @media(max-width:520px){.foot-bottom{flex-direction:column;gap:8px}}
+
+  /* ── PROFILE MODAL ── */
+  .modal{
+    position:fixed;inset:0;z-index:300;
+    background:rgba(15,12,9,0.85);backdrop-filter:blur(8px);
+    display:none;align-items:flex-start;justify-content:center;
+    overflow-y:auto;padding:60px 20px;
+    opacity:0;transition:opacity .35s ease;
+  }
+  .modal.open{display:flex;opacity:1}
+  .modal-card{
+    width:100%;max-width:880px;
+    background:var(--bg);
+    border:1px solid var(--line);
+    padding:60px clamp(28px,5vw,72px) 64px;
+    position:relative;
+    transform:translateY(40px);transition:transform .45s ease;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  }
+  .modal.open .modal-card{transform:translateY(0)}
+  .modal-close{
+    position:absolute;top:22px;right:24px;
+    width:42px;height:42px;display:grid;place-items:center;
+    background:transparent;border:1px solid var(--line);
+    color:var(--ink-soft);font-size:18px;
+    transition:background .2s,color .2s,border-color .2s;cursor:pointer;
+  }
+  .modal-close:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+  .modal-header{
+    display:grid;grid-template-columns:180px 1fr;gap:40px;align-items:start;
+    padding-bottom:32px;border-bottom:1px solid var(--line);margin-bottom:36px;
+  }
+  @media(max-width:640px){.modal-header{grid-template-columns:1fr;gap:24px}}
+  .modal-photo{
+    width:180px;height:220px;background:var(--bg-3);border:1px solid var(--line);
+    background-size:cover;background-position:center top;
+    display:grid;place-items:center;color:var(--muted);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  }
+  @media(max-width:640px){.modal-photo{width:160px;height:200px}}
+  .modal-name{font-family:var(--serif);font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.1;color:var(--ink);letter-spacing:-.005em}
+  .modal-role{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:10px;font-weight:500}
+  .modal-summary{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--ink-soft);margin-top:18px;line-height:1.55}
+  .modal-section{margin-bottom:32px}
+  .modal-section h4{
+    font-family:var(--serif);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--gold);font-weight:500;margin-bottom:14px;
+    border-top:1px solid var(--gold);padding-top:12px;display:inline-block;
+  }
+  .modal-section p,.modal-section li{color:var(--ink-soft);font-size:15px;line-height:1.75}
+  .modal-section p{margin-bottom:12px}
+  .modal-section ul{list-style:none;padding:0}
+  .modal-section li{padding:8px 0;border-bottom:1px solid var(--line-soft);display:grid;grid-template-columns:120px 1fr;gap:24px}
+  .modal-section li:last-child{border-bottom:none}
+  .modal-section li b{color:var(--ink);font-weight:500;font-family:var(--serif);font-size:15px}
+  @media(max-width:640px){.modal-section li{grid-template-columns:1fr;gap:4px}}
+  .modal-foot{
+    display:flex;flex-wrap:wrap;gap:20px;align-items:center;
+    padding-top:24px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--ink-soft);
+  }
+  .modal-foot a{color:var(--ink-soft);border-bottom:1px solid var(--line)}
+  .modal-foot a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+
+  body.modal-open{overflow:hidden}
+  .profile-row{cursor:pointer}
+  .profile-open-hint{
+    margin-top:14px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--gold);font-weight:500;display:inline-flex;align-items:center;gap:10px;
+  }
+  .profile-open-hint::after{content:"→";transition:transform .25s}
+  .profile-row:hover .profile-open-hint::after{transform:translateX(6px)}
 
   /* ── REVEAL ── */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
-  .reveal.in{opacity:1;transform:none}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
 
-  /* ── RESPONSIVE ── */
-  @media(max-width:900px){
-    .nav-main{display:none}
-    .burger{display:flex}
-    .hero-bottom{grid-template-columns:1fr;gap:32px}
-    .hero-ctas{justify-content:flex-start}
-    .hero-quote{text-align:left;margin-left:0}
-    .about-grid,.calc,.cases,.contact-wrap{grid-template-columns:1fr;gap:40px}
-    .method-steps{grid-template-columns:repeat(2,1fr)}
-    .step{padding-right:20px}
-    .cases-side{position:static}
-    .calc-result{position:static}
-    .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  /* ── CURSOR DOT ── */
+  .cursor{
+    position:fixed;width:8px;height:8px;border-radius:50%;
+    background:var(--gold);pointer-events:none;z-index:200;
+    transform:translate(-50%,-50%);
+    transition:transform .15s ease-out,width .25s,height .25s;
+    mix-blend-mode:difference;opacity:0.75;
   }
-  .mobile-drawer{
-    position:fixed;top:0;right:-100%;width:min(320px,80vw);height:100vh;z-index:110;
-    background:var(--bg);border-left:1px solid var(--line);padding:100px 32px;
-    transition:right .35s ease;display:flex;flex-direction:column;gap:20px;
-  }
-  .mobile-drawer.open{right:0}
-  .mobile-drawer a{font-family:var(--serif);font-size:26px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .cursor.lg{width:48px;height:48px;background:transparent;border:1px solid var(--gold);opacity:0.5}
+  @media(hover:none){.cursor{display:none}}
 </style>
 </head>
 <body>
 
-<div class="progress" id="progress"></div>
+<!-- live looping background video (Pexels CDN, free, courthouse / city) -->
+<video class="bg-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=2400&q=85">
+  <source src="https://videos.pexels.com/video-files/4069912/4069912-uhd_2560_1440_24fps.mp4" type="video/mp4">
+</video>
+<div class="bg-overlay"></div>
+<div class="bg-grain"></div>
+<div class="cursor" id="cursor"></div>
 
-<!-- TOP BAR -->
-<header class="topbar" id="topbar">
-  <a href="#" class="brand" aria-label="13A Law Chambers">
-    <div class="brand-mark"><span>XIII·A</span></div>
-    <div class="brand-text">
-      <div class="brand-name">13A Law Chambers</div>
-      <div class="brand-sub">Counsel · Advocacy · Chambers</div>
+<nav class="nav" id="nav">
+  <div class="brand">13<i>—</i>A Law Chambers</div>
+  <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+  <div class="nav-right">
+    <div class="nav-links" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#profiles">Profiles</a>
+      <a href="#practice">Practice</a>
+      <a href="#contact">Contact</a>
     </div>
-  </a>
-  <nav class="nav-main" id="navMain">
-    <a href="#about" data-sec="about">About</a>
-    <a href="#practice" data-sec="practice">Practice</a>
-    <a href="#method" data-sec="method">Method</a>
-    <a href="#cases" data-sec="cases">Matters</a>
-    <a href="#people" data-sec="people">Counsel</a>
-    <a href="#careers" data-sec="careers">Careers</a>
-    <a href="#estimate" data-sec="estimate">Fees</a>
-    <a href="#journal" data-sec="journal">Journal</a>
-    <a href="#faq" data-sec="faq">FAQ</a>
-  </nav>
-  <div class="nav-actions">
-    <button class="icon-btn lang-btn" id="langBtn" title="Toggle language">EN</button>
-    <button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-    </button>
-    <button class="icon-btn" id="paletteBtn" title="Command (⌘K)" aria-label="Open command menu">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-    </button>
-    <a href="#contact" class="cta-nav">Book Consultation</a>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="clock"><span id="clockTime">—</span><small id="clockLabel">Islamabad</small></div>
   </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">Established Chambers · Islamabad</div>
+  <h1 class="hero-title">13<i>—</i>A<br>Law Chambers</h1>
+
+  <svg class="hero-svg" viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" aria-hidden="true">
+    <line x1="100" y1="20" x2="100" y2="200"/>
+    <circle cx="100" cy="20" r="3" fill="currentColor"/>
+    <line x1="60" y1="200" x2="140" y2="200"/>
+    <line x1="80" y1="200" x2="120" y2="200" stroke-width="1.2"/>
+    <g class="scale-arm">
+      <line x1="30" y1="60" x2="170" y2="60"/>
+      <line x1="30" y1="60" x2="30" y2="80" stroke-dasharray="2 3"/>
+      <line x1="170" y1="60" x2="170" y2="80" stroke-dasharray="2 3"/>
+      <g class="pan"><path d="M 10 80 Q 30 110 50 80"/><line x1="10" y1="80" x2="50" y2="80"/></g>
+      <g class="pan pan-r"><path d="M 150 80 Q 170 110 190 80"/><line x1="150" y1="80" x2="190" y2="80"/></g>
+    </g>
+    <circle cx="100" cy="20" r="8" fill="none" opacity="0.4"/>
+    <circle cx="100" cy="20" r="14" fill="none" opacity="0.2"/>
+  </svg>
+
+  <p class="hero-down">A shared chambers of independent advocates, committed to rigorous counsel and principled advocacy across the courts of Pakistan.</p>
+  <div class="hero-meta">
+    <div><strong>Founded</strong>Islamabad</div>
+    <div><strong>Practice</strong>Supreme Court of Pakistan</div>
+    <div><strong>Members</strong>Independent Advocates</div>
+  </div>
+  <div class="hero-arrow">Scroll</div>
 </header>
 
-<div class="mobile-drawer" id="drawer">
-  <a href="#about">About</a>
-  <a href="#practice">Practice</a>
-  <a href="#method">Method</a>
-  <a href="#cases">Matters</a>
-  <a href="#people">Counsel</a>
-  <a href="#careers">Careers</a>
-  <a href="#estimate">Fees</a>
-  <a href="#journal">Journal</a>
-  <a href="#faq">FAQ</a>
-  <a href="#contact">Book</a>
-</div>
-
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-spotlight" id="spot"></div>
-  <div class="hero-inner">
-    <div class="hero-meta">
-      <span>№ <b>13·A</b> · Chambers</span>
-      <span>Estd. <b>2007</b></span>
-      <span><b>9</b> Counsel</span>
-      <span>Lahore · <b>Pakistan</b></span>
-    </div>
-
-    <div class="hero-badge"><span class="dot"></span>Accepting instruction · Q2 roster open</div>
-
-    <h1 class="hero-title" aria-label="Considered counsel. Careful advocacy.">
-      <span class="line"><span>Considered</span></span>
-      <span class="line"><span><em>counsel.</em></span></span>
-      <span class="line"><span>Careful advocacy.</span></span>
-    </h1>
-
-    <div class="hero-bottom">
-      <p class="hero-desc">13A Law Chambers is a set of advocates and consultants in Lahore, instructed by individuals, founders and institutions on matters that genuinely require judgment — not just billable hours.</p>
-      <div class="hero-ctas">
-        <a href="#contact" class="btn primary">Book Consultation
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#practice" class="btn ghost">Our Practice</a>
-      </div>
-      <div class="hero-quote">
-        "Every matter we accept, we accept with both hands."
-        <b>— The Senior's Rule</b>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Commercial Disputes<span></span>Constitutional Petitions<span></span>Criminal Defence<span></span>Family & Succession<span></span>Tax & Regulatory<span></span>Arbitration<span></span>Real Property<span></span>Intellectual Property<span></span>Banking & Finance<span></span></span>
-    <span>Commercial Disputes<span></span>Constitutional Petitions<span></span>Criminal Defence<span></span>Family & Succession<span></span>Tax & Regulatory<span></span>Arbitration<span></span>Real Property<span></span>Intellectual Property<span></span>Banking & Finance<span></span></span>
-  </div>
-</div>
-
-<!-- CREDENTIALS -->
-<div class="creds">
-  <div class="cred"><b>Chambers Asia</b>Ranked Set · 2024</div>
-  <div class="cred"><b>Legal 500</b>Recommended · Disputes</div>
-  <div class="cred"><b>ICC</b>Registered Counsel</div>
-  <div class="cred"><b>PBC</b>Punjab Bar · Life Members</div>
-  <div class="cred"><b>SC</b>Supreme Court Panel</div>
-</div>
-
-<!-- ABOUT -->
 <section id="about">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">02 / The Chambers</div>
-      <h2>A working set, <em>not</em> a marketing firm.</h2>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">I &nbsp;·&nbsp; About</div>
+      <h2 class="section-title">A chambers built on <i>independence</i> and shared standards.</h2>
     </div>
-    <div class="num">§ 02</div>
-  </div>
-
-  <div class="about-grid">
-    <div class="about-visual reveal">
-      <svg class="crest-svg" viewBox="0 0 200 250" fill="none">
-        <rect x="10" y="10" width="180" height="230" stroke="#C8A24B" stroke-width="1"/>
-        <rect x="18" y="18" width="164" height="214" stroke="#C8A24B" stroke-width=".5" opacity=".5"/>
-        <text x="100" y="60" text-anchor="middle" font-family="Fraunces" font-size="22" fill="#C8A24B" font-style="italic">XIII · A</text>
-        <line x1="60" y1="72" x2="140" y2="72" stroke="#C8A24B" stroke-width=".8"/>
-        <!-- scales -->
-        <circle cx="100" cy="100" r="3" fill="#C8A24B"/>
-        <line x1="100" y1="103" x2="100" y2="170" stroke="#C8A24B" stroke-width="1"/>
-        <line x1="60" y1="120" x2="140" y2="120" stroke="#C8A24B" stroke-width="1"/>
-        <path d="M60 120 L50 150 L70 150 Z" stroke="#C8A24B" stroke-width="1" fill="none"/>
-        <path d="M140 120 L130 150 L150 150 Z" stroke="#C8A24B" stroke-width="1" fill="none"/>
-        <ellipse cx="60" cy="152" rx="14" ry="3" stroke="#C8A24B" stroke-width=".8" fill="none"/>
-        <ellipse cx="140" cy="152" rx="14" ry="3" stroke="#C8A24B" stroke-width=".8" fill="none"/>
-        <!-- base -->
-        <line x1="80" y1="170" x2="120" y2="170" stroke="#C8A24B" stroke-width="1"/>
-        <line x1="85" y1="175" x2="115" y2="175" stroke="#C8A24B" stroke-width="1"/>
-        <text x="100" y="210" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#C8A24B" letter-spacing="2">LAW · CHAMBERS</text>
-        <text x="100" y="222" text-anchor="middle" font-family="JetBrains Mono" font-size="5" fill="#C8A24B" letter-spacing="2" opacity=".6">LAHORE · MMVII</text>
-      </svg>
-    </div>
-
-    <div class="about-body reveal">
-      <p class="lead">We are a compact set of advocates operating from chambers №13·A, taking instruction on matters where the quality of reasoning, not the weight of the file, determines the outcome.</p>
-      <p>Our work falls into three tempos — advisory, litigation, and advocacy at the Bar. We move between them carefully, and only on matters we are genuinely suited to. We would rather refer a brief to a colleague than hold it poorly.</p>
-      <p>Clients come to us through other lawyers, former clients, and — increasingly — from founders and families who have grown tired of large firms where partners are introduced and then never seen again.</p>
-
-      <div class="about-facts">
-        <div class="fact"><div class="fact-num" data-count="18">0</div><div class="fact-label">Years at the Bar</div></div>
-        <div class="fact"><div class="fact-num" data-count="340">0</div><div class="fact-label">Reasoned Opinions</div></div>
-        <div class="fact"><div class="fact-num" data-count="96" data-suffix="%">0</div><div class="fact-label">Repeat Instruction</div></div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>13-A Law Chambers is a shared chambers in Islamabad, bringing together advocates of the Supreme Court of Pakistan who choose to practise side by side under a common roof.</p>
+        <p>Each member maintains their own clients, their own files, and their own professional standards — supported by a collegiate environment that encourages exchange, scrutiny, and a shared commitment to the rule of law.</p>
+        <p>Where a matter benefits from collaboration, members may, with the client's informed consent, work jointly on a brief. Otherwise, every advocate practises in their own right and on their own responsibility.</p>
       </div>
+      <aside class="disclaimer reveal">
+        <h4>Important Notice</h4>
+        <p>13-A Law Chambers is a shared chambers arrangement. Each lawyer practises independently and maintains their own client relationships and professional responsibilities. We are not a partnership or law firm, and no lawyer here is liable for the work or conduct of any other.</p>
+        <p>Where appropriate and with the informed consent of the client, one or more advocates may be engaged or may collaborate on a particular matter. Any such engagement is matter-specific and does not create a partnership, joint venture, or any continuing professional association between the advocates involved.</p>
+        <p>Nothing on this website shall be construed as indicating the existence of a partnership, joint venture, or any other form of professional association between the occupants of these chambers.</p>
+      </aside>
     </div>
   </div>
 </section>
 
-<!-- PRACTICE -->
+<section id="profiles">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">II &nbsp;·&nbsp; Profiles</div>
+      <h2 class="section-title">Members <i>of</i> Chambers.</h2>
+    </div>
+    <div class="profile-list">
+
+      <div class="profile-row reveal" data-profile="faraz">
+        <div class="profile-photo">Photograph</div>
+        <div>
+          <div class="profile-name">Syed Faraz Raza</div>
+          <div class="profile-role">Advocate, High Court · LL.B. (Hons.), LL.M.</div>
+          <p class="profile-bio">Read law at the University of Leicester (LL.B. Hons.) and King's College London (LL.M., International Business Law). Partner at Faraz, Haider, Moazzam &amp; Co., Islamabad. Former Special Public Prosecutor in the Musharraf High Treason matter, and former Legal Advisor (MP Scale) to the Ministry of Foreign Affairs. Practice spans civil, corporate, banking, property and commercial litigation before the Supreme Court, High Courts, Civil and District Courts.</p>
+          <div class="profile-areas">Civil &amp; Corporate · Property · Banking · Commercial Litigation · International Law · Constitutional</div>
+          <div class="profile-open-hint">View Profile</div>
+        </div>
+      </div>
+
+      <div class="profile-row reveal" data-profile="natalya">
+        <div class="profile-photo" style="background-image:url('IMG_2320.JPG')"></div>
+        <div>
+          <div class="profile-name">Natalya Kamal</div>
+          <div class="profile-role">Barrister-at-Law · Advocate, Supreme Court</div>
+          <p class="profile-bio">Called to the Bar by the Honourable Society of Lincoln's Inn in 2001. Over two decades of experience in litigation, regulatory practice, corporate advisory and alternative dispute resolution. Accredited Mediator under the Ministry of Law &amp; Justice and an ADR ODR International Associate Arbitrator. Practice spans constitutional, commercial, regulatory, telecommunications, competition, technology, intellectual property and environmental matters.</p>
+          <div class="profile-areas">Litigation &amp; Appeals · Regulatory · Telecommunications · Competition · Corporate &amp; Commercial · Technology &amp; IP · Mediation &amp; Arbitration</div>
+          <div class="profile-open-hint">View Profile</div>
+        </div>
+      </div>
+
+      <div class="profile-row reveal" data-profile="riaz">
+        <div class="profile-photo">Photograph</div>
+        <div>
+          <div class="profile-name">Syed Riaz Hussain</div>
+          <div class="profile-role">Advocate, Supreme Court of Pakistan</div>
+          <p class="profile-bio">LLB (Honours) from the University of London and qualified under the Solicitors Regulation Authority of England &amp; Wales via the Qualified Lawyers Transfer Scheme, 2014. Founding partner of H&amp;M Law since 2015, leading a dispute resolution and corporate advisory practice acting for federal and provincial agencies and major private clients in commercial, infrastructure, energy and judicial review matters.</p>
+          <div class="profile-areas">Construction &amp; Infrastructure · Dispute Resolution · IT &amp; Telecommunications · Legislative Review · Commercial Litigation</div>
+          <div class="profile-open-hint">View Profile</div>
+        </div>
+      </div>
+
+      <div class="profile-row reveal" data-profile="moazzam">
+        <div class="profile-photo">Photograph</div>
+        <div>
+          <div class="profile-name">Moazzam Habib</div>
+          <div class="profile-role">Advocate, Supreme Court of Pakistan</div>
+          <p class="profile-bio">Second-generation advocate practising in civil, property, commercial, rent, election, white-collar and immigration law. Partner at Faraz, Haider, Moazzam &amp; Co. since 2015. Currently Legal Advisor to the Directorate General Immigration &amp; Passports, and Senior Legal Consultant (UNICEF) at the Child Protection Institute. Certified Mediation Counsel (CIArb, UK) and court-appointed arbitrator.</p>
+          <div class="profile-areas">Civil &amp; Property · Commercial · Rent &amp; Election · White-Collar Crime · Immigration · Arbitration</div>
+          <div class="profile-open-hint">View Profile</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section id="practice">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">03 / Practice</div>
-      <h2>Areas we accept <em>instruction</em> in.</h2>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">III &nbsp;·&nbsp; Practice</div>
+      <h2 class="section-title">Areas <i>of</i> work.</h2>
     </div>
-    <div class="num">§ 03</div>
-  </div>
-
-  <div class="filter-row" id="filterRow">
-    <button class="chip active" data-f="all">All</button>
-    <button class="chip" data-f="commercial">Commercial</button>
-    <button class="chip" data-f="public">Public</button>
-    <button class="chip" data-f="private">Private</button>
-    <button class="chip" data-f="regulatory">Regulatory</button>
-  </div>
-
-  <div class="practice-grid" id="practiceGrid">
-    <!-- cards injected -->
-  </div>
-</section>
-
-<!-- METHOD -->
-<section id="method" class="method">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">04 / Method</div>
-      <h2>How a matter moves through <em>13·A</em>.</h2>
-    </div>
-    <div class="num">§ 04</div>
-  </div>
-
-  <div class="method-steps">
-    <div class="step"><div class="step-num">01</div><div class="step-title">Intake</div><div class="step-desc">A 30-minute call. We listen, ask, and decide — honestly — whether we are the right set for the matter.</div></div>
-    <div class="step"><div class="step-num">02</div><div class="step-title">Opinion</div><div class="step-desc">A written, reasoned opinion with the shape of the matter, realistic outcomes, and the costs to get there.</div></div>
-    <div class="step"><div class="step-num">03</div><div class="step-title">Strategy</div><div class="step-desc">Forum, timing, evidence, and the counsel actually handling the brief — fixed, in writing, before work begins.</div></div>
-    <div class="step"><div class="step-num">04</div><div class="step-title">Conduct</div><div class="step-desc">You hear from the advocate, not a paralegal. Weekly written updates, priced in.</div></div>
-  </div>
-</section>
-
-<!-- CASES -->
-<section id="cases">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">05 / Matters</div>
-      <h2>A few matters we can <em>discuss</em>.</h2>
-    </div>
-    <div class="num">§ 05</div>
-  </div>
-
-  <div class="cases">
-    <div class="timeline" id="timeline">
-      <div class="tl-item">
-        <div class="tl-year">2024 · LHC</div>
-        <div class="tl-title">Constitutional Petition · Digital Rights</div>
-        <div class="tl-summary">Representing a consortium of technology firms on a writ challenging overbroad data-retention directions.</div>
-        <div class="tl-detail">
-          <p>Instruction received in Q2. Interim relief obtained within three hearings; full substantive hearing scheduled for the next roster.</p>
-          <span class="tl-tag">Public Law</span><span class="tl-tag">Technology</span>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2023 · Arbitration</div>
-        <div class="tl-title">ICC Arbitration · Cross-Border EPC Dispute</div>
-        <div class="tl-summary">Seat in Singapore; value in excess of USD 40m. Acted for the respondent on jurisdictional and quantum issues.</div>
-        <div class="tl-detail">
-          <p>Settled favourably after the jurisdictional award. Briefed in conjunction with Singapore and UK counsel.</p>
-          <span class="tl-tag">Commercial</span><span class="tl-tag">International</span>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2022 · Sessions</div>
-        <div class="tl-title">Criminal Defence · Financial Crime</div>
-        <div class="tl-summary">Acquittal in a high-profile prosecution concerning alleged financial impropriety of a listed-company director.</div>
-        <div class="tl-detail">
-          <p>Fourteen-month trial; cross-examination of twenty-two prosecution witnesses. Reported decision.</p>
-          <span class="tl-tag">Criminal</span><span class="tl-tag">White Collar</span>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2021 · Family</div>
-        <div class="tl-title">Guardianship & Custody · Cross-Jurisdictional</div>
-        <div class="tl-summary">Secured custody and relocation orders where the child held dual nationality and had been wrongfully retained abroad.</div>
-        <div class="tl-detail">
-          <p>Coordinated with foreign counsel to ensure mirror orders and safe return within four months.</p>
-          <span class="tl-tag">Family</span><span class="tl-tag">Private Client</span>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2020 · SC</div>
-        <div class="tl-title">Civil Appeal · Specific Performance</div>
-        <div class="tl-summary">Successful appeal restoring a decree for specific performance set aside on a narrow point of limitation.</div>
-        <div class="tl-detail">
-          <p>Reported decision clarifying accrual of cause of action in conditional sale agreements.</p>
-          <span class="tl-tag">Civil</span><span class="tl-tag">Reported</span>
-        </div>
-      </div>
-    </div>
-
-    <aside class="cases-side reveal">
-      <h4>Confidentiality, first.</h4>
-      <p>We publish no matter in a form that could identify a client. Where a matter is of public record, we will discuss the legal reasoning but not the client's affairs.</p>
-      <a href="#contact" class="btn ghost" style="padding:12px 18px;font-size:11px">Request a meeting</a>
-    </aside>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials" class="testimonials">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">05·B / Instructing Parties</div>
-      <h2>What <em>clients</em> have said.</h2>
-    </div>
-    <div class="num">§ 05·B</div>
-  </div>
-
-  <div class="t-grid">
-    <div class="t-card reveal">
-      <p class="t-quote">Meticulous, unhurried, and genuinely strategic. The written opinion alone reframed how we thought about the dispute.</p>
-      <div class="t-meta"><div class="t-ava">R</div><div><div class="t-name">General Counsel</div><div class="t-role">Listed Cement Manufacturer</div></div></div>
-    </div>
-    <div class="t-card reveal">
-      <p class="t-quote">They declined two hearings in other matters to attend ours. That kind of carriage of the brief is rare.</p>
-      <div class="t-meta"><div class="t-ava">F</div><div><div class="t-name">Founder</div><div class="t-role">Fintech · Series B</div></div></div>
-    </div>
-    <div class="t-card reveal">
-      <p class="t-quote">Advised us honestly not to litigate. The settlement they negotiated saved two years and most of the legal budget.</p>
-      <div class="t-meta"><div class="t-ava">S</div><div><div class="t-name">Family Office</div><div class="t-role">Succession Matter</div></div></div>
-    </div>
-    <div class="t-card reveal">
-      <p class="t-quote">Correspondence drafted in 24 hours, without a single rewrite needed. They read the file, the whole file.</p>
-      <div class="t-meta"><div class="t-ava">H</div><div><div class="t-name">In-House Counsel</div><div class="t-role">Pharmaceutical Group</div></div></div>
+    <p class="section-lede" style="margin-top:-48px;margin-bottom:56px">Members of chambers accept instructions across a broad range of contentious and advisory matters before the District Courts, High Courts, Supreme Court, special tribunals and regulatory bodies of Pakistan.</p>
+    <div class="practice-grid">
+      <div class="practice-item"><div class="practice-num">i.</div><div class="practice-name">Civil &amp; Commercial</div><p class="practice-desc">Contractual disputes, property and rent matters, recovery suits, banking and corporate litigation before the civil and commercial courts.</p></div>
+      <div class="practice-item"><div class="practice-num">ii.</div><div class="practice-name">Constitutional</div><p class="practice-desc">Writ petitions, judicial review, fundamental rights and public-interest litigation in the High Courts and Supreme Court of Pakistan.</p></div>
+      <div class="practice-item"><div class="practice-num">iii.</div><div class="practice-name">Criminal &amp; White-Collar</div><p class="practice-desc">Trial, bail and appellate work across the criminal jurisdiction, including economic offences, accountability and high-profile prosecutions.</p></div>
+      <div class="practice-item"><div class="practice-num">iv.</div><div class="practice-name">Regulatory &amp; Telecoms</div><p class="practice-desc">Telecommunications, media, competition, public procurement and energy regulation before sectoral regulators and tribunals.</p></div>
+      <div class="practice-item"><div class="practice-num">v.</div><div class="practice-name">Arbitration &amp; ADR</div><p class="practice-desc">Domestic and international arbitration, mediation and enforcement of awards, including FIDIC and commercial disputes.</p></div>
+      <div class="practice-item"><div class="practice-num">vi.</div><div class="practice-name">Family &amp; Immigration</div><p class="practice-desc">Matrimonial, custody, maintenance and inheritance matters, alongside immigration and citizenship advice and representation.</p></div>
     </div>
   </div>
 </section>
 
-<!-- PEOPLE -->
-<section id="people">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">06 / Counsel</div>
-      <h2>The <em>people</em> you'll meet.</h2>
-    </div>
-    <div class="num">§ 06</div>
-  </div>
-
-  <h3 style="font-size:22px;margin-bottom:20px;font-family:var(--serif)">Partners</h3>
-  <div class="people-grid" id="partnersGrid"></div>
-
-  <h3 style="font-size:22px;margin:56px 0 20px;font-family:var(--serif)">Associates</h3>
-  <div class="associates-grid" id="associatesGrid"></div>
-</section>
-
-<!-- CAREERS -->
-<section id="careers">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">06·B / Careers</div>
-      <h2>Join the <em>chambers</em>.</h2>
-    </div>
-    <div class="num">§ 06·B</div>
-  </div>
-
-  <div class="careers-grid">
-    <div class="career-card">
-      <div class="career-type">Pupillage · 12 months</div>
-      <h3 class="career-title">Pupil Barrister (2026 Intake)</h3>
-      <p class="career-desc">Two pupillages offered annually. Rotations across commercial, public, and criminal practice, with a dedicated supervisor from day one.</p>
-      <ul class="career-list">
-        <li>LL.B. or equivalent, with excellent written work</li>
-        <li>Enrolment with a provincial Bar Council</li>
-        <li>Demonstrable interest in advocacy</li>
-      </ul>
-      <a href="#contact" class="btn ghost" style="padding:12px 18px;font-size:11px">Apply</a>
-    </div>
-    <div class="career-card">
-      <div class="career-type">Associate · 2–5 years PQE</div>
-      <h3 class="career-title">Associate — Disputes</h3>
-      <p class="career-desc">A seat on live commercial and regulatory matters. Drafting-heavy; court attendance from the first month.</p>
-      <ul class="career-list">
-        <li>2–5 years post-enrolment at a reputable set</li>
-        <li>Experience of High Court practice</li>
-        <li>Post-graduate qualification preferred</li>
-      </ul>
-      <a href="#contact" class="btn ghost" style="padding:12px 18px;font-size:11px">Apply</a>
-    </div>
-    <div class="career-card">
-      <div class="career-type">Clerk · Full-time</div>
-      <h3 class="career-title">Junior Clerk — Lahore</h3>
-      <p class="career-desc">Diary management, court filings, and liaison with instructing solicitors. Training provided.</p>
-      <ul class="career-list">
-        <li>Graduate, in any discipline</li>
-        <li>Strong organisational and written English</li>
-        <li>Familiarity with court systems is a plus</li>
-      </ul>
-      <a href="#contact" class="btn ghost" style="padding:12px 18px;font-size:11px">Apply</a>
-    </div>
-  </div>
-</section>
-
-<!-- FEE ESTIMATOR -->
-<section id="estimate">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">07 / Fees</div>
-      <h2>A frank <em>estimate</em>, before you instruct.</h2>
-    </div>
-    <div class="num">§ 07</div>
-  </div>
-
-  <div class="calc">
-    <div class="calc-form">
-      <div class="field">
-        <label>Matter type</label>
-        <select id="fType">
-          <option value="advisory">Written Opinion · Advisory</option>
-          <option value="civil">Civil Litigation · Trial Court</option>
-          <option value="criminal">Criminal Defence · Trial</option>
-          <option value="constitutional">Constitutional Petition</option>
-          <option value="arbitration">Arbitration · Domestic/ICC</option>
-          <option value="family">Family & Succession</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Urgency</label>
-        <select id="fUrg">
-          <option value="1">Standard (4–6 weeks)</option>
-          <option value="1.35">Priority (2–3 weeks)</option>
-          <option value="1.75">Urgent (within 10 days)</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Estimated complexity <span id="cxVal" style="color:var(--brass);font-family:var(--mono)">· 5 / 10</span></label>
-        <input type="range" min="1" max="10" value="5" class="slider" id="fCx">
-      </div>
-      <div class="field">
-        <label>Counsel level</label>
-        <select id="fLvl">
-          <option value="1">Junior Counsel</option>
-          <option value="1.6" selected>Senior Counsel</option>
-          <option value="2.2">Head of Chambers</option>
-        </select>
-      </div>
-    </div>
-    <div class="calc-result">
-      <div class="label">Indicative professional fee</div>
-      <div class="range" id="fRange">PKR —</div>
-      <div class="calc-break">
-        <div class="row"><span>Base engagement</span><span id="fBase">—</span></div>
-        <div class="row"><span>Complexity adjustment</span><span id="fCxA">—</span></div>
-        <div class="row"><span>Urgency loading</span><span id="fUrgA">—</span></div>
-        <div class="row"><span>Counsel premium</span><span id="fLvlA">—</span></div>
-      </div>
-      <div class="calc-note">Indicative only. Final engagement is fixed in writing after intake. Excludes court fees, disbursements, and Sales Tax on Services.</div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">08 / Questions</div>
-      <h2>Questions clients actually <em>ask</em>.</h2>
-    </div>
-    <div class="num">§ 08</div>
-  </div>
-
-  <input type="search" class="faq-search" id="faqSearch" placeholder="Filter questions — try 'fees', 'confidential', 'abroad'…">
-  <div id="faqList">
-    <div class="faq-item"><div class="faq-q">Do you take matters outside Lahore? <span class="faq-toggle">+</span></div><div class="faq-a">Yes. We regularly appear in Islamabad, Karachi, and appellate fora. For foreign-seated arbitration we work alongside local counsel of your choosing.</div></div>
-    <div class="faq-item"><div class="faq-q">Is the first consultation chargeable? <span class="faq-toggle">+</span></div><div class="faq-a">A 30-minute intake call is complimentary. A substantive first opinion is billed at an agreed flat fee, disclosed before the meeting.</div></div>
-    <div class="faq-item"><div class="faq-q">How do you structure your fees? <span class="faq-toggle">+</span></div><div class="faq-a">Wherever possible, fixed-fee per stage. Hourly billing only on matters whose scope genuinely cannot be scoped — and always against a written cap.</div></div>
-    <div class="faq-item"><div class="faq-q">How is confidentiality handled? <span class="faq-toggle">+</span></div><div class="faq-a">All instructions are privileged. Our systems are self-hosted and encrypted. We never publish a matter in a form that could identify a client.</div></div>
-    <div class="faq-item"><div class="faq-q">Can you act against a large institution? <span class="faq-toggle">+</span></div><div class="faq-a">Frequently. We maintain no standing retainers with commercial banks or large corporates — specifically to preserve the ability to act for individuals against them.</div></div>
-    <div class="faq-item"><div class="faq-q">Who will actually handle my matter? <span class="faq-toggle">+</span></div><div class="faq-a">Named in writing before work begins. The counsel you meet at intake is the counsel on the brief — no silent handoffs to juniors.</div></div>
-  </div>
-</section>
-
-<!-- JOURNAL -->
-<section id="journal">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">08·B / Journal</div>
-      <h2>Notes from <em>chambers</em>.</h2>
-    </div>
-    <div class="num">§ 08·B</div>
-  </div>
-
-  <div class="journal-grid">
-    <article class="journal">
-      <div class="j-cat">Constitutional · Note</div>
-      <div class="j-title">The scope of Article 199 review, after the 2024 Full Bench.</div>
-      <div class="j-excerpt">A short reading of how the court has narrowed the class of matters that will be entertained on the constitutional side, and what it means for public-interest litigation.</div>
-      <div class="j-foot"><span>12 min read</span><span class="j-read">Read →</span></div>
-    </article>
-    <article class="journal">
-      <div class="j-cat">Commercial · Analysis</div>
-      <div class="j-title">When to arbitrate, and when to sue — a practitioner's decision tree.</div>
-      <div class="j-excerpt">Forum selection is the most undervalued decision in a commercial dispute. We set out the considerations, in the order we apply them.</div>
-      <div class="j-foot"><span>9 min read</span><span class="j-read">Read →</span></div>
-    </article>
-    <article class="journal">
-      <div class="j-cat">Family · Practice</div>
-      <div class="j-title">Cross-border custody: mirror orders in practice.</div>
-      <div class="j-excerpt">A working note on securing and enforcing reciprocal orders where the child holds two nationalities — and the three things that go wrong.</div>
-      <div class="j-foot"><span>7 min read</span><span class="j-read">Read →</span></div>
-    </article>
-  </div>
-</section>
-
-<!-- CTA BAND -->
-<section class="ctaband">
-  <div class="ctaband-inner">
-    <div class="eyebrow" style="justify-content:center;color:var(--brass-2)">Clerk's Desk · Accepting Instruction</div>
-    <h2>Have a matter that needs <em>thinking through</em>?</h2>
-    <p>A 30-minute intake call is complimentary. If we are not the right set for the matter, we will say so — and, where we can, refer you to counsel who is.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="#contact" class="btn primary">Book Consultation
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
-      <a href="tel:+924235000000" class="btn ghost" style="color:var(--bg)">Call the Clerk</a>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
 <section id="contact">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">09 / Instruct</div>
-      <h2>Request a <em>consultation</em>.</h2>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">IV &nbsp;·&nbsp; Contact</div>
+      <h2 class="section-title">Get <i>in</i> touch.</h2>
     </div>
-    <div class="num">§ 09</div>
-  </div>
-
-  <div class="contact-wrap">
-    <form class="calc-form" id="cForm" onsubmit="return false">
-      <div class="form-steps">
-        <div class="step-pip active"></div><div class="step-pip"></div><div class="step-pip"></div>
+    <p class="section-lede" style="margin-top:-48px;margin-bottom:56px">For instructions, consultations or general enquiries, please use the details below or send a message via the form.</p>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div><strong>Chambers</strong><p>House No. 13-A, Street No. 37<br>Sector F-8/1, Islamabad<br>Pakistan</p></div>
+        <div><strong>General Enquiries</strong><a href="mailto:info@13alawchambers.com">info@13alawchambers.com</a></div>
+        <div><strong>Telephone</strong><p>+92 334 7788442</p></div>
+        <div><strong>Hours</strong><p>Monday – Friday · 9:00 am – 6:00 pm</p></div>
       </div>
-
-      <div class="form-step active" data-step="1">
-        <div class="field"><label>Your name</label><input type="text" id="cName" placeholder="Full name" required></div>
-        <div class="field"><label>Email</label><input type="email" id="cEmail" placeholder="you@domain.com" required></div>
-        <div class="field"><label>Phone (with country code)</label><input type="tel" id="cPhone" placeholder="+92 300 0000000"></div>
-      </div>
-
-      <div class="form-step" data-step="2">
-        <div class="field"><label>Area of law</label>
-          <select id="cArea">
-            <option>Commercial Disputes</option><option>Constitutional / Public</option><option>Criminal Defence</option>
-            <option>Family & Succession</option><option>Arbitration</option><option>Tax & Regulatory</option>
-            <option>Real Property</option><option>Other / Not sure</option>
-          </select>
+      <form class="reveal" onsubmit="event.preventDefault();this.querySelector('button').textContent='Message Sent — Thank You'">
+        <div class="form-row">
+          <input type="text" placeholder="Your name" required>
+          <input type="email" placeholder="Email address" required>
         </div>
-        <div class="field"><label>Brief summary</label><textarea id="cMsg" rows="5" placeholder="A few sentences. Treat this as privileged."></textarea></div>
-      </div>
-
-      <div class="form-step" data-step="3">
-        <div class="field"><label>Preferred date</label><input type="date" id="cDate" min=""></div>
-        <div class="field"><label>Preferred time slot</label>
-          <div class="slot-grid" id="slotGrid">
-            <div class="slot" data-t="10:00">10:00</div>
-            <div class="slot" data-t="11:30">11:30</div>
-            <div class="slot" data-t="14:00">14:00</div>
-            <div class="slot" data-t="15:30">15:30</div>
-            <div class="slot" data-t="17:00">17:00</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-nav">
-        <button type="button" class="back" id="cBack" style="visibility:hidden">Back</button>
-        <button type="button" class="next" id="cNext">Next →</button>
-        <button type="button" class="submit" id="cSubmit" style="display:none">Request Consultation</button>
-      </div>
-    </form>
-
-    <div class="contact-info">
-      <div class="info-row"><div class="info-label">Chambers</div><div class="info-value">№ 13·A, The Mall<br>Lahore 54000, Pakistan</div></div>
-      <div class="info-row"><div class="info-label">Clerk's Desk</div><div class="info-value"><a href="tel:+924235000000">+92 42 3500 0000</a></div></div>
-      <div class="info-row"><div class="info-label">Instructions</div><div class="info-value"><a href="mailto:clerks@13alaw.pk">clerks@13alaw.pk</a></div></div>
-      <div class="info-row"><div class="info-label">Hours</div><div class="info-value">Mon–Fri · 09:30–18:00<br><span style="font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.15em">OUT OF HOURS BY APPOINTMENT</span></div></div>
-      <div class="map">
-        <svg viewBox="0 0 400 220" preserveAspectRatio="none">
-          <defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="rgba(14,20,16,.08)" stroke-width=".6"/></pattern></defs>
-          <rect width="400" height="220" fill="url(#g)"/>
-          <path d="M0 110 Q120 80 200 115 T400 100" stroke="#C8A24B" stroke-width="1.2" fill="none"/>
-          <path d="M120 0 L180 220" stroke="rgba(14,20,16,.2)" stroke-width="1" fill="none"/>
-          <path d="M240 0 L280 220" stroke="rgba(14,20,16,.15)" stroke-width="1" fill="none"/>
-        </svg>
-        <div class="map-pin"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="brand" style="gap:14px">
-        <div class="brand-mark"><span>XIII·A</span></div>
-        <div class="brand-text"><div class="brand-name" style="color:var(--parchment)">13A Law Chambers</div><div class="brand-sub">Counsel · Advocacy · Chambers</div></div>
-      </div>
-      <p>A set of advocates instructed on matters where the quality of reasoning determines the outcome. Based in Lahore; engaged nationally.</p>
-      <h5 style="margin-top:24px">Chambers Brief — Quarterly</h5>
-      <form class="newsletter" id="nlForm" onsubmit="return false">
-        <input type="email" placeholder="your@email.com" required id="nlEmail">
-        <button type="submit">Subscribe</button>
+        <input type="text" placeholder="Subject">
+        <textarea placeholder="Your message" required></textarea>
+        <button type="submit">Send Message</button>
       </form>
     </div>
-    <div><h5>Chambers</h5><a href="#about">About</a><a href="#people">Counsel</a><a href="#method">Method</a><a href="#cases">Matters</a><a href="#careers">Careers</a></div>
-    <div><h5>Practice</h5><a href="#practice">Areas</a><a href="#estimate">Fees</a><a href="#journal">Journal</a><a href="#faq">FAQ</a></div>
-    <div><h5>Instruct</h5><a href="#contact">Book Consultation</a><a href="mailto:clerks@13alaw.pk">clerks@13alaw.pk</a><a href="tel:+924235000000">+92 42 3500 0000</a><a href="#" onclick="document.getElementById('paletteBtn').click();return false">Search (⌘K)</a></div>
   </div>
+</section>
 
-  <h5 style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin:48px 0 4px">Offices</h5>
-  <div class="offices">
-    <div class="office-card">
-      <div class="office-city">Lahore · Principal</div>
-      <div class="office-addr">№ 13·A, The Mall<br>Lahore 54000, Pakistan</div>
-      <a class="office-phone" href="tel:+924235000000">+92 42 3500 0000</a>
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand">13<i>—</i>A Law Chambers</div>
+      <div class="foot-sub">Advocates · Islamabad</div>
+      <p class="foot-disclaimer">A shared chambers arrangement. Each lawyer practises independently. We are not a partnership or law firm, and no lawyer here is liable for the work or conduct of any other. Nothing on this website shall be construed as indicating the existence of a partnership, joint venture or any other form of professional association between the occupants of these chambers.</p>
     </div>
-    <div class="office-card">
-      <div class="office-city">Islamabad</div>
-      <div class="office-addr">Plot 23, Street 4, F-7/3<br>Islamabad 44000, Pakistan</div>
-      <a class="office-phone" href="tel:+92512000000">+92 51 200 0000</a>
+    <div class="foot-col">
+      <h5>Navigate</h5>
+      <div class="foot-links">
+        <a href="#about">About</a><a href="#profiles">Profiles</a><a href="#practice">Practice</a><a href="#contact">Contact</a>
+      </div>
     </div>
-    <div class="office-card">
-      <div class="office-city">Karachi · Liaison</div>
-      <div class="office-addr">2nd Floor, Clifton Block 9<br>Karachi 75600, Pakistan</div>
-      <a class="office-phone" href="tel:+922135000000">+92 21 3500 0000</a>
+    <div class="foot-col">
+      <h5>Visit</h5>
+      <div class="foot-links">
+        <span>House No. 13-A, Street 37</span><span>Sector F-8/1, Islamabad</span><span>Pakistan</span>
+        <a href="mailto:info@13alawchambers.com">info@13alawchambers.com</a>
+      </div>
     </div>
   </div>
-
-  <div class="footer-bottom" style="margin-top:48px">
-    <span>© 2026 · 13A LAW CHAMBERS</span>
-    <span>REGISTERED WITH THE PUNJAB BAR COUNCIL</span>
-    <span>PRIVACY · TERMS · IMPRINT</span>
+  <div class="foot-bottom">
+    <span>© 2026 13-A Law Chambers. All rights reserved.</span>
+    <span>Islamabad · Pakistan</span>
   </div>
 </footer>
 
-<!-- COMMAND PALETTE -->
-<div class="palette" id="palette" role="dialog" aria-modal="true">
-  <div class="palette-box">
-    <input type="text" id="paletteInput" placeholder="Jump to… (Esc to close)">
-    <div class="palette-list" id="paletteList"></div>
+<!-- ── PROFILE MODALS ── -->
+<div class="modal" id="modal-faraz">
+  <div class="modal-card">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="modal-header">
+      <div class="modal-photo">Photograph</div>
+      <div>
+        <div class="modal-name">Syed Faraz Raza</div>
+        <div class="modal-role">Advocate, High Court · LL.B. (Hons.), LL.M.</div>
+        <p class="modal-summary">A barrister of dual UK qualifications and broad commercial practice, with experience spanning constitutional litigation, public prosecution and advisory work for the Federal Government.</p>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <h4>Education</h4>
+      <ul>
+        <li><b>2009 – 2010</b><span>LL.M. International Business Law — King's College London, United Kingdom</span></li>
+        <li><b>2006 – 2009</b><span>LL.B. (Honours) — University of Leicester, United Kingdom</span></li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <h4>Experience</h4>
+      <ul>
+        <li><b>2018 – Present</b><span>Partner, Faraz, Haider, Moazzam &amp; Co., Islamabad — civil, corporate, property, banking and commercial litigation before the High Courts and Civil &amp; District Courts of Islamabad and Rawalpindi.</span></li>
+        <li><b>2019 – 2024</b><span>Legal Advisor (MP Scale), Ministry of Foreign Affairs — handled litigation on behalf of the Ministry, rendered legal opinions on national and international law, and vetted international agreements and treaties.</span></li>
+        <li><b>2013 – 2019</b><span>Special Public Prosecutor, Federal Government of Pakistan vs. General (R) Pervez Musharraf (High Treason) — prepared and presented the complaint and connected applications before the Special Court, High Court and Supreme Court.</span></li>
+        <li><b>2013 – 2018</b><span>Senior Associate, Akram Sheikh Law Associates, Islamabad — appeared before the Supreme Court and Islamabad High Court in constitutional, property, contract and banking matters; contributed to drafting of the Protection of Pakistan Act, 2015.</span></li>
+        <li><b>2015 – 2018</b><span>Visiting Faculty, Roots School of Law (TMUC), Islamabad — instructed students in criminal and commercial law.</span></li>
+        <li><b>2011 – 2013</b><span>Associate, Jillani, Shah &amp; Shamim, Lahore — practised under Justice Jamshed Ali Shah, former Judge of the Supreme Court, in land, banking and employment matters.</span></li>
+        <li><b>2011 – 2013</b><span>Secretary, Commission on Written-Off Loans (Supreme Court of Pakistan).</span></li>
+      </ul>
+    </div>
+
+    <div class="modal-foot">
+      <a href="mailto:raza.faraz@gmail.com">raza.faraz@gmail.com</a>
+      <span>+92 321 5171400</span>
+      <span>House 13-A, Street 37, F-8/1, Islamabad</span>
+    </div>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="modal" id="modal-natalya">
+  <div class="modal-card">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="modal-header">
+      <div class="modal-photo" style="background-image:url('IMG_2320.JPG')"></div>
+      <div>
+        <div class="modal-name">Natalya Kamal</div>
+        <div class="modal-role">Barrister-at-Law · Advocate, Supreme Court of Pakistan</div>
+        <p class="modal-summary">Called to the Bar by Lincoln's Inn in 2001, with over two decades at the intersection of litigation, regulatory practice, corporate advisory and alternative dispute resolution.</p>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <h4>Practice</h4>
+      <p>Natalya has conducted trials and appeals in constitutional, commercial, criminal, regulatory, banking, sports, consumer, employment, property, cyber-crime and environmental matters. Her regulatory practice covers telecommunications, media, competition law, public procurement and energy. On the commercial side, she advises on corporate compliance, project finance, mergers and acquisitions, and banking.</p>
+      <p>She previously served as Senior Associate at Akram Sheikh Law Associates and as Partner at RIAA BG, one of Pakistan's leading corporate law firms. She also advises technology companies and start-ups on legal structure, intellectual property and regulatory compliance.</p>
+    </div>
+
+    <div class="modal-section">
+      <h4>Appointments &amp; Memberships</h4>
+      <ul>
+        <li><b>Mediator</b><span>Accredited and notified by the Ministry of Law &amp; Justice, Government of Pakistan.</span></li>
+        <li><b>Arbitrator</b><span>ADR ODR International Associate Arbitrator.</span></li>
+        <li><b>Ombudsperson</b><span>External Ombudsperson on Workplace Sexual Harassment for GIZ Pakistan.</span></li>
+        <li><b>Board Member</b><span>Rozan, an Islamabad-based NGO working on mental and emotional health for women and children.</span></li>
+        <li><b>Legal Mentor</b><span>National Incubation Centre (Peshawar) and the Founder's Institute (Islamabad).</span></li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <h4>Areas of Practice</h4>
+      <p>Litigation &amp; Appeals · Regulatory Law · Telecommunications · Competition · Corporate &amp; Commercial · Technology &amp; IP · Mediation &amp; Arbitration · Constitutional Law · Criminal Law · Sports Law · Environmental Law.</p>
+    </div>
+
+    <div class="modal-foot">
+      <a href="https://www.linkedin.com/in/natalya-kamal-alam/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://natalyakamal.wordpress.com" target="_blank" rel="noopener">natalyakamal.wordpress.com</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-riaz">
+  <div class="modal-card">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="modal-header">
+      <div class="modal-photo">Photograph</div>
+      <div>
+        <div class="modal-name">Syed Riaz Hussain</div>
+        <div class="modal-role">Advocate, Supreme Court of Pakistan</div>
+        <p class="modal-summary">A founding partner with a leading dispute resolution and corporate advisory practice, acting for federal and provincial agencies and major private clients in high-value commercial and infrastructure matters.</p>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <h4>Education</h4>
+      <ul>
+        <li><b>2014</b><span>Qualified under the Solicitors Regulation Authority (England &amp; Wales) — Qualified Lawyers Transfer Scheme.</span></li>
+        <li><b>2007 – 2010</b><span>LL.B. (Honours), University of London — overall 2.1 with six merits.</span></li>
+        <li><b>2005 – 2007</b><span>B.A. (Political Science &amp; History), University of Azad Jammu and Kashmir.</span></li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <h4>Experience</h4>
+      <ul>
+        <li><b>2015 – Present</b><span>Partner, H&amp;M Law — primary legal solutions provider to several federal and provincial government agencies in commercial, infrastructure and judicial review matters.</span></li>
+        <li><b>2014 – 2015</b><span>Associate, Jillani &amp; Co. — commercial arbitration, corporate litigation, construction and real estate disputes, white-collar crime and judicial review.</span></li>
+        <li><b>2010 – 2013</b><span>Associate, Akram Sheikh Law Associates — litigation and dispute resolution, criminal appeals, judicial review, mergers &amp; acquisitions, telecommunications, construction, oil &amp; gas, mining.</span></li>
+        <li><b>2010 – 2013</b><span>Adjunct Lecturer in Law, Institute of Legal Studies, Islamabad — Trusts and Jurisprudence (University of London external programme).</span></li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <h4>Selected Clients &amp; Areas</h4>
+      <p>Oil &amp; Gas Development Company Limited (OGDCL), Capital Development Authority, Bank of Punjab, National Insurance Company Limited, Directorate General of Defence Purchase, Siemens Pakistan, Karkey Karadeniz Pakistan, Indus Motor, and major media and telecommunications clients. Reviewed the draft Mining Act, 2006 for the Republic of Fiji on a UNDP-funded project.</p>
+    </div>
+
+    <div class="modal-foot">
+      <a href="mailto:syed.riaz@live.com">syed.riaz@live.com</a>
+      <span>+92 301 8681953</span>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-moazzam">
+  <div class="modal-card">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="modal-header">
+      <div class="modal-photo">Photograph</div>
+      <div>
+        <div class="modal-name">Moazzam Habib</div>
+        <div class="modal-role">Advocate, Supreme Court of Pakistan</div>
+        <p class="modal-summary">A second-generation advocate of the Supreme Court of Pakistan, with a broad commercial and constitutional practice and senior advisory roles in Government and the United Nations system.</p>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <h4>Education &amp; Enrolment</h4>
+      <ul>
+        <li><b>2025</b><span>Enrolled as Advocate of the Supreme Court of Pakistan.</span></li>
+        <li><b>2013</b><span>Enrolled as Advocate of the High Courts.</span></li>
+        <li><b>2011</b><span>Enrolled as Advocate of the District Courts.</span></li>
+        <li><b>2006 – 2011</b><span>B.A. LL.B. (Hons.), University Law College, University of the Punjab, Lahore.</span></li>
+        <li><b>2009 – 2010</b><span>Diploma in International Affairs, University of the Punjab.</span></li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <h4>Current Appointments</h4>
+      <ul>
+        <li><b>2025 –</b><span>Legal Advisor (Legal Head), Directorate General Immigration &amp; Passports, Ministry of Interior, Government of Pakistan.</span></li>
+        <li><b>2024 –</b><span>Senior Legal Consultant (UNICEF), Child Protection Institute, Ministry of Human Rights.</span></li>
+        <li><b>2015 –</b><span>Founding Partner, Faraz, Haider, Moazzam &amp; Co., Islamabad.</span></li>
+      </ul>
+    </div>
+
+    <div class="modal-section">
+      <h4>Selected Experience</h4>
+      <p>Special Prosecutor, FIA Mega-Corruption and Sugar Scam Cases (2020 – 2022). Special Prosecutor, General (R) Pervez Musharraf High Treason matter (2014 – 2019). Certified Mediation Counsel (CIArb, UK) and court-appointed arbitrator in commercial arbitrations.</p>
+      <p>Reported judgments on company law and SECP jurisdiction (2019 CLD 931), rental laws of Islamabad (2018 YLR 222), high-treason procedure (2014 PCr.LJ 684; 2015 PCr.LJ 1) and pre-emption law (2020 CLC 2016).</p>
+    </div>
+
+    <div class="modal-section">
+      <h4>Areas of Practice</h4>
+      <p>Civil &amp; Property · Commercial · Rent &amp; Election · White-Collar Crime · Immigration · Constitutional · Arbitration &amp; Mediation.</p>
+    </div>
+
+    <div class="modal-foot">
+      <a href="mailto:moazzam_10@hotmail.com">moazzam_10@hotmail.com</a>
+      <span>+92 334 7788442</span>
+      <span>House 13-A, Street 37, F-8/1, Islamabad</span>
+    </div>
+  </div>
+</div>
 
 <script>
-/* ── DATA ── */
-const PARTNERS = [
-  {n:"Ayaan Rehman",r:"Head of Chambers",b:"Commercial disputes and arbitration. Appears regularly in the High Court and Supreme Court. LLM, Cambridge. Called to the Bar 2006."},
-  {n:"Sarah Niazi",r:"Senior Counsel · Public Law",b:"Constitutional and public law. Forty-plus reported matters. LLM, LUMS. Called to the Bar 2008."},
-  {n:"Haris Shah",r:"Senior Counsel · Criminal",b:"Trial advocacy and white-collar defence. Former Deputy Prosecutor. LLB (Hons), University of London."},
-  {n:"Zoya Imran",r:"Senior Counsel · Family",b:"Guardianship, succession, and private client. Accredited mediator (IMI). BCL, Oxford."},
-  {n:"Faisal Qureshi",r:"Partner · Corporate",b:"M&A, joint ventures and regulatory advisory for listed companies. Former in-house GC at a Karachi conglomerate."},
-  {n:"Mariam Khan",r:"Partner · Arbitration",b:"International commercial arbitration under ICC, LCIA and SIAC rules. Registered counsel at several institutions."},
-];
-const ASSOCIATES = [
-  {n:"Bilal Ahmed",q:"LL.M. · Punjab"},{n:"Hina Raza",q:"LL.B. · LUMS"},{n:"Omar Farooq",q:"LL.M. · Harvard"},
-  {n:"Sana Tariq",q:"LL.B. · UCL"},{n:"Arham Jamal",q:"LL.M. · King's College"},{n:"Noor Siddiqui",q:"LL.B. · Punjab"},
-  {n:"Usman Malik",q:"BCL · Oxford"},{n:"Fatima Ali",q:"LL.M. · NYU"},{n:"Hamza Iqbal",q:"LL.B. · LUMS"},
-  {n:"Aisha Baig",q:"LL.M. · Cornell"},{n:"Zain Abbas",q:"LL.B. · IIUI"},{n:"Laiba Hussain",q:"LL.M. · Cambridge"},
-  {n:"Kamran Sheikh",q:"LL.B. · Punjab"},{n:"Rida Nawaz",q:"LL.M. · LSE"},{n:"Taha Yousaf",q:"LL.B. · Punjab"},
-  {n:"Sidra Aslam",q:"LL.M. · Edinburgh"},{n:"Daniyal Khan",q:"LL.B. · LUMS"},{n:"Mehr Fatima",q:"BCL · Oxford"},
-];
-function renderPeople(){
-  const pg=document.getElementById('partnersGrid');
-  if(pg)pg.innerHTML=PARTNERS.map(p=>`<div class="person">
-    <div class="avatar">${p.n[0]}</div>
-    <div class="person-name">${p.n}</div>
-    <div class="person-role">${p.r}</div>
-    <div class="person-bio">${p.b}</div>
-    <div class="person-links">
-      <a href="#" aria-label="LinkedIn" title="LinkedIn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v16H4zM6 2a2 2 0 110 4 2 2 0 010-4zM10 9h3.5v2h.05c.5-.95 1.7-2 3.45-2 3.7 0 4.4 2.4 4.4 5.5V20h-4v-5c0-1.2-.05-2.7-1.65-2.7-1.65 0-1.9 1.3-1.9 2.6V20h-4z"/></svg></a>
-      <a href="mailto:clerks@13alaw.pk" aria-label="Email" title="Email"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg></a>
-    </div>
-  </div>`).join('');
-  const ag=document.getElementById('associatesGrid');
-  if(ag)ag.innerHTML=ASSOCIATES.map(a=>`<div class="associate">
-    <div class="assoc-ava">${a.n[0]}</div>
-    <div><div class="assoc-name">${a.n}</div><div class="assoc-qual">${a.q}</div></div>
-  </div>`).join('');
-}
-renderPeople();
+  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+    document.getElementById('navlinks').classList.remove('open');
+  }));
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)});
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-const ICONS = {
-  commercial:'<path d="M4 20h16M6 20V9l6-4 6 4v11M10 20v-6h4v6"/>',
-  public:'<path d="M4 20h16M6 20V9M18 20V9M4 9h16M6 9l6-5 6 5M10 13h4M10 17h4"/>',
-  private:'<path d="M12 2l3 6 6 1-4.5 4.4L18 20l-6-3-6 3 1.5-6.6L3 9l6-1z"/>',
-  regulatory:'<path d="M9 12l2 2 4-4M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/>',
-};
-const PRACTICE = [
-  {t:"Commercial Disputes",d:"Shareholder, contractual and post-M&A disputes before trial courts, appellate fora and arbitral tribunals.",c:"commercial"},
-  {t:"Constitutional & Public Law",d:"Writ petitions, judicial review, and engagement with regulators on matters of public right.",c:"public"},
-  {t:"Criminal Defence",d:"Trial-level defence and appellate work, with particular depth in white-collar and regulatory prosecutions.",c:"private"},
-  {t:"Arbitration",d:"Domestic and international arbitration — seat-neutral advocacy, enforcement and set-aside proceedings.",c:"commercial"},
-  {t:"Tax & Regulatory",d:"Appeals before CIR, ATIR, and higher fora; advisory on transfer pricing, withholding and SRO interpretation.",c:"regulatory"},
-  {t:"Family & Succession",d:"Guardianship, maintenance, dissolution and estate work — handled with discretion and continuity.",c:"private"},
-  {t:"Real Property",d:"Title, specific performance, partition, and revenue matters in district and revenue hierarchies.",c:"private"},
-  {t:"Banking & Finance",d:"Banking Court proceedings, recovery suits, and advisory on secured and syndicated transactions.",c:"commercial"},
-  {t:"Intellectual Property",d:"Trademark, copyright and passing-off — prosecution, opposition and enforcement.",c:"regulatory"},
-];
-const grid = document.getElementById('practiceGrid');
-function renderPractice(f='all'){
-  grid.innerHTML = PRACTICE
-    .filter(p=>f==='all'||p.c===f)
-    .map((p,i)=>`<div class="practice-card" data-c="${p.c}">
-      <div class="pc-top">
-        <svg class="pc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${ICONS[p.c]||ICONS.commercial}</svg>
-        <svg class="pc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17L17 7M9 7h8v8"/></svg>
-      </div>
-      <div>
-        <div class="pc-title">${p.t}</div>
-        <div class="pc-desc">${p.d}</div>
-        <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--brass);margin-top:18px;text-transform:uppercase">${String(i+1).padStart(2,'0')} / ${String(PRACTICE.length).padStart(2,'0')}</div>
-      </div>
-    </div>`).join('');
-}
-renderPractice();
-document.getElementById('filterRow').addEventListener('click',e=>{
-  if(!e.target.matches('.chip'))return;
-  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-  e.target.classList.add('active');
-  renderPractice(e.target.dataset.f);
-});
-
-/* ── TIMELINE ── */
-document.getElementById('timeline').addEventListener('click',e=>{
-  const it=e.target.closest('.tl-item');if(!it)return;
-  it.classList.toggle('open');
-});
-
-/* ── FAQ ── */
-document.getElementById('faqList').addEventListener('click',e=>{
-  const it=e.target.closest('.faq-item');if(!it)return;
-  it.classList.toggle('open');
-});
-document.getElementById('faqSearch').addEventListener('input',e=>{
-  const q=e.target.value.toLowerCase();
-  document.querySelectorAll('#faqList .faq-item').forEach(it=>{
-    it.style.display = it.textContent.toLowerCase().includes(q)?'':'none';
-  });
-});
-
-/* ── PROGRESS + SCROLL NAV ── */
-const progress=document.getElementById('progress');
-const topbar=document.getElementById('topbar');
-window.addEventListener('scroll',()=>{
-  const h=document.documentElement;
-  const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
-  progress.style.width=p+'%';
-  topbar.classList.toggle('scrolled',h.scrollTop>40);
-});
-
-/* ── ACTIVE SECTION ── */
-const secs=[...document.querySelectorAll('section[id]')];
-const obs=new IntersectionObserver(es=>{
-  es.forEach(en=>{
-    if(en.isIntersecting){
-      const id=en.target.id;
-      document.querySelectorAll('.side-index a, .nav-main a').forEach(a=>{
-        a.classList.toggle('active',a.dataset.sec===id);
-      });
-    }
-  });
-},{rootMargin:"-40% 0px -55% 0px"});
-secs.forEach(s=>obs.observe(s));
-
-/* ── REVEAL ── */
-const rev=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>rev.observe(el));
-
-/* ── COUNTERS ── */
-const countObs=new IntersectionObserver(es=>es.forEach(e=>{
-  if(!e.isIntersecting)return;
-  const el=e.target;const target=+el.dataset.count;const suf=el.dataset.suffix||'';
-  let cur=0;const step=Math.max(1,Math.ceil(target/50));
-  const id=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(id)}el.textContent=cur+suf;},28);
-  countObs.unobserve(el);
-}),{threshold:.4});
-document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
-
-/* ── SPOTLIGHT ── */
-const spot=document.getElementById('spot');
-document.getElementById('hero').addEventListener('mousemove',e=>{
-  const r=e.currentTarget.getBoundingClientRect();
-  spot.style.transform=`translate(${e.clientX-r.left-350}px,${e.clientY-r.top-350}px)`;
-});
-
-/* ── THEME ── */
-const themeBtn=document.getElementById('themeBtn');
-themeBtn.addEventListener('click',()=>{
-  const cur=document.documentElement.dataset.theme==='dark'?'light':'dark';
-  document.documentElement.dataset.theme=cur;
-  localStorage.setItem('theme',cur);
-});
-if(localStorage.getItem('theme'))document.documentElement.dataset.theme=localStorage.getItem('theme');
-
-/* ── LANG (demo: toggles a handful of strings) ── */
-const UR = {
-  "Book Consultation":"مشاورت بک کریں",
-  "About":"تعارف","Practice":"شعبے","Method":"طریقہ کار","Matters":"مقدمات",
-  "Chambers":"چیمبرز","Fees":"فیس","FAQ":"عمومی سوالات"
-};
-let lang='EN';
-document.getElementById('langBtn').addEventListener('click',e=>{
-  lang=lang==='EN'?'UR':'EN';e.target.textContent=lang;
-  document.querySelectorAll('.nav-main a, .cta-nav, .mobile-drawer a').forEach(a=>{
-    const k=a.dataset.orig||a.textContent.trim();
-    a.dataset.orig=k;
-    a.textContent = lang==='UR' && UR[k] ? UR[k] : k;
-  });
-});
-
-/* ── MOBILE DRAWER ── */
-const burger=document.getElementById('burger');
-const drawer=document.getElementById('drawer');
-burger.addEventListener('click',()=>{burger.classList.toggle('open');drawer.classList.toggle('open')});
-drawer.addEventListener('click',e=>{if(e.target.tagName==='A'){burger.classList.remove('open');drawer.classList.remove('open')}});
-
-/* ── FEE CALC ── */
-const BASE={advisory:60000,civil:180000,criminal:250000,constitutional:200000,arbitration:400000,family:150000};
-const f={t:'fType',u:'fUrg',c:'fCx',l:'fLvl'};
-function fmt(n){return 'PKR '+Math.round(n).toLocaleString()}
-function recalc(){
-  const t=document.getElementById('fType').value;
-  const u=parseFloat(document.getElementById('fUrg').value);
-  const c=parseInt(document.getElementById('fCx').value);
-  const l=parseFloat(document.getElementById('fLvl').value);
-  document.getElementById('cxVal').textContent=`· ${c} / 10`;
-  const base=BASE[t];
-  const cxFactor=1+(c-5)*0.12;
-  const low=base*cxFactor*u*l*0.85;
-  const high=base*cxFactor*u*l*1.25;
-  document.getElementById('fRange').textContent=`${fmt(low)} – ${fmt(high)}`;
-  document.getElementById('fBase').textContent=fmt(base);
-  document.getElementById('fCxA').textContent=((cxFactor-1)*100).toFixed(0)+'%';
-  document.getElementById('fUrgA').textContent=((u-1)*100).toFixed(0)+'%';
-  document.getElementById('fLvlA').textContent='×'+l.toFixed(2);
-}
-['fType','fUrg','fCx','fLvl'].forEach(id=>document.getElementById(id).addEventListener('input',recalc));
-recalc();
-
-/* ── CONTACT STEPS ── */
-const pips=document.querySelectorAll('.step-pip');
-const steps=document.querySelectorAll('.form-step');
-let cur=0;
-const next=document.getElementById('cNext'),back=document.getElementById('cBack'),sub=document.getElementById('cSubmit');
-function goStep(i){
-  cur=i;
-  steps.forEach((s,idx)=>s.classList.toggle('active',idx===i));
-  pips.forEach((p,idx)=>p.classList.toggle('active',idx<=i));
-  back.style.visibility=i===0?'hidden':'visible';
-  next.style.display=i===steps.length-1?'none':'';
-  sub.style.display=i===steps.length-1?'':'none';
-}
-next.addEventListener('click',()=>{
-  if(cur===0){
-    const n=document.getElementById('cName').value.trim(),e=document.getElementById('cEmail').value.trim();
-    if(!n||!e){toast('Please provide name and email.');return}
+  function tick(){
+    const opts={timeZone:'Asia/Karachi',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false};
+    document.getElementById('clockTime').textContent=new Intl.DateTimeFormat('en-GB',opts).format(new Date());
   }
-  goStep(Math.min(cur+1,steps.length-1));
-});
-back.addEventListener('click',()=>goStep(Math.max(cur-1,0)));
-document.getElementById('slotGrid').addEventListener('click',e=>{
-  if(!e.target.matches('.slot'))return;
-  document.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));
-  e.target.classList.add('sel');
-});
-sub.addEventListener('click',()=>{
-  const slot=document.querySelector('.slot.sel'),date=document.getElementById('cDate').value;
-  if(!slot||!date){toast('Select a preferred date and time.');return}
-  toast('Request received. A clerk will be in touch within one business day.');
-  document.getElementById('cForm').reset();
-  document.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));
-  goStep(0);
-});
-const di=document.getElementById('cDate');
-const td=new Date();td.setDate(td.getDate()+1);
-di.min=td.toISOString().split('T')[0];
+  tick();setInterval(tick,1000);
 
-/* ── TOAST ── */
-/* Newsletter */
-const nlForm=document.getElementById('nlForm');
-if(nlForm)nlForm.querySelector('button').addEventListener('click',()=>{
-  const v=document.getElementById('nlEmail').value.trim();
-  if(!v||!v.includes('@')){toast('Please enter a valid email.');return}
-  document.getElementById('nlEmail').value='';
-  toast('Subscribed to the Chambers Brief.');
-});
-
-const toastEl=document.getElementById('toast');let tt;
-function toast(m){toastEl.textContent=m;toastEl.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toastEl.classList.remove('show'),3400)}
-
-/* ── COMMAND PALETTE ── */
-const PAL=[
-  {l:"Go to About",h:"#about"},{l:"Go to Practice Areas",h:"#practice"},{l:"Go to Method",h:"#method"},
-  {l:"Go to Matters",h:"#cases"},{l:"Go to Counsel",h:"#people"},{l:"Go to Fee Estimator",h:"#estimate"},
-  {l:"Go to Journal",h:"#journal"},{l:"Go to Careers",h:"#careers"},{l:"Go to FAQ",h:"#faq"},{l:"Book Consultation",h:"#contact"},
-  {l:"Toggle Theme",a:()=>themeBtn.click()},{l:"Toggle Language",a:()=>document.getElementById('langBtn').click()}
-];
-const pal=document.getElementById('palette'),palIn=document.getElementById('paletteInput'),palList=document.getElementById('paletteList');
-function renderPal(q=''){
-  const items=PAL.filter(p=>p.l.toLowerCase().includes(q.toLowerCase()));
-  palList.innerHTML=items.map((p,i)=>`<div class="palette-item${i===0?' hl':''}" data-i="${PAL.indexOf(p)}"><span>${p.l}</span><span class="k">↵</span></div>`).join('')||'<div class="palette-item" style="color:var(--muted)">No matches</div>';
-}
-function openPal(){pal.classList.add('open');palIn.value='';renderPal();palIn.focus()}
-function closePal(){pal.classList.remove('open')}
-document.getElementById('paletteBtn').addEventListener('click',openPal);
-window.addEventListener('keydown',e=>{
-  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openPal()}
-  if(e.key==='Escape')closePal();
-  if(pal.classList.contains('open')&&e.key==='Enter'){
-    const hl=palList.querySelector('.hl');if(hl){exec(+hl.dataset.i);closePal()}
+  const cur=document.getElementById('cursor');
+  let mx=0,my=0,cx=0,cy=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  function loop(){
+    cx+=(mx-cx)*0.18; cy+=(my-cy)*0.18;
+    cur.style.left=cx+'px'; cur.style.top=cy+'px';
+    requestAnimationFrame(loop);
   }
-});
-palIn.addEventListener('input',e=>renderPal(e.target.value));
-palList.addEventListener('click',e=>{const it=e.target.closest('.palette-item');if(!it||!it.dataset.i)return;exec(+it.dataset.i);closePal()});
-pal.addEventListener('click',e=>{if(e.target===pal)closePal()});
-function exec(i){const p=PAL[i];if(p.h)location.hash=p.h;if(p.a)p.a()}
+  loop();
+  document.querySelectorAll('a,button,.profile-row,.practice-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('lg'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('lg'));
+  });
 
-/* ── HERO TITLE OBSERVER for reveal trigger (CSS handles initial) ── */
+  // ── PROFILE MODALS ──
+  function openModal(id){
+    const m=document.getElementById('modal-'+id);
+    if(!m)return;
+    m.classList.add('open');
+    document.body.classList.add('modal-open');
+  }
+  function closeModal(m){
+    m.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+  document.querySelectorAll('.profile-row').forEach(row=>{
+    row.addEventListener('click',()=>openModal(row.dataset.profile));
+  });
+  document.querySelectorAll('.modal').forEach(m=>{
+    m.addEventListener('click',e=>{ if(e.target===m) closeModal(m); });
+    m.querySelector('.modal-close').addEventListener('click',()=>closeModal(m));
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape') document.querySelectorAll('.modal.open').forEach(closeModal);
+  });
 </script>
+
 </body>
 </html>

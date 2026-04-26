@@ -1,0 +1,7 @@
+# Private documents — keep local, never push
+*.docx
+*.pdf
+~$*
+
+# macOS
+.DS_Store
