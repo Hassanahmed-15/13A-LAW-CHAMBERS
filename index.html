@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>13-A Law Chambers — Islamabad</title>
-<meta name="description" content="13-A Law Chambers — a shared chambers of independent advocates of the Supreme Court of Pakistan, based in Islamabad.">
+<title>13A Law Chambers — Islamabad</title>
+<meta name="description" content="13A Law Chambers — a shared chambers of independent advocates of the Supreme Court of Pakistan, based in Islamabad.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
-    --bg:#1F1B16;
-    --bg-2:#2A2520;
-    --bg-3:#332D27;
-    --ink:#F4ECD8;
-    --ink-soft:#D4CBB5;
-    --muted:#8C8472;
-    --line:rgba(244,236,216,0.14);
-    --line-soft:rgba(244,236,216,0.08);
-    --gold:#D4B370;
-    --gold-soft:#E6CC92;
+    --bg:#0E0E0E;
+    --bg-2:#161616;
+    --bg-3:#1E1E1E;
+    --ink:#F2F2F2;
+    --ink-soft:#C9C9C9;
+    --muted:#8A8A8A;
+    --line:rgba(242,242,242,0.16);
+    --line-soft:rgba(242,242,242,0.08);
+    --gold:#E6E6E6;
+    --gold-soft:#FFFFFF;
     --serif:'EB Garamond',Georgia,serif;
-    --sans:'Inter',system-ui,sans-serif;
+    --sans:'EB Garamond',Georgia,serif;
   }
   html{scroll-behavior:smooth}
   body{
@@ -39,28 +39,10 @@
   img,video{display:block;max-width:100%}
   button,input,textarea{font:inherit;color:inherit}
 
-  /* ── LIVE VIDEO BACKGROUND ── */
-  .bg-video{
-    position:fixed;inset:0;z-index:-3;
-    width:100vw;height:100vh;object-fit:cover;
-    filter:grayscale(0.35) brightness(0.55) contrast(1.05) sepia(0.15);
-  }
+  /* ── STATIC BACKGROUND ── */
   .bg-overlay{
     position:fixed;inset:0;z-index:-2;
-    background:linear-gradient(180deg,rgba(31,27,22,0.65) 0%,rgba(31,27,22,0.82) 50%,rgba(31,27,22,0.9) 100%);
-  }
-  .bg-grain{
-    position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.06;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
-    animation:grain 8s steps(8) infinite;
-  }
-  @keyframes grain{
-    0%,100%{transform:translate(0,0)}
-    10%{transform:translate(-5%,-10%)} 20%{transform:translate(-15%,5%)}
-    30%{transform:translate(7%,-25%)}  40%{transform:translate(-5%,25%)}
-    50%{transform:translate(-15%,10%)} 60%{transform:translate(15%,0)}
-    70%{transform:translate(0,15%)}    80%{transform:translate(3%,35%)}
-    90%{transform:translate(-10%,10%)}
+    background:var(--bg);
   }
 
   /* ── NAV ── */
@@ -85,12 +67,12 @@
   }
   .nav-links a:hover{color:var(--gold)}
   .clock{
-    font-family:var(--serif);font-size:13px;color:var(--gold);
-    letter-spacing:.06em;font-style:italic;
+    font-family:var(--serif);font-size:13px;color:var(--ink-soft);
+    letter-spacing:.06em;
     border-left:1px solid var(--line);padding-left:24px;
     display:flex;flex-direction:column;line-height:1.2;
   }
-  .clock small{font-family:var(--sans);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:2px;font-style:normal}
+  .clock small{font-family:var(--serif);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:2px}
   .nav-toggle{display:none;font-size:20px;background:none;border:none;cursor:pointer;color:var(--ink)}
 
   @media(max-width:900px){.clock{display:none}}
@@ -126,7 +108,7 @@
     letter-spacing:-.02em;line-height:0.95;color:var(--ink);
     text-shadow:0 4px 30px rgba(0,0,0,0.5);
   }
-  .hero-title i{font-style:italic;color:var(--gold);font-weight:400}
+  .hero-title i{font-style:normal;color:var(--ink);font-weight:500}
 
   /* live SVG scales */
   .hero-svg{
@@ -147,7 +129,7 @@
   .hero-down{
     margin-top:60px;max-width:680px;
     font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);font-weight:400;
-    color:var(--ink-soft);font-style:italic;line-height:1.5;
+    color:var(--ink-soft);line-height:1.5;
     position:relative;z-index:2;
   }
   .hero-meta{
@@ -185,13 +167,13 @@
     font-size:clamp(36px,5vw,60px);
     line-height:1.1;letter-spacing:-.005em;color:var(--ink);
   }
-  .section-title i{font-style:italic;color:var(--gold);font-weight:400}
+  .section-title i{font-style:normal;color:var(--ink);font-weight:500}
   .section-lede{font-size:17px;color:var(--ink-soft);max-width:680px;margin-top:24px;line-height:1.7}
 
-  #about{background:rgba(31,27,22,0.55)}
-  #profiles{background:rgba(42,37,32,0.85)}
-  #practice{background:rgba(31,27,22,0.7)}
-  #contact{background:rgba(42,37,32,0.85)}
+  #about{background:var(--bg)}
+  #profiles{background:var(--bg-2)}
+  #practice{background:var(--bg)}
+  #contact{background:var(--bg-2)}
 
   /* ── ABOUT ── */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
@@ -237,7 +219,7 @@
   .profile-name{font-family:var(--serif);font-size:32px;font-weight:500;line-height:1.15;color:var(--ink);letter-spacing:-.005em}
   .profile-role{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:8px;font-weight:500}
   .profile-bio{font-size:15px;color:var(--ink-soft);line-height:1.75;margin-top:18px;max-width:760px}
-  .profile-areas{margin-top:16px;font-size:12.5px;color:var(--muted);font-style:italic;line-height:1.7}
+  .profile-areas{margin-top:16px;font-size:12.5px;color:var(--muted);line-height:1.7}
   .profile-meta{margin-top:20px;font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:22px;align-items:center}
   .profile-meta a{color:var(--ink-soft);border-bottom:1px solid var(--line)}
   .profile-meta a:hover{color:var(--gold);border-bottom-color:var(--gold)}
@@ -301,7 +283,7 @@
   }
   @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:36px}}
   .foot-brand{font-family:var(--serif);font-size:28px;color:var(--ink);margin-bottom:8px;font-weight:500}
-  .foot-brand i{font-style:normal;color:var(--gold)}
+  .foot-brand i{font-style:normal;color:var(--ink)}
   .foot-sub{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;font-weight:500}
   .foot-disclaimer{color:#7A7363;font-size:12.5px;line-height:1.8}
   .foot-col h5{font-family:var(--serif);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:500}
@@ -355,7 +337,7 @@
   @media(max-width:640px){.modal-photo{width:160px;height:200px}}
   .modal-name{font-family:var(--serif);font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.1;color:var(--ink);letter-spacing:-.005em}
   .modal-role{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:10px;font-weight:500}
-  .modal-summary{font-family:var(--serif);font-size:18px;font-style:italic;color:var(--ink-soft);margin-top:18px;line-height:1.55}
+  .modal-summary{font-family:var(--serif);font-size:18px;color:var(--ink-soft);margin-top:18px;line-height:1.55}
   .modal-section{margin-bottom:32px}
   .modal-section h4{
     font-family:var(--serif);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
@@ -390,30 +372,15 @@
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
   .reveal.in{opacity:1;transform:translateY(0)}
 
-  /* ── CURSOR DOT ── */
-  .cursor{
-    position:fixed;width:8px;height:8px;border-radius:50%;
-    background:var(--gold);pointer-events:none;z-index:200;
-    transform:translate(-50%,-50%);
-    transition:transform .15s ease-out,width .25s,height .25s;
-    mix-blend-mode:difference;opacity:0.75;
-  }
-  .cursor.lg{width:48px;height:48px;background:transparent;border:1px solid var(--gold);opacity:0.5}
-  @media(hover:none){.cursor{display:none}}
+  /* default cursor — no custom dot */
 </style>
 </head>
 <body>
 
-<!-- live looping background video (Pexels CDN, free, courthouse / city) -->
-<video class="bg-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=2400&q=85">
-  <source src="https://videos.pexels.com/video-files/4069912/4069912-uhd_2560_1440_24fps.mp4" type="video/mp4">
-</video>
 <div class="bg-overlay"></div>
-<div class="bg-grain"></div>
-<div class="cursor" id="cursor"></div>
 
 <nav class="nav" id="nav">
-  <div class="brand">13<i>—</i>A Law Chambers</div>
+  <div class="brand">13A Law Chambers</div>
   <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
   <div class="nav-right">
     <div class="nav-links" id="navlinks">
@@ -428,7 +395,7 @@
 
 <header class="hero">
   <div class="hero-eyebrow">Established Chambers · Islamabad</div>
-  <h1 class="hero-title">13<i>—</i>A<br>Law Chambers</h1>
+  <h1 class="hero-title">13A<br>Law Chambers</h1>
 
   <svg class="hero-svg" viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" aria-hidden="true">
     <line x1="100" y1="20" x2="100" y2="200"/>
@@ -463,13 +430,13 @@
     </div>
     <div class="about-grid">
       <div class="about-text reveal">
-        <p>13-A Law Chambers is a shared chambers in Islamabad, bringing together advocates of the Supreme Court of Pakistan who choose to practise side by side under a common roof.</p>
+        <p>13A Law Chambers is a shared chambers in Islamabad, bringing together advocates of the Supreme Court of Pakistan who choose to practise side by side under a common roof.</p>
         <p>Each member maintains their own clients, their own files, and their own professional standards — supported by a collegiate environment that encourages exchange, scrutiny, and a shared commitment to the rule of law.</p>
         <p>Where a matter benefits from collaboration, members may, with the client's informed consent, work jointly on a brief. Otherwise, every advocate practises in their own right and on their own responsibility.</p>
       </div>
       <aside class="disclaimer reveal">
         <h4>Important Notice</h4>
-        <p>13-A Law Chambers is a shared chambers arrangement. Each lawyer practises independently and maintains their own client relationships and professional responsibilities. We are not a partnership or law firm, and no lawyer here is liable for the work or conduct of any other.</p>
+        <p>13A Law Chambers is a shared chambers arrangement. Each lawyer practises independently and maintains their own client relationships and professional responsibilities. We are not a partnership or law firm, and no lawyer here is liable for the work or conduct of any other.</p>
         <p>Where appropriate and with the informed consent of the client, one or more advocates may be engaged or may collaborate on a particular matter. Any such engagement is matter-specific and does not create a partnership, joint venture, or any continuing professional association between the advocates involved.</p>
         <p>Nothing on this website shall be construed as indicating the existence of a partnership, joint venture, or any other form of professional association between the occupants of these chambers.</p>
       </aside>
@@ -484,17 +451,6 @@
       <h2 class="section-title">Members <i>of</i> Chambers.</h2>
     </div>
     <div class="profile-list">
-
-      <div class="profile-row reveal" data-profile="faraz">
-        <div class="profile-photo">Photograph</div>
-        <div>
-          <div class="profile-name">Syed Faraz Raza</div>
-          <div class="profile-role">Advocate, High Court · LL.B. (Hons.), LL.M.</div>
-          <p class="profile-bio">Read law at the University of Leicester (LL.B. Hons.) and King's College London (LL.M., International Business Law). Partner at Faraz, Haider, Moazzam &amp; Co., Islamabad. Former Special Public Prosecutor in the Musharraf High Treason matter, and former Legal Advisor (MP Scale) to the Ministry of Foreign Affairs. Practice spans civil, corporate, banking, property and commercial litigation before the Supreme Court, High Courts, Civil and District Courts.</p>
-          <div class="profile-areas">Civil &amp; Corporate · Property · Banking · Commercial Litigation · International Law · Constitutional</div>
-          <div class="profile-open-hint">View Profile</div>
-        </div>
-      </div>
 
       <div class="profile-row reveal" data-profile="natalya">
         <div class="profile-photo" style="background-image:url('IMG_2320.JPG')"></div>
@@ -514,6 +470,17 @@
           <div class="profile-role">Advocate, Supreme Court of Pakistan</div>
           <p class="profile-bio">LLB (Honours) from the University of London and qualified under the Solicitors Regulation Authority of England &amp; Wales via the Qualified Lawyers Transfer Scheme, 2014. Founding partner of H&amp;M Law since 2015, leading a dispute resolution and corporate advisory practice acting for federal and provincial agencies and major private clients in commercial, infrastructure, energy and judicial review matters.</p>
           <div class="profile-areas">Construction &amp; Infrastructure · Dispute Resolution · IT &amp; Telecommunications · Legislative Review · Commercial Litigation</div>
+          <div class="profile-open-hint">View Profile</div>
+        </div>
+      </div>
+
+      <div class="profile-row reveal" data-profile="faraz">
+        <div class="profile-photo">Photograph</div>
+        <div>
+          <div class="profile-name">Syed Faraz Raza</div>
+          <div class="profile-role">Advocate, High Court · LL.B. (Hons.), LL.M.</div>
+          <p class="profile-bio">Read law at the University of Leicester (LL.B. Hons.) and King's College London (LL.M., International Business Law). Partner at Faraz, Haider, Moazzam &amp; Co., Islamabad. Former Special Public Prosecutor in the Musharraf High Treason matter, and former Legal Advisor (MP Scale) to the Ministry of Foreign Affairs. Practice spans civil, corporate, banking, property and commercial litigation before the Supreme Court, High Courts, Civil and District Courts.</p>
+          <div class="profile-areas">Civil &amp; Corporate · Property · Banking · Commercial Litigation · International Law · Constitutional</div>
           <div class="profile-open-hint">View Profile</div>
         </div>
       </div>
@@ -561,7 +528,7 @@
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div><strong>Chambers</strong><p>House No. 13-A, Street No. 37<br>Sector F-8/1, Islamabad<br>Pakistan</p></div>
-        <div><strong>General Enquiries</strong><a href="mailto:info@13alawchambers.com">info@13alawchambers.com</a></div>
+        <div><strong>General Enquiries</strong><a href="mailto:info@13A-LawChambers.com">info@13A-LawChambers.com</a></div>
         <div><strong>Telephone</strong><p>+92 334 7788442</p></div>
         <div><strong>Hours</strong><p>Monday – Friday · 9:00 am – 6:00 pm</p></div>
       </div>
@@ -581,7 +548,7 @@
 <footer>
   <div class="foot-grid">
     <div>
-      <div class="foot-brand">13<i>—</i>A Law Chambers</div>
+      <div class="foot-brand">13A Law Chambers</div>
       <div class="foot-sub">Advocates · Islamabad</div>
       <p class="foot-disclaimer">A shared chambers arrangement. Each lawyer practises independently. We are not a partnership or law firm, and no lawyer here is liable for the work or conduct of any other. Nothing on this website shall be construed as indicating the existence of a partnership, joint venture or any other form of professional association between the occupants of these chambers.</p>
     </div>
@@ -595,12 +562,12 @@
       <h5>Visit</h5>
       <div class="foot-links">
         <span>House No. 13-A, Street 37</span><span>Sector F-8/1, Islamabad</span><span>Pakistan</span>
-        <a href="mailto:info@13alawchambers.com">info@13alawchambers.com</a>
+        <a href="mailto:info@13A-LawChambers.com">info@13A-LawChambers.com</a>
       </div>
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© 2026 13-A Law Chambers. All rights reserved.</span>
+    <span>© 2026 13A Law Chambers. All rights reserved.</span>
     <span>Islamabad · Pakistan</span>
   </div>
 </footer>
@@ -798,20 +765,6 @@
     document.getElementById('clockTime').textContent=new Intl.DateTimeFormat('en-GB',opts).format(new Date());
   }
   tick();setInterval(tick,1000);
-
-  const cur=document.getElementById('cursor');
-  let mx=0,my=0,cx=0,cy=0;
-  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
-  function loop(){
-    cx+=(mx-cx)*0.18; cy+=(my-cy)*0.18;
-    cur.style.left=cx+'px'; cur.style.top=cy+'px';
-    requestAnimationFrame(loop);
-  }
-  loop();
-  document.querySelectorAll('a,button,.profile-row,.practice-item').forEach(el=>{
-    el.addEventListener('mouseenter',()=>cur.classList.add('lg'));
-    el.addEventListener('mouseleave',()=>cur.classList.remove('lg'));
-  });
 
   // ── PROFILE MODALS ──
   function openModal(id){
