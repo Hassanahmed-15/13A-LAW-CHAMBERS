@@ -1,14 +1,14 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Home'
 import Profile from './Profile'
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile/:slug" element={<Profile />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
