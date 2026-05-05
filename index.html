@@ -7,563 +7,785 @@
 <meta name="description" content="13A Law Chambers — a shared chambers of independent advocates of the Supreme Court of Pakistan, based in Islamabad.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --bg:#0E0E0E;
-    --bg-2:#161616;
-    --bg-3:#1E1E1E;
-    --ink:#F2F2F2;
-    --ink-soft:#C9C9C9;
-    --muted:#8A8A8A;
-    --line:rgba(242,242,242,0.16);
-    --line-soft:rgba(242,242,242,0.08);
-    --gold:#E6E6E6;
-    --gold-soft:#FFFFFF;
-    --serif:'EB Garamond',Georgia,serif;
-    --sans:'EB Garamond',Georgia,serif;
-  }
-  html{scroll-behavior:smooth}
-  body{
-    font-family:var(--sans);
-    background:var(--bg);
-    color:var(--ink);
-    line-height:1.7;
-    font-size:16px;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-    overflow-x:hidden;
-  }
-  a{color:inherit;text-decoration:none}
-  img,video{display:block;max-width:100%}
-  button,input,textarea{font:inherit;color:inherit}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* ── Dark charcoal + silver palette ── */
+  --bg:       #0E1116;   /* near-black charcoal */
+  --bg-2:     #161A21;   /* slightly lifted panel */
+  --bg-3:     #1E232C;   /* card / elevated tint */
+  --ink:      #E8ECF1;   /* near-white for primary type */
+  --ink-2:    #C9D0DA;   /* slightly softer headings */
+  --body:     #A8B0BD;   /* silver-grey body text */
+  --muted:    #6B7280;   /* dim silver for meta */
+  --gold:     #C0C7D2;   /* silver accent (replaces gold) */
+  --gold-lt:  #E2E7EE;   /* bright silver for hover */
+  --line:     rgba(255,255,255,.08);   /* hairline border */
+  --line-2:   rgba(255,255,255,.14);   /* stronger border */
+  --serif:    'EB Garamond', Georgia, 'Times New Roman', serif;
+  --sans:     'Inter', system-ui, sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--body);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
 
-  /* ── STATIC BACKGROUND ── */
-  .bg-overlay{
-    position:fixed;inset:0;z-index:-2;
-    background:var(--bg);
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   NAV
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(14,17,22,.78);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow .3s,background .3s;
+}
+.nav.scrolled{background:rgba(14,17,22,.92);box-shadow:0 2px 24px rgba(0,0,0,.5)}
+.nav-inner{
+  max-width:1240px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,4vw,56px);
+  height:72px;
+}
+.brand{
+  font-family:var(--serif);font-size:19px;font-weight:500;
+  color:var(--ink);letter-spacing:.01em;line-height:1.2;
+}
+.brand span{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-family:var(--sans);margin-top:1px;font-weight:500}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{
+  font-size:13px;font-weight:500;letter-spacing:.04em;
+  color:var(--ink);opacity:.75;
+  transition:opacity .2s,color .2s;
+  position:relative;padding-bottom:2px;
+}
+.nav-links a::after{
+  content:"";position:absolute;bottom:0;left:0;width:0;height:1px;
+  background:var(--gold);transition:width .25s;
+}
+.nav-links a:hover{opacity:1}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:10px 22px;border:1.5px solid var(--gold);color:var(--ink);
+  transition:background .2s,color .2s,border-color .2s;
+}
+.nav-cta:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;color:var(--ink)}
+.nav-toggle svg{display:block}
+@media(max-width:860px){
+  .nav-links{
+    display:none;flex-direction:column;gap:0;
+    position:absolute;top:72px;left:0;right:0;
+    background:rgba(14,17,22,.96);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    padding:8px 0 16px;
   }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:14px clamp(20px,4vw,56px);width:100%;opacity:1;font-size:14px}
+  .nav-links a::after{display:none}
+  .nav-cta{margin:8px clamp(20px,4vw,56px) 0;display:block;text-align:center}
+  .nav-toggle{display:block}
+}
 
-  /* ── NAV ── */
-  .nav{
-    position:fixed;top:0;left:0;right:0;z-index:50;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:22px clamp(20px,5vw,72px);
-    background:rgba(31,27,22,0.72);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--line-soft);
-    transition:padding .3s,background .3s;
-  }
-  .nav.scrolled{padding:14px clamp(20px,5vw,72px);background:rgba(31,27,22,0.92)}
-  .brand{font-family:var(--serif);font-size:21px;font-weight:500;letter-spacing:.01em;color:var(--ink)}
-  .brand i{font-style:normal;color:var(--gold)}
-  .nav-right{display:flex;align-items:center;gap:36px}
-  .nav-links{display:flex;gap:32px;align-items:center}
-  .nav-links a{
-    font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--ink-soft);font-weight:500;
-    position:relative;padding:4px 0;transition:color .25s;
-  }
-  .nav-links a:hover{color:var(--gold)}
-  .clock{
-    font-family:var(--serif);font-size:13px;color:var(--ink-soft);
-    letter-spacing:.06em;
-    border-left:1px solid var(--line);padding-left:24px;
-    display:flex;flex-direction:column;line-height:1.2;
-  }
-  .clock small{font-family:var(--serif);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:2px}
-  .nav-toggle{display:none;font-size:20px;background:none;border:none;cursor:pointer;color:var(--ink)}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px clamp(24px,6vw,96px) 80px;
+  background:var(--bg);
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--line);
+  isolation:isolate;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:url('sc-hero.jpg') center 30%/cover no-repeat;
+  filter:contrast(1.05) saturate(.85);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(180deg, rgba(14,17,22,.25) 0%, rgba(14,17,22,.55) 55%, rgba(14,17,22,.95) 100%),
+    linear-gradient(90deg, rgba(14,17,22,.78) 0%, rgba(14,17,22,.20) 45%, rgba(14,17,22,.55) 100%);
+}
+.hero-watermark{display:none}
+.hero-label{
+  font-family:var(--sans);font-size:11px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:32px;
+}
+.hero-label::before{content:"";width:36px;height:1px;background:var(--gold)}
+.hero-title{
+  font-family:var(--serif);
+  font-size:clamp(54px,10vw,128px);
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-.02em;
+  color:var(--ink);
+  max-width:900px;
+}
+.hero-title em{font-style:italic;color:var(--ink-2)}
+.hero-divider{
+  width:56px;height:1px;background:var(--gold);
+  margin:40px 0;
+}
+.hero-sub{
+  font-family:var(--serif);font-size:clamp(18px,2.2vw,22px);
+  color:var(--body);line-height:1.65;max-width:600px;font-weight:400;
+}
+.hero-meta{
+  margin-top:52px;
+  display:flex;flex-wrap:wrap;gap:40px;
+  border-top:1px solid var(--line);padding-top:28px;
+}
+.hero-meta-item strong{
+  display:block;font-family:var(--sans);font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+  font-weight:600;margin-bottom:5px;
+}
+.hero-meta-item span{
+  font-family:var(--serif);font-size:16px;color:var(--ink);
+}
+.hero-scroll{
+  position:absolute;bottom:36px;left:clamp(24px,6vw,96px);
+  font-size:10px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:12px;
+}
+.hero-scroll::after{
+  content:"";width:28px;height:1px;background:var(--muted);
+  animation:scroll-line 2.4s ease-in-out infinite;
+}
+@keyframes scroll-line{0%,100%{width:28px}50%{width:48px;background:var(--gold)}}
 
-  @media(max-width:900px){.clock{display:none}}
-  @media(max-width:820px){
-    .nav-links{
-      position:absolute;top:100%;left:0;right:0;
-      flex-direction:column;gap:0;
-      background:rgba(31,27,22,0.96);border-bottom:1px solid var(--line);
-      max-height:0;overflow:hidden;transition:max-height .3s;
-    }
-    .nav-links.open{max-height:380px}
-    .nav-links a{padding:18px 28px;border-top:1px solid var(--line-soft);width:100%;letter-spacing:.14em}
-    .nav-toggle{display:block}
-  }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTIONS — shared
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+section{
+  padding:100px clamp(24px,6vw,96px);
+  border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+section:last-of-type{border-bottom:none}
+.container{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+.sec-label{
+  font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:14px;margin-bottom:20px;
+}
+.sec-label::before{content:"";width:28px;height:1px;background:var(--gold)}
+.sec-title{
+  font-family:var(--serif);
+  font-size:clamp(34px,5vw,58px);
+  font-weight:400;line-height:1.1;letter-spacing:-.01em;
+  color:var(--ink);margin-bottom:0;
+}
+.sec-title em{font-style:italic;color:var(--ink-2)}
+.sec-lede{
+  font-size:17px;color:var(--body);line-height:1.75;
+  max-width:620px;margin-top:20px;
+}
 
-  /* ── HERO ── */
-  .hero{
-    min-height:100vh;
-    display:flex;flex-direction:column;justify-content:center;
-    padding:160px clamp(24px,8vw,120px) 100px;
-    position:relative;
-    border-bottom:1px solid var(--line-soft);
-  }
-  .hero-eyebrow{
-    font-size:11px;letter-spacing:.32em;text-transform:uppercase;
-    color:var(--gold);margin-bottom:36px;font-weight:500;
-    display:flex;align-items:center;gap:14px;
-  }
-  .hero-eyebrow::before{content:"";width:42px;height:1px;background:var(--gold)}
-  .hero-title{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(56px,11vw,148px);
-    letter-spacing:-.02em;line-height:0.95;color:var(--ink);
-    text-shadow:0 4px 30px rgba(0,0,0,0.5);
-  }
-  .hero-title i{font-style:normal;color:var(--ink);font-weight:500}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ABOUT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#about{background:var(--bg);position:relative}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  margin-top:56px;align-items:start;
+}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:48px}}
+.about-text p{
+  font-size:16px;color:var(--body);line-height:1.85;
+  margin-bottom:18px;
+}
+.about-text p:first-child{
+  font-family:var(--serif);font-size:21px;color:var(--ink);
+  line-height:1.6;margin-bottom:24px;
+}
+.notice-box{
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  border-left:3px solid var(--gold);
+  padding:36px 40px;
+}
+.notice-box h4{
+  font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+}
+.notice-box p{font-size:14px;color:var(--body);line-height:1.8;margin-bottom:12px}
+.notice-box p:last-child{margin-bottom:0}
 
-  /* live SVG scales */
-  .hero-svg{
-    position:absolute;top:50%;right:clamp(20px,6vw,80px);
-    transform:translateY(-50%);
-    width:clamp(180px,28vw,340px);height:auto;
-    opacity:0.5;pointer-events:none;color:var(--gold);
-  }
-  .hero-svg .scale-arm{transform-origin:50% 22%;animation:tilt 6s ease-in-out infinite}
-  @keyframes tilt{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
-  .hero-svg .pan{animation:bob-pan 6s ease-in-out infinite}
-  .hero-svg .pan-r{animation-delay:-3s}
-  @keyframes bob-pan{0%,100%{transform:translateY(-4px)}50%{transform:translateY(4px)}}
-  .hero-svg circle{animation:pulse 4s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:0.4}50%{opacity:1}}
-  @media(max-width:760px){.hero-svg{opacity:0.22;width:60vw;right:-10vw;top:65%}}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MEMBERS (landing — minimal list, full profiles on own pages)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#members{background:var(--bg-2);position:relative}
+/* section-level scales watermark */
+.sec-wm{
+  position:absolute;right:-40px;top:50%;transform:translateY(-50%);
+  width:clamp(200px,26vw,380px);height:auto;
+  opacity:.08;pointer-events:none;color:var(--gold);
+}
+@media(max-width:700px){.sec-wm{opacity:.05;width:60vw;right:-15vw}}
 
-  .hero-down{
-    margin-top:60px;max-width:680px;
-    font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);font-weight:400;
-    color:var(--ink-soft);line-height:1.5;
-    position:relative;z-index:2;
-  }
-  .hero-meta{
-    margin-top:60px;
-    display:flex;flex-wrap:wrap;gap:48px;
-    border-top:1px solid var(--line);padding-top:32px;
-    font-size:13px;color:var(--ink-soft);
-    position:relative;z-index:2;
-  }
-  .hero-meta div strong{
-    display:block;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--muted);margin-bottom:6px;font-weight:500;
-  }
-  .hero-arrow{
-    position:absolute;bottom:36px;right:clamp(24px,8vw,120px);
-    color:var(--muted);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
-    display:flex;align-items:center;gap:14px;
-  }
-  .hero-arrow::after{content:"";width:30px;height:1px;background:var(--muted);animation:line-slide 2.4s ease-in-out infinite}
-  @keyframes line-slide{0%,100%{width:30px}50%{width:50px;background:var(--gold)}}
+.member-list{margin-top:56px;border-top:1px solid var(--line-2)}
+.member-row{
+  display:grid;
+  grid-template-columns:56px 1fr auto;
+  gap:28px;align-items:center;
+  padding:28px 0;border-bottom:1px solid var(--line);
+  transition:background .25s;cursor:pointer;
+  text-decoration:none;color:inherit;
+  display:grid;
+}
+a.member-row:hover{background:rgba(255,255,255,.04)}
+.member-row:hover .member-arrow{transform:translateX(6px);color:var(--gold)}
+.member-avatar{
+  width:52px;height:52px;border-radius:50%;
+  background-color:var(--bg-3);border:1px solid var(--line-2);
+  background-size:cover;background-position:center top;
+  flex-shrink:0;display:block;
+}
+.member-info{}
+.member-name{
+  font-family:var(--serif);font-size:22px;font-weight:400;
+  color:var(--ink);line-height:1.2;
+}
+.member-role{
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin-top:4px;
+}
+.member-arrow{
+  font-size:18px;color:var(--muted);
+  transition:transform .25s,color .25s;
+  font-family:var(--serif);
+}
+@media(max-width:600px){
+  .member-row{grid-template-columns:44px 1fr 18px;gap:16px;padding:22px 0}
+  .member-avatar{width:40px;height:40px}
+  .member-name{font-size:18px}
+}
 
-  /* ── SECTIONS ── */
-  section{padding:130px clamp(24px,6vw,80px);border-bottom:1px solid var(--line-soft);position:relative}
-  section:last-of-type{border-bottom:none}
-  .container{max-width:1200px;margin:0 auto;position:relative;z-index:2}
-  .section-head{display:grid;grid-template-columns:200px 1fr;gap:60px;margin-bottom:72px}
-  @media(max-width:780px){.section-head{grid-template-columns:1fr;gap:20px;margin-bottom:48px}}
-  .section-num{
-    font-family:var(--serif);font-size:14px;letter-spacing:.18em;
-    color:var(--gold);font-weight:500;
-    border-top:1px solid var(--gold);padding-top:14px;align-self:start;
-  }
-  .section-title{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(36px,5vw,60px);
-    line-height:1.1;letter-spacing:-.005em;color:var(--ink);
-  }
-  .section-title i{font-style:normal;color:var(--ink);font-weight:500}
-  .section-lede{font-size:17px;color:var(--ink-soft);max-width:680px;margin-top:24px;line-height:1.7}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRACTICE AREAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#practice{background:var(--bg);position:relative}
+.practice-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:0;margin-top:56px;
+  border:1px solid var(--line-2);
+}
+.practice-item{
+  padding:38px 36px 42px;
+  border-right:1px solid var(--line-2);
+  border-bottom:1px solid var(--line-2);
+  position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.practice-item:hover{background:var(--bg-3)}
+.practice-item::before{
+  content:"";position:absolute;left:0;top:0;
+  width:3px;height:0;background:var(--gold);
+  transition:height .4s;
+}
+.practice-item:hover::before{height:100%}
+.practice-num{
+  font-family:var(--sans);font-size:11px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:18px;
+}
+.practice-name{
+  font-family:var(--serif);font-size:23px;font-weight:400;
+  color:var(--ink);line-height:1.25;margin-bottom:12px;
+  letter-spacing:-.005em;
+}
+.practice-desc{font-size:14px;color:var(--body);line-height:1.75}
 
-  #about{background:var(--bg)}
-  #profiles{background:var(--bg-2)}
-  #practice{background:var(--bg)}
-  #contact{background:var(--bg-2)}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CONTACT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#contact{background:var(--bg-2);position:relative}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1.3fr;gap:80px;
+  margin-top:56px;
+}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr;gap:48px}}
+.contact-items{display:flex;flex-direction:column;gap:32px}
+.contact-item strong{
+  display:block;font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;
+}
+.contact-item p,.contact-item a{font-size:16px;color:var(--ink);line-height:1.65}
+.contact-item a:hover{color:var(--gold)}
+form{display:flex;flex-direction:column;gap:20px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:520px){.form-row{grid-template-columns:1fr}}
+form input,form textarea{
+  background:var(--bg-3);border:1px solid var(--line-2);
+  padding:13px 16px;font-size:15px;outline:none;
+  color:var(--ink);
+  transition:border-color .25s,background .25s;font-family:var(--sans);
+  border-radius:0;
+  -webkit-appearance:none;
+}
+form input::placeholder,form textarea::placeholder{color:var(--muted)}
+form input:focus,form textarea:focus{border-color:var(--gold);background:var(--bg)}
+form textarea{resize:vertical;min-height:130px}
+form button{
+  align-self:flex-start;
+  padding:14px 36px;
+  background:var(--ink);color:var(--bg);
+  font-family:var(--sans);font-size:11.5px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  border:1.5px solid var(--ink);
+  cursor:pointer;
+  transition:background .25s,color .25s;
+}
+form button:hover{background:transparent;color:var(--ink)}
 
-  /* ── ABOUT ── */
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-  @media(max-width:880px){.about-grid{grid-template-columns:1fr;gap:48px}}
-  .about-text p{margin-bottom:20px;color:var(--ink-soft);font-size:16px;line-height:1.8}
-  .about-text p:first-child{
-    font-size:22px;font-family:var(--serif);color:var(--ink);
-    line-height:1.5;font-weight:400;margin-bottom:28px;
-  }
-  .about-text p:first-child::first-letter{
-    font-size:62px;float:left;line-height:0.9;
-    padding:8px 12px 0 0;color:var(--gold);font-weight:500;font-family:var(--serif);
-  }
-  .disclaimer{
-    background:rgba(0,0,0,0.25);
-    border:1px solid var(--line);
-    padding:40px 42px;font-size:13.5px;color:var(--ink-soft);line-height:1.8;position:relative;
-  }
-  .disclaimer h4{
-    font-family:var(--serif);font-weight:500;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--gold);margin-bottom:20px;
-  }
-  .disclaimer p{margin-bottom:14px}
-  .disclaimer p:last-child{margin-bottom:0}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+footer{
+  background:#080A0E;
+  color:rgba(232,236,241,.65);
+  padding:72px clamp(24px,6vw,96px) 32px;
+  border-top:1px solid var(--line);
+}
+.foot-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;
+  padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.08);
+}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:36px}}
+.foot-brand{
+  font-family:var(--serif);font-size:26px;font-weight:400;
+  color:var(--ink);margin-bottom:6px;letter-spacing:.01em;
+}
+.foot-tagline{
+  font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;
+}
+.foot-note{font-size:13px;color:rgba(232,236,241,.45);line-height:1.8}
+.foot-col h5{
+  font-family:var(--sans);font-size:10px;font-weight:600;
+  letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+}
+.foot-col a,.foot-col span{
+  display:block;font-size:14px;color:rgba(232,236,241,.6);
+  margin-bottom:10px;transition:color .2s;
+}
+.foot-col a:hover{color:var(--gold-lt)}
+.foot-bottom{
+  max-width:1200px;margin:28px auto 0;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font-size:12px;color:rgba(232,236,241,.3);letter-spacing:.04em;
+}
 
-  /* ── PROFILES ── */
-  .profile-list{display:flex;flex-direction:column;gap:0}
-  .profile-row{
-    display:grid;grid-template-columns:160px 1fr;gap:48px;
-    padding:48px 0;border-top:1px solid var(--line);align-items:start;
-    transition:background .3s;
-  }
-  .profile-row:hover{background:rgba(212,179,112,0.04)}
-  .profile-row:last-child{border-bottom:1px solid var(--line)}
-  @media(max-width:760px){.profile-row{grid-template-columns:1fr;gap:24px;padding:36px 0}}
-  .profile-photo{
-    width:160px;height:200px;background:var(--bg-3);
-    display:grid;place-items:center;
-    color:var(--muted);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-    background-size:cover;background-position:center top;border:1px solid var(--line);
-  }
-  @media(max-width:760px){.profile-photo{width:140px;height:180px}}
-  .profile-name{font-family:var(--serif);font-size:32px;font-weight:500;line-height:1.15;color:var(--ink);letter-spacing:-.005em}
-  .profile-role{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:8px;font-weight:500}
-  .profile-bio{font-size:15px;color:var(--ink-soft);line-height:1.75;margin-top:18px;max-width:760px}
-  .profile-areas{margin-top:16px;font-size:12.5px;color:var(--muted);line-height:1.7}
-  .profile-meta{margin-top:20px;font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:22px;align-items:center}
-  .profile-meta a{color:var(--ink-soft);border-bottom:1px solid var(--line)}
-  .profile-meta a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   REVEAL ANIMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .85s ease,transform .85s ease}
+.reveal.in{opacity:1;transform:none}
 
-  /* ── PRACTICE ── */
-  .practice-grid{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;
-    border-top:1px solid var(--line);
-  }
-  .practice-item{
-    padding:40px 36px 44px;
-    border-bottom:1px solid var(--line);border-right:1px solid var(--line);
-    transition:background .35s;position:relative;overflow:hidden;
-  }
-  .practice-item::before{
-    content:"";position:absolute;left:0;top:0;width:0;height:2px;background:var(--gold);transition:width .5s;
-  }
-  .practice-item:hover::before{width:100%}
-  .practice-item:hover{background:rgba(212,179,112,0.05)}
-  .practice-num{font-family:var(--serif);font-size:13px;letter-spacing:.16em;color:var(--gold);margin-bottom:20px;font-weight:500}
-  .practice-name{font-family:var(--serif);font-size:26px;font-weight:500;margin-bottom:14px;color:var(--ink);line-height:1.2;letter-spacing:-.005em}
-  .practice-desc{font-size:14.5px;color:var(--ink-soft);line-height:1.7}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   IMAGE BANDS (full-width court photography between sections)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.imgband{
+  position:relative;
+  height:clamp(320px,52vh,540px);
+  background-position:center;background-size:cover;background-repeat:no-repeat;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  overflow:hidden;
+  display:flex;align-items:flex-end;
+  padding:0 clamp(24px,6vw,96px) 56px;
+  isolation:isolate;
+}
+.imgband::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg, rgba(14,17,22,.05) 0%, rgba(14,17,22,.35) 55%, rgba(14,17,22,.92) 100%);
+}
+.imgband-caption{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(20px,2.4vw,28px);
+  color:var(--ink);max-width:680px;line-height:1.4;
+  text-shadow:0 2px 24px rgba(0,0,0,.5);
+}
+.imgband-caption small{
+  display:block;margin-top:14px;
+  font-family:var(--sans);font-style:normal;
+  font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;
+}
+.imgband--library{background-image:url('band-library.jpg');background-position:center 30%}
+.imgband--monument{background-image:url('band-monument.jpg');background-position:center 55%}
 
-  /* ── CONTACT ── */
-  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px}
-  @media(max-width:880px){.contact-grid{grid-template-columns:1fr;gap:48px}}
-  .contact-info{display:flex;flex-direction:column;gap:28px}
-  .contact-info > div strong{
-    display:block;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--gold);margin-bottom:8px;font-weight:500;
-  }
-  .contact-info > div p,.contact-info > div a{color:var(--ink-soft);font-size:15.5px;line-height:1.65}
-  .contact-info a:hover{color:var(--gold)}
-  form{display:flex;flex-direction:column;gap:22px}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-  @media(max-width:520px){.form-row{grid-template-columns:1fr}}
-  form input,form textarea{
-    background:transparent;border:none;border-bottom:1px solid var(--line);
-    padding:14px 0;font-size:15px;outline:none;transition:border-color .25s;color:var(--ink);
-  }
-  form input::placeholder,form textarea::placeholder{color:var(--muted)}
-  form input:focus,form textarea:focus{border-bottom-color:var(--gold)}
-  form textarea{resize:vertical;min-height:120px}
-  form button{
-    margin-top:14px;align-self:flex-start;
-    padding:16px 38px;background:var(--gold);color:var(--bg);
-    font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
-    transition:background .25s,letter-spacing .25s,transform .2s;
-  }
-  form button:hover{background:var(--gold-soft);letter-spacing:.28em;transform:translateY(-1px)}
-
-  /* ── FOOTER ── */
-  footer{
-    background:#15110D;color:#9C9484;
-    padding:80px clamp(24px,6vw,80px) 36px;
-    font-size:13px;line-height:1.75;position:relative;z-index:2;
-  }
-  .foot-grid{
-    max-width:1200px;margin:0 auto;
-    display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;
-  }
-  @media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:36px}}
-  .foot-brand{font-family:var(--serif);font-size:28px;color:var(--ink);margin-bottom:8px;font-weight:500}
-  .foot-brand i{font-style:normal;color:var(--ink)}
-  .foot-sub{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;font-weight:500}
-  .foot-disclaimer{color:#7A7363;font-size:12.5px;line-height:1.8}
-  .foot-col h5{font-family:var(--serif);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:500}
-  .foot-links{display:flex;flex-direction:column;gap:10px}
-  .foot-links a,.foot-links span{color:#B8AF9C;transition:color .2s;font-size:13.5px}
-  .foot-links a:hover{color:var(--gold)}
-  .foot-bottom{
-    max-width:1200px;margin:56px auto 0;padding-top:28px;
-    border-top:1px solid rgba(255,255,255,0.06);
-    display:flex;justify-content:space-between;color:#5C5648;font-size:12px;letter-spacing:.04em;
-  }
-  @media(max-width:520px){.foot-bottom{flex-direction:column;gap:8px}}
-
-  /* ── PROFILE MODAL ── */
-  .modal{
-    position:fixed;inset:0;z-index:300;
-    background:rgba(15,12,9,0.85);backdrop-filter:blur(8px);
-    display:none;align-items:flex-start;justify-content:center;
-    overflow-y:auto;padding:60px 20px;
-    opacity:0;transition:opacity .35s ease;
-  }
-  .modal.open{display:flex;opacity:1}
-  .modal-card{
-    width:100%;max-width:880px;
-    background:var(--bg);
-    border:1px solid var(--line);
-    padding:60px clamp(28px,5vw,72px) 64px;
-    position:relative;
-    transform:translateY(40px);transition:transform .45s ease;
-    box-shadow:0 30px 80px rgba(0,0,0,0.6);
-  }
-  .modal.open .modal-card{transform:translateY(0)}
-  .modal-close{
-    position:absolute;top:22px;right:24px;
-    width:42px;height:42px;display:grid;place-items:center;
-    background:transparent;border:1px solid var(--line);
-    color:var(--ink-soft);font-size:18px;
-    transition:background .2s,color .2s,border-color .2s;cursor:pointer;
-  }
-  .modal-close:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
-  .modal-header{
-    display:grid;grid-template-columns:180px 1fr;gap:40px;align-items:start;
-    padding-bottom:32px;border-bottom:1px solid var(--line);margin-bottom:36px;
-  }
-  @media(max-width:640px){.modal-header{grid-template-columns:1fr;gap:24px}}
-  .modal-photo{
-    width:180px;height:220px;background:var(--bg-3);border:1px solid var(--line);
-    background-size:cover;background-position:center top;
-    display:grid;place-items:center;color:var(--muted);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-  }
-  @media(max-width:640px){.modal-photo{width:160px;height:200px}}
-  .modal-name{font-family:var(--serif);font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.1;color:var(--ink);letter-spacing:-.005em}
-  .modal-role{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:10px;font-weight:500}
-  .modal-summary{font-family:var(--serif);font-size:18px;color:var(--ink-soft);margin-top:18px;line-height:1.55}
-  .modal-section{margin-bottom:32px}
-  .modal-section h4{
-    font-family:var(--serif);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
-    color:var(--gold);font-weight:500;margin-bottom:14px;
-    border-top:1px solid var(--gold);padding-top:12px;display:inline-block;
-  }
-  .modal-section p,.modal-section li{color:var(--ink-soft);font-size:15px;line-height:1.75}
-  .modal-section p{margin-bottom:12px}
-  .modal-section ul{list-style:none;padding:0}
-  .modal-section li{padding:8px 0;border-bottom:1px solid var(--line-soft);display:grid;grid-template-columns:120px 1fr;gap:24px}
-  .modal-section li:last-child{border-bottom:none}
-  .modal-section li b{color:var(--ink);font-weight:500;font-family:var(--serif);font-size:15px}
-  @media(max-width:640px){.modal-section li{grid-template-columns:1fr;gap:4px}}
-  .modal-foot{
-    display:flex;flex-wrap:wrap;gap:20px;align-items:center;
-    padding-top:24px;border-top:1px solid var(--line);
-    font-size:13px;color:var(--ink-soft);
-  }
-  .modal-foot a{color:var(--ink-soft);border-bottom:1px solid var(--line)}
-  .modal-foot a:hover{color:var(--gold);border-bottom-color:var(--gold)}
-
-  body.modal-open{overflow:hidden}
-  .profile-row{cursor:pointer}
-  .profile-open-hint{
-    margin-top:14px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--gold);font-weight:500;display:inline-flex;align-items:center;gap:10px;
-  }
-  .profile-open-hint::after{content:"→";transition:transform .25s}
-  .profile-row:hover .profile-open-hint::after{transform:translateX(6px)}
-
-  /* ── REVEAL ── */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
-  .reveal.in{opacity:1;transform:translateY(0)}
-
-  /* default cursor — no custom dot */
+/* About: replace plain notice box layout with featured image + notice */
+.about-image{
+  position:relative;
+  background:url('sc-cropped.jpg') center/cover no-repeat;
+  min-height:360px;
+  border:1px solid var(--line);
+  margin-bottom:24px;
+}
+.about-image::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(14,17,22,.55) 100%);
+  pointer-events:none;
+}
 </style>
 </head>
 <body>
 
-<div class="bg-overlay"></div>
-
+<!-- ━━ NAV ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <nav class="nav" id="nav">
-  <div class="brand">13A Law Chambers</div>
-  <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
-  <div class="nav-right">
-    <div class="nav-links" id="navlinks">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      13A Law Chambers
+      <span>Advocates · Islamabad</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <line x1="0" y1="2" x2="22" y2="2"/><line x1="0" y1="8" x2="22" y2="8"/><line x1="0" y1="14" x2="22" y2="14"/>
+      </svg>
+    </button>
+    <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
-      <a href="#profiles">Profiles</a>
+      <a href="#members">Members</a>
       <a href="#practice">Practice</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Contact</a>
     </div>
-    <div class="clock"><span id="clockTime">—</span><small id="clockLabel">Islamabad</small></div>
   </div>
 </nav>
 
+<!-- ━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <header class="hero">
-  <div class="hero-eyebrow">Established Chambers · Islamabad</div>
-  <h1 class="hero-title">13A<br>Law Chambers</h1>
 
-  <svg class="hero-svg" viewBox="0 0 200 240" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" aria-hidden="true">
-    <line x1="100" y1="20" x2="100" y2="200"/>
-    <circle cx="100" cy="20" r="3" fill="currentColor"/>
-    <line x1="60" y1="200" x2="140" y2="200"/>
-    <line x1="80" y1="200" x2="120" y2="200" stroke-width="1.2"/>
-    <g class="scale-arm">
-      <line x1="30" y1="60" x2="170" y2="60"/>
-      <line x1="30" y1="60" x2="30" y2="80" stroke-dasharray="2 3"/>
-      <line x1="170" y1="60" x2="170" y2="80" stroke-dasharray="2 3"/>
-      <g class="pan"><path d="M 10 80 Q 30 110 50 80"/><line x1="10" y1="80" x2="50" y2="80"/></g>
-      <g class="pan pan-r"><path d="M 150 80 Q 170 110 190 80"/><line x1="150" y1="80" x2="190" y2="80"/></g>
-    </g>
-    <circle cx="100" cy="20" r="8" fill="none" opacity="0.4"/>
-    <circle cx="100" cy="20" r="14" fill="none" opacity="0.2"/>
+  <!-- Supreme Court of Pakistan dome + colonnade watermark -->
+  <svg class="hero-watermark" viewBox="0 0 800 680" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <!-- Steps / plinth -->
+    <rect x="0"   y="638" width="800" height="12" stroke-width="1.5"/>
+    <rect x="0"   y="624" width="800" height="14" stroke-width="1.5"/>
+    <rect x="30"  y="610" width="740" height="14" stroke-width="1.5"/>
+    <!-- Main colonnade base entablature -->
+    <rect x="60"  y="390" width="680" height="18" stroke-width="2"/>
+    <rect x="70"  y="375" width="660" height="15" stroke-width="1.2"/>
+    <!-- Columns — main portico -->
+    <line x1="90"  y1="394" x2="90"  y2="610" stroke-width="2.2"/>
+    <line x1="148" y1="394" x2="148" y2="610" stroke-width="2.2"/>
+    <line x1="206" y1="394" x2="206" y2="610" stroke-width="2.2"/>
+    <line x1="264" y1="394" x2="264" y2="610" stroke-width="2.2"/>
+    <line x1="322" y1="394" x2="322" y2="610" stroke-width="2.2"/>
+    <line x1="380" y1="394" x2="380" y2="610" stroke-width="2.2"/>
+    <line x1="420" y1="394" x2="420" y2="610" stroke-width="2.2"/>
+    <line x1="478" y1="394" x2="478" y2="610" stroke-width="2.2"/>
+    <line x1="536" y1="394" x2="536" y2="610" stroke-width="2.2"/>
+    <line x1="594" y1="394" x2="594" y2="610" stroke-width="2.2"/>
+    <line x1="652" y1="394" x2="652" y2="610" stroke-width="2.2"/>
+    <line x1="710" y1="394" x2="710" y2="610" stroke-width="2.2"/>
+    <!-- Column capitals (thin horizontal caps) -->
+    <line x1="72"  y1="393" x2="108" y2="393" stroke-width="1.2"/>
+    <line x1="130" y1="393" x2="166" y2="393" stroke-width="1.2"/>
+    <line x1="188" y1="393" x2="224" y2="393" stroke-width="1.2"/>
+    <line x1="246" y1="393" x2="282" y2="393" stroke-width="1.2"/>
+    <line x1="304" y1="393" x2="340" y2="393" stroke-width="1.2"/>
+    <line x1="362" y1="393" x2="398" y2="393" stroke-width="1.2"/>
+    <line x1="402" y1="393" x2="438" y2="393" stroke-width="1.2"/>
+    <line x1="460" y1="393" x2="496" y2="393" stroke-width="1.2"/>
+    <line x1="518" y1="393" x2="554" y2="393" stroke-width="1.2"/>
+    <line x1="576" y1="393" x2="612" y2="393" stroke-width="1.2"/>
+    <line x1="634" y1="393" x2="670" y2="393" stroke-width="1.2"/>
+    <line x1="692" y1="393" x2="728" y2="393" stroke-width="1.2"/>
+    <!-- Frieze detail -->
+    <line x1="60"  y1="374" x2="740" y2="374" stroke-width=".7" stroke-dasharray="6 10"/>
+    <!-- Central dome body -->
+    <path d="M 220 375 Q 240 240 400 140 Q 560 240 580 375" stroke-width="2.5"/>
+    <!-- Dome ribs -->
+    <path d="M 290 360 Q 310 240 400 165" stroke-width="1"/>
+    <path d="M 510 360 Q 490 240 400 165" stroke-width="1"/>
+    <path d="M 260 370 Q 290 260 400 170" stroke-width=".7"/>
+    <path d="M 540 370 Q 510 260 400 170" stroke-width=".7"/>
+    <path d="M 250 372 Q 295 265 400 162" stroke-width=".5"/>
+    <path d="M 550 372 Q 505 265 400 162" stroke-width=".5"/>
+    <!-- Drum (cylindrical base of dome) -->
+    <ellipse cx="400" cy="142" rx="48" ry="16" stroke-width="1.4"/>
+    <line x1="352" y1="142" x2="352" y2="100" stroke-width="1.2"/>
+    <line x1="448" y1="142" x2="448" y2="100" stroke-width="1.2"/>
+    <line x1="368" y1="142" x2="368" y2="104" stroke-width=".8"/>
+    <line x1="432" y1="142" x2="432" y2="104" stroke-width=".8"/>
+    <ellipse cx="400" cy="100" rx="42" ry="13" stroke-width="1.2"/>
+    <!-- Lantern -->
+    <line x1="358" y1="100" x2="358" y2="68" stroke-width="1"/>
+    <line x1="442" y1="100" x2="442" y2="68" stroke-width="1"/>
+    <ellipse cx="400" cy="68" rx="34" ry="10" stroke-width="1"/>
+    <!-- Upper lantern -->
+    <line x1="374" y1="68" x2="374" y2="46" stroke-width=".9"/>
+    <line x1="426" y1="68" x2="426" y2="46" stroke-width=".9"/>
+    <ellipse cx="400" cy="46" rx="24" ry="7" stroke-width=".9"/>
+    <!-- Finial staff -->
+    <line x1="400" y1="39" x2="400" y2="8" stroke-width="1.4"/>
+    <circle cx="400" cy="8"  r="7"  stroke-width="1.2"/>
+    <!-- Crescent on finial -->
+    <path d="M 394 4 A 8 8 0 0 1 406 4" stroke-width="1.4"/>
+    <!-- Flanking wings / side blocks -->
+    <rect x="22"  y="450" width="68" height="160" stroke-width="1.2"/>
+    <line x1="30"  y1="450" x2="30"  y2="610" stroke-width=".8"/>
+    <line x1="50"  y1="450" x2="50"  y2="610" stroke-width=".8"/>
+    <line x1="70"  y1="450" x2="70"  y2="610" stroke-width=".8"/>
+    <rect x="710" y="450" width="68" height="160" stroke-width="1.2"/>
+    <line x1="720" y1="450" x2="720" y2="610" stroke-width=".8"/>
+    <line x1="740" y1="450" x2="740" y2="610" stroke-width=".8"/>
+    <line x1="760" y1="450" x2="760" y2="610" stroke-width=".8"/>
+    <!-- Flanking wing roofs -->
+    <line x1="18"  y1="448" x2="94"  y2="448" stroke-width="1.4"/>
+    <line x1="706" y1="448" x2="782" y2="448" stroke-width="1.4"/>
+    <!-- Trees flanking -->
+    <line x1="12"  y1="500" x2="12"  y2="624" stroke-width="1"/>
+    <path d="M 0 500 Q 12 468 24 500" stroke-width="1"/>
+    <path d="M 2 518 Q 12 488 22 518" stroke-width=".8"/>
+    <line x1="788" y1="500" x2="788" y2="624" stroke-width="1"/>
+    <path d="M 776 500 Q 788 468 800 500" stroke-width="1"/>
+    <path d="M 778 518 Q 788 488 798 518" stroke-width=".8"/>
+    <!-- Decorative arched entrance -->
+    <path d="M 340 610 L 340 530 Q 400 490 460 530 L 460 610" stroke-width="1.4"/>
+    <line x1="340" y1="610" x2="460" y2="610" stroke-width="1.2"/>
   </svg>
 
-  <p class="hero-down">A shared chambers of independent advocates, committed to rigorous counsel and principled advocacy across the courts of Pakistan.</p>
+  <div class="hero-label">Established Chambers &ensp;·&ensp; Islamabad</div>
+  <h1 class="hero-title">13A<br><em>Law Chambers</em></h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">A shared chambers of independent advocates, committed to rigorous counsel and principled advocacy across the courts of Pakistan.</p>
   <div class="hero-meta">
-    <div><strong>Founded</strong>Islamabad</div>
-    <div><strong>Practice</strong>Supreme Court of Pakistan</div>
-    <div><strong>Members</strong>Independent Advocates</div>
+    <div class="hero-meta-item"><strong>Jurisdiction</strong><span>Supreme Court of Pakistan</span></div>
+    <div class="hero-meta-item"><strong>Location</strong><span>F-8/1, Islamabad</span></div>
+    <div class="hero-meta-item"><strong>Est.</strong><span>13A, Street 37</span></div>
   </div>
-  <div class="hero-arrow">Scroll</div>
+  <div class="hero-scroll">Scroll</div>
 </header>
 
+<!-- ━━ ABOUT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <section id="about">
   <div class="container">
-    <div class="section-head">
-      <div class="section-num">I &nbsp;·&nbsp; About</div>
-      <h2 class="section-title">A chambers built on <i>independence</i> and shared standards.</h2>
-    </div>
+    <div class="sec-label">About</div>
+    <h2 class="sec-title">Independence.<br><em>Shared standards.</em></h2>
     <div class="about-grid">
       <div class="about-text reveal">
         <p>13A Law Chambers is a shared chambers in Islamabad, bringing together advocates of the Supreme Court of Pakistan who choose to practise side by side under a common roof.</p>
         <p>Each member maintains their own clients, their own files, and their own professional standards — supported by a collegiate environment that encourages exchange, scrutiny, and a shared commitment to the rule of law.</p>
         <p>Where a matter benefits from collaboration, members may, with the client's informed consent, work jointly on a brief. Otherwise, every advocate practises in their own right and on their own responsibility.</p>
       </div>
-      <aside class="disclaimer reveal">
+      <div class="notice-box reveal">
         <h4>Important Notice</h4>
         <p>13A Law Chambers is a shared chambers arrangement. Each lawyer practises independently and maintains their own client relationships and professional responsibilities. We are not a partnership or law firm, and no lawyer here is liable for the work or conduct of any other.</p>
-        <p>Where appropriate and with the informed consent of the client, one or more advocates may be engaged or may collaborate on a particular matter. Any such engagement is matter-specific and does not create a partnership, joint venture, or any continuing professional association between the advocates involved.</p>
+        <p>Where appropriate and with the informed consent of the client, one or more advocates may be engaged or may collaborate on a particular matter. Any such engagement is matter-specific and does not create a partnership, joint venture, or any continuing professional association.</p>
         <p>Nothing on this website shall be construed as indicating the existence of a partnership, joint venture, or any other form of professional association between the occupants of these chambers.</p>
-      </aside>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="profiles">
+<!-- ━━ IMAGE BAND — Law library ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="imgband imgband--library reveal" aria-hidden="true">
+  <div class="imgband-caption">
+    "The law is reason, free from passion."
+    <small>— Aristotle</small>
+  </div>
+</div>
+
+<!-- ━━ MEMBERS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="members">
+  <!-- scales of justice watermark -->
+  <svg class="sec-wm" viewBox="0 0 220 280" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+    <line x1="110" y1="20" x2="110" y2="230" stroke-width="1.4"/>
+    <circle cx="110" cy="20" r="4" fill="currentColor" stroke-width="0"/>
+    <line x1="68"  y1="250" x2="152" y2="250" stroke-width="2"/>
+    <line x1="82"  y1="250" x2="138" y2="250" stroke-width="3"/>
+    <!-- arm -->
+    <line x1="28"  y1="75"  x2="192" y2="75"  stroke-width="1.4"/>
+    <!-- left chain + pan -->
+    <line x1="28"  y1="75"  x2="28"  y2="105" stroke-width="1" stroke-dasharray="3 4"/>
+    <path d="M 4 105 Q 28 145 52 105" stroke-width="1.4"/>
+    <line x1="4"   y1="105" x2="52"  y2="105" stroke-width="1.4"/>
+    <!-- right chain + pan -->
+    <line x1="192" y1="75"  x2="192" y2="105" stroke-width="1" stroke-dasharray="3 4"/>
+    <path d="M 168 105 Q 192 145 216 105" stroke-width="1.4"/>
+    <line x1="168" y1="105" x2="216" y2="105" stroke-width="1.4"/>
+    <!-- pivot rings -->
+    <circle cx="110" cy="20" r="10" fill="none" stroke-width="1" opacity=".5"/>
+    <circle cx="110" cy="20" r="18" fill="none" stroke-width=".7" opacity=".3"/>
+  </svg>
+
   <div class="container">
-    <div class="section-head">
-      <div class="section-num">II &nbsp;·&nbsp; Profiles</div>
-      <h2 class="section-title">Members <i>of</i> Chambers.</h2>
-    </div>
-    <div class="profile-list">
+    <div class="sec-label">Members of Chambers</div>
+    <h2 class="sec-title">Members.</h2>
+    <p class="sec-lede">Each member practises independently. Select a name to view their full profile and experience.</p>
 
-      <div class="profile-row reveal" data-profile="natalya">
-        <div class="profile-photo" style="background-image:url('IMG_2320.JPG')"></div>
-        <div>
-          <div class="profile-name">Natalya Kamal</div>
-          <div class="profile-role">Barrister-at-Law · Advocate, Supreme Court</div>
-          <p class="profile-bio">Called to the Bar by the Honourable Society of Lincoln's Inn in 2001. Over two decades of experience in litigation, regulatory practice, corporate advisory and alternative dispute resolution. Accredited Mediator under the Ministry of Law &amp; Justice and an ADR ODR International Associate Arbitrator. Practice spans constitutional, commercial, regulatory, telecommunications, competition, technology, intellectual property and environmental matters.</p>
-          <div class="profile-areas">Litigation &amp; Appeals · Regulatory · Telecommunications · Competition · Corporate &amp; Commercial · Technology &amp; IP · Mediation &amp; Arbitration</div>
-          <div class="profile-open-hint">View Profile</div>
-        </div>
-      </div>
+    <div class="member-list">
 
-      <div class="profile-row reveal" data-profile="riaz">
-        <div class="profile-photo">Photograph</div>
-        <div>
-          <div class="profile-name">Syed Riaz Hussain</div>
-          <div class="profile-role">Advocate, Supreme Court of Pakistan</div>
-          <p class="profile-bio">LLB (Honours) from the University of London and qualified under the Solicitors Regulation Authority of England &amp; Wales via the Qualified Lawyers Transfer Scheme, 2014. Founding partner of H&amp;M Law since 2015, leading a dispute resolution and corporate advisory practice acting for federal and provincial agencies and major private clients in commercial, infrastructure, energy and judicial review matters.</p>
-          <div class="profile-areas">Construction &amp; Infrastructure · Dispute Resolution · IT &amp; Telecommunications · Legislative Review · Commercial Litigation</div>
-          <div class="profile-open-hint">View Profile</div>
+      <a href="profile-natalya.html" class="member-row reveal">
+        <div class="member-avatar" style="background-image:url('IMG_2320.JPG')"></div>
+        <div class="member-info">
+          <div class="member-name">Natalya Kamal</div>
+          <div class="member-role">Barrister-at-Law &nbsp;·&nbsp; Advocate, Supreme Court</div>
         </div>
-      </div>
+        <div class="member-arrow">→</div>
+      </a>
 
-      <div class="profile-row reveal" data-profile="faraz">
-        <div class="profile-photo">Photograph</div>
-        <div>
-          <div class="profile-name">Syed Faraz Raza</div>
-          <div class="profile-role">Advocate, High Court · LL.B. (Hons.), LL.M.</div>
-          <p class="profile-bio">Read law at the University of Leicester (LL.B. Hons.) and King's College London (LL.M., International Business Law). Partner at Faraz, Haider, Moazzam &amp; Co., Islamabad. Former Special Public Prosecutor in the Musharraf High Treason matter, and former Legal Advisor (MP Scale) to the Ministry of Foreign Affairs. Practice spans civil, corporate, banking, property and commercial litigation before the Supreme Court, High Courts, Civil and District Courts.</p>
-          <div class="profile-areas">Civil &amp; Corporate · Property · Banking · Commercial Litigation · International Law · Constitutional</div>
-          <div class="profile-open-hint">View Profile</div>
+      <a href="profile-riaz.html" class="member-row reveal">
+        <div class="member-avatar"></div>
+        <div class="member-info">
+          <div class="member-name">Syed Riaz Hussain</div>
+          <div class="member-role">Advocate, Supreme Court of Pakistan</div>
         </div>
-      </div>
+        <div class="member-arrow">→</div>
+      </a>
 
-      <div class="profile-row reveal" data-profile="moazzam">
-        <div class="profile-photo">Photograph</div>
-        <div>
-          <div class="profile-name">Moazzam Habib</div>
-          <div class="profile-role">Advocate, Supreme Court of Pakistan</div>
-          <p class="profile-bio">Second-generation advocate practising in civil, property, commercial, rent, election, white-collar and immigration law. Partner at Faraz, Haider, Moazzam &amp; Co. since 2015. Currently Legal Advisor to the Directorate General Immigration &amp; Passports, and Senior Legal Consultant (UNICEF) at the Child Protection Institute. Certified Mediation Counsel (CIArb, UK) and court-appointed arbitrator.</p>
-          <div class="profile-areas">Civil &amp; Property · Commercial · Rent &amp; Election · White-Collar Crime · Immigration · Arbitration</div>
-          <div class="profile-open-hint">View Profile</div>
+      <a href="profile-faraz.html" class="member-row reveal">
+        <div class="member-avatar"></div>
+        <div class="member-info">
+          <div class="member-name">Syed Faraz Raza</div>
+          <div class="member-role">Advocate, High Court &nbsp;·&nbsp; LL.B. (Hons.), LL.M.</div>
         </div>
-      </div>
+        <div class="member-arrow">→</div>
+      </a>
+
+      <a href="profile-moazzam.html" class="member-row reveal">
+        <div class="member-avatar"></div>
+        <div class="member-info">
+          <div class="member-name">Moazzam Habib</div>
+          <div class="member-role">Advocate, Supreme Court of Pakistan</div>
+        </div>
+        <div class="member-arrow">→</div>
+      </a>
 
     </div>
   </div>
 </section>
 
+<!-- ━━ PRACTICE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <section id="practice">
   <div class="container">
-    <div class="section-head">
-      <div class="section-num">III &nbsp;·&nbsp; Practice</div>
-      <h2 class="section-title">Areas <i>of</i> work.</h2>
-    </div>
-    <p class="section-lede" style="margin-top:-48px;margin-bottom:56px">Members of chambers accept instructions across a broad range of contentious and advisory matters before the District Courts, High Courts, Supreme Court, special tribunals and regulatory bodies of Pakistan.</p>
-    <div class="practice-grid">
-      <div class="practice-item"><div class="practice-num">i.</div><div class="practice-name">Civil &amp; Commercial</div><p class="practice-desc">Contractual disputes, property and rent matters, recovery suits, banking and corporate litigation before the civil and commercial courts.</p></div>
-      <div class="practice-item"><div class="practice-num">ii.</div><div class="practice-name">Constitutional</div><p class="practice-desc">Writ petitions, judicial review, fundamental rights and public-interest litigation in the High Courts and Supreme Court of Pakistan.</p></div>
-      <div class="practice-item"><div class="practice-num">iii.</div><div class="practice-name">Criminal &amp; White-Collar</div><p class="practice-desc">Trial, bail and appellate work across the criminal jurisdiction, including economic offences, accountability and high-profile prosecutions.</p></div>
-      <div class="practice-item"><div class="practice-num">iv.</div><div class="practice-name">Regulatory &amp; Telecoms</div><p class="practice-desc">Telecommunications, media, competition, public procurement and energy regulation before sectoral regulators and tribunals.</p></div>
-      <div class="practice-item"><div class="practice-num">v.</div><div class="practice-name">Arbitration &amp; ADR</div><p class="practice-desc">Domestic and international arbitration, mediation and enforcement of awards, including FIDIC and commercial disputes.</p></div>
-      <div class="practice-item"><div class="practice-num">vi.</div><div class="practice-name">Family &amp; Immigration</div><p class="practice-desc">Matrimonial, custody, maintenance and inheritance matters, alongside immigration and citizenship advice and representation.</p></div>
+    <div class="sec-label">Practice Areas</div>
+    <h2 class="sec-title">Areas of <em>work.</em></h2>
+    <p class="sec-lede">Members accept instructions across a broad range of contentious and advisory matters before the District Courts, High Courts, Supreme Court, special tribunals and regulatory bodies of Pakistan.</p>
+    <div class="practice-grid reveal">
+      <div class="practice-item">
+        <div class="practice-num">01</div>
+        <div class="practice-name">Civil &amp; Commercial</div>
+        <p class="practice-desc">Contractual disputes, property and rent matters, recovery suits, banking and corporate litigation before the civil and commercial courts.</p>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">02</div>
+        <div class="practice-name">Constitutional</div>
+        <p class="practice-desc">Writ petitions, judicial review, fundamental rights and public-interest litigation in the High Courts and Supreme Court of Pakistan.</p>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">03</div>
+        <div class="practice-name">Criminal &amp; White-Collar</div>
+        <p class="practice-desc">Trial, bail and appellate work across the criminal jurisdiction, including economic offences, accountability and high-profile prosecutions.</p>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">04</div>
+        <div class="practice-name">Regulatory &amp; Telecoms</div>
+        <p class="practice-desc">Telecommunications, media, competition, public procurement and energy regulation before sectoral regulators and tribunals.</p>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">05</div>
+        <div class="practice-name">Arbitration &amp; ADR</div>
+        <p class="practice-desc">Domestic and international arbitration, mediation and enforcement of awards, including FIDIC and commercial disputes.</p>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">06</div>
+        <div class="practice-name">Family &amp; Immigration</div>
+        <p class="practice-desc">Matrimonial, custody, maintenance and inheritance matters, alongside immigration and citizenship advice and representation.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ━━ IMAGE BAND — Islamabad (blue hour) ━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="imgband imgband--monument reveal" aria-hidden="true">
+  <div class="imgband-caption">
+    Practising at the heart of the capital.
+    <small>Islamabad &nbsp;·&nbsp; Pakistan</small>
+  </div>
+</div>
+
+<!-- ━━ CONTACT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <section id="contact">
   <div class="container">
-    <div class="section-head">
-      <div class="section-num">IV &nbsp;·&nbsp; Contact</div>
-      <h2 class="section-title">Get <i>in</i> touch.</h2>
-    </div>
-    <p class="section-lede" style="margin-top:-48px;margin-bottom:56px">For instructions, consultations or general enquiries, please use the details below or send a message via the form.</p>
+    <div class="sec-label">Contact</div>
+    <h2 class="sec-title">Get <em>in touch.</em></h2>
     <div class="contact-grid">
-      <div class="contact-info reveal">
-        <div><strong>Chambers</strong><p>House No. 13-A, Street No. 37<br>Sector F-8/1, Islamabad<br>Pakistan</p></div>
-        <div><strong>General Enquiries</strong><a href="mailto:info@13A-LawChambers.com">info@13A-LawChambers.com</a></div>
-        <div><strong>Telephone</strong><p>+92 334 7788442</p></div>
-        <div><strong>Hours</strong><p>Monday – Friday · 9:00 am – 6:00 pm</p></div>
+      <div class="contact-items reveal">
+        <div class="contact-item">
+          <strong>Chambers</strong>
+          <p>House No. 13-A, Street No. 37<br>Sector F-8/1, Islamabad, Pakistan</p>
+        </div>
+        <div class="contact-item">
+          <strong>General Enquiries</strong>
+          <a href="mailto:info@13A-LawChambers.com">info@13A-LawChambers.com</a>
+        </div>
+        <div class="contact-item">
+          <strong>Telephone</strong>
+          <p>+92 334 7788442</p>
+        </div>
+        <div class="contact-item">
+          <strong>Office Hours</strong>
+          <p>Monday – Friday &nbsp;·&nbsp; 9:00 am – 6:00 pm</p>
+        </div>
       </div>
-      <form class="reveal" onsubmit="event.preventDefault();this.querySelector('button').textContent='Message Sent — Thank You'">
+      <form class="reveal" onsubmit="handleSubmit(event)">
         <div class="form-row">
-          <input type="text" placeholder="Your name" required>
+          <input type="text"  placeholder="Your name"     required>
           <input type="email" placeholder="Email address" required>
         </div>
         <input type="text" placeholder="Subject">
         <textarea placeholder="Your message" required></textarea>
-        <button type="submit">Send Message</button>
+        <button type="submit" id="formBtn">Send Message</button>
       </form>
     </div>
   </div>
 </section>
 
+<!-- ━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <footer>
   <div class="foot-grid">
     <div>
       <div class="foot-brand">13A Law Chambers</div>
-      <div class="foot-sub">Advocates · Islamabad</div>
-      <p class="foot-disclaimer">A shared chambers arrangement. Each lawyer practises independently. We are not a partnership or law firm, and no lawyer here is liable for the work or conduct of any other. Nothing on this website shall be construed as indicating the existence of a partnership, joint venture or any other form of professional association between the occupants of these chambers.</p>
+      <div class="foot-tagline">Advocates &nbsp;·&nbsp; Islamabad</div>
+      <p class="foot-note">A shared chambers arrangement. Each lawyer practises independently. We are not a partnership or law firm, and no lawyer here is liable for the work or conduct of any other. Nothing on this website shall be construed as indicating the existence of a partnership, joint venture or any other form of professional association between the occupants of these chambers.</p>
     </div>
     <div class="foot-col">
       <h5>Navigate</h5>
-      <div class="foot-links">
-        <a href="#about">About</a><a href="#profiles">Profiles</a><a href="#practice">Practice</a><a href="#contact">Contact</a>
-      </div>
+      <a href="#about">About</a>
+      <a href="#members">Members</a>
+      <a href="#practice">Practice</a>
+      <a href="#contact">Contact</a>
     </div>
     <div class="foot-col">
-      <h5>Visit</h5>
-      <div class="foot-links">
-        <span>House No. 13-A, Street 37</span><span>Sector F-8/1, Islamabad</span><span>Pakistan</span>
-        <a href="mailto:info@13A-LawChambers.com">info@13A-LawChambers.com</a>
-      </div>
+      <h5>Chambers</h5>
+      <span>House No. 13-A, Street 37</span>
+      <span>Sector F-8/1, Islamabad</span>
+      <span>Pakistan</span>
+      <a href="mailto:info@13A-LawChambers.com" style="margin-top:8px">info@13A-LawChambers.com</a>
     </div>
   </div>
   <div class="foot-bottom">
@@ -572,222 +794,31 @@
   </div>
 </footer>
 
-<!-- ── PROFILE MODALS ── -->
-<div class="modal" id="modal-faraz">
-  <div class="modal-card">
-    <button class="modal-close" aria-label="Close">×</button>
-    <div class="modal-header">
-      <div class="modal-photo">Photograph</div>
-      <div>
-        <div class="modal-name">Syed Faraz Raza</div>
-        <div class="modal-role">Advocate, High Court · LL.B. (Hons.), LL.M.</div>
-        <p class="modal-summary">A barrister of dual UK qualifications and broad commercial practice, with experience spanning constitutional litigation, public prosecution and advisory work for the Federal Government.</p>
-      </div>
-    </div>
-
-    <div class="modal-section">
-      <h4>Education</h4>
-      <ul>
-        <li><b>2009 – 2010</b><span>LL.M. International Business Law — King's College London, United Kingdom</span></li>
-        <li><b>2006 – 2009</b><span>LL.B. (Honours) — University of Leicester, United Kingdom</span></li>
-      </ul>
-    </div>
-
-    <div class="modal-section">
-      <h4>Experience</h4>
-      <ul>
-        <li><b>2018 – Present</b><span>Partner, Faraz, Haider, Moazzam &amp; Co., Islamabad — civil, corporate, property, banking and commercial litigation before the High Courts and Civil &amp; District Courts of Islamabad and Rawalpindi.</span></li>
-        <li><b>2019 – 2024</b><span>Legal Advisor (MP Scale), Ministry of Foreign Affairs — handled litigation on behalf of the Ministry, rendered legal opinions on national and international law, and vetted international agreements and treaties.</span></li>
-        <li><b>2013 – 2019</b><span>Special Public Prosecutor, Federal Government of Pakistan vs. General (R) Pervez Musharraf (High Treason) — prepared and presented the complaint and connected applications before the Special Court, High Court and Supreme Court.</span></li>
-        <li><b>2013 – 2018</b><span>Senior Associate, Akram Sheikh Law Associates, Islamabad — appeared before the Supreme Court and Islamabad High Court in constitutional, property, contract and banking matters; contributed to drafting of the Protection of Pakistan Act, 2015.</span></li>
-        <li><b>2015 – 2018</b><span>Visiting Faculty, Roots School of Law (TMUC), Islamabad — instructed students in criminal and commercial law.</span></li>
-        <li><b>2011 – 2013</b><span>Associate, Jillani, Shah &amp; Shamim, Lahore — practised under Justice Jamshed Ali Shah, former Judge of the Supreme Court, in land, banking and employment matters.</span></li>
-        <li><b>2011 – 2013</b><span>Secretary, Commission on Written-Off Loans (Supreme Court of Pakistan).</span></li>
-      </ul>
-    </div>
-
-    <div class="modal-foot">
-      <a href="mailto:raza.faraz@gmail.com">raza.faraz@gmail.com</a>
-      <span>+92 321 5171400</span>
-      <span>House 13-A, Street 37, F-8/1, Islamabad</span>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="modal-natalya">
-  <div class="modal-card">
-    <button class="modal-close" aria-label="Close">×</button>
-    <div class="modal-header">
-      <div class="modal-photo" style="background-image:url('IMG_2320.JPG')"></div>
-      <div>
-        <div class="modal-name">Natalya Kamal</div>
-        <div class="modal-role">Barrister-at-Law · Advocate, Supreme Court of Pakistan</div>
-        <p class="modal-summary">Called to the Bar by Lincoln's Inn in 2001, with over two decades at the intersection of litigation, regulatory practice, corporate advisory and alternative dispute resolution.</p>
-      </div>
-    </div>
-
-    <div class="modal-section">
-      <h4>Practice</h4>
-      <p>Natalya has conducted trials and appeals in constitutional, commercial, criminal, regulatory, banking, sports, consumer, employment, property, cyber-crime and environmental matters. Her regulatory practice covers telecommunications, media, competition law, public procurement and energy. On the commercial side, she advises on corporate compliance, project finance, mergers and acquisitions, and banking.</p>
-      <p>She previously served as Senior Associate at Akram Sheikh Law Associates and as Partner at RIAA BG, one of Pakistan's leading corporate law firms. She also advises technology companies and start-ups on legal structure, intellectual property and regulatory compliance.</p>
-    </div>
-
-    <div class="modal-section">
-      <h4>Appointments &amp; Memberships</h4>
-      <ul>
-        <li><b>Mediator</b><span>Accredited and notified by the Ministry of Law &amp; Justice, Government of Pakistan.</span></li>
-        <li><b>Arbitrator</b><span>ADR ODR International Associate Arbitrator.</span></li>
-        <li><b>Ombudsperson</b><span>External Ombudsperson on Workplace Sexual Harassment for GIZ Pakistan.</span></li>
-        <li><b>Board Member</b><span>Rozan, an Islamabad-based NGO working on mental and emotional health for women and children.</span></li>
-        <li><b>Legal Mentor</b><span>National Incubation Centre (Peshawar) and the Founder's Institute (Islamabad).</span></li>
-      </ul>
-    </div>
-
-    <div class="modal-section">
-      <h4>Areas of Practice</h4>
-      <p>Litigation &amp; Appeals · Regulatory Law · Telecommunications · Competition · Corporate &amp; Commercial · Technology &amp; IP · Mediation &amp; Arbitration · Constitutional Law · Criminal Law · Sports Law · Environmental Law.</p>
-    </div>
-
-    <div class="modal-foot">
-      <a href="https://www.linkedin.com/in/natalya-kamal-alam/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://natalyakamal.wordpress.com" target="_blank" rel="noopener">natalyakamal.wordpress.com</a>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="modal-riaz">
-  <div class="modal-card">
-    <button class="modal-close" aria-label="Close">×</button>
-    <div class="modal-header">
-      <div class="modal-photo">Photograph</div>
-      <div>
-        <div class="modal-name">Syed Riaz Hussain</div>
-        <div class="modal-role">Advocate, Supreme Court of Pakistan</div>
-        <p class="modal-summary">A founding partner with a leading dispute resolution and corporate advisory practice, acting for federal and provincial agencies and major private clients in high-value commercial and infrastructure matters.</p>
-      </div>
-    </div>
-
-    <div class="modal-section">
-      <h4>Education</h4>
-      <ul>
-        <li><b>2014</b><span>Qualified under the Solicitors Regulation Authority (England &amp; Wales) — Qualified Lawyers Transfer Scheme.</span></li>
-        <li><b>2007 – 2010</b><span>LL.B. (Honours), University of London — overall 2.1 with six merits.</span></li>
-        <li><b>2005 – 2007</b><span>B.A. (Political Science &amp; History), University of Azad Jammu and Kashmir.</span></li>
-      </ul>
-    </div>
-
-    <div class="modal-section">
-      <h4>Experience</h4>
-      <ul>
-        <li><b>2015 – Present</b><span>Partner, H&amp;M Law — primary legal solutions provider to several federal and provincial government agencies in commercial, infrastructure and judicial review matters.</span></li>
-        <li><b>2014 – 2015</b><span>Associate, Jillani &amp; Co. — commercial arbitration, corporate litigation, construction and real estate disputes, white-collar crime and judicial review.</span></li>
-        <li><b>2010 – 2013</b><span>Associate, Akram Sheikh Law Associates — litigation and dispute resolution, criminal appeals, judicial review, mergers &amp; acquisitions, telecommunications, construction, oil &amp; gas, mining.</span></li>
-        <li><b>2010 – 2013</b><span>Adjunct Lecturer in Law, Institute of Legal Studies, Islamabad — Trusts and Jurisprudence (University of London external programme).</span></li>
-      </ul>
-    </div>
-
-    <div class="modal-section">
-      <h4>Selected Clients &amp; Areas</h4>
-      <p>Oil &amp; Gas Development Company Limited (OGDCL), Capital Development Authority, Bank of Punjab, National Insurance Company Limited, Directorate General of Defence Purchase, Siemens Pakistan, Karkey Karadeniz Pakistan, Indus Motor, and major media and telecommunications clients. Reviewed the draft Mining Act, 2006 for the Republic of Fiji on a UNDP-funded project.</p>
-    </div>
-
-    <div class="modal-foot">
-      <a href="mailto:syed.riaz@live.com">syed.riaz@live.com</a>
-      <span>+92 301 8681953</span>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="modal-moazzam">
-  <div class="modal-card">
-    <button class="modal-close" aria-label="Close">×</button>
-    <div class="modal-header">
-      <div class="modal-photo">Photograph</div>
-      <div>
-        <div class="modal-name">Moazzam Habib</div>
-        <div class="modal-role">Advocate, Supreme Court of Pakistan</div>
-        <p class="modal-summary">A second-generation advocate of the Supreme Court of Pakistan, with a broad commercial and constitutional practice and senior advisory roles in Government and the United Nations system.</p>
-      </div>
-    </div>
-
-    <div class="modal-section">
-      <h4>Education &amp; Enrolment</h4>
-      <ul>
-        <li><b>2025</b><span>Enrolled as Advocate of the Supreme Court of Pakistan.</span></li>
-        <li><b>2013</b><span>Enrolled as Advocate of the High Courts.</span></li>
-        <li><b>2011</b><span>Enrolled as Advocate of the District Courts.</span></li>
-        <li><b>2006 – 2011</b><span>B.A. LL.B. (Hons.), University Law College, University of the Punjab, Lahore.</span></li>
-        <li><b>2009 – 2010</b><span>Diploma in International Affairs, University of the Punjab.</span></li>
-      </ul>
-    </div>
-
-    <div class="modal-section">
-      <h4>Current Appointments</h4>
-      <ul>
-        <li><b>2025 –</b><span>Legal Advisor (Legal Head), Directorate General Immigration &amp; Passports, Ministry of Interior, Government of Pakistan.</span></li>
-        <li><b>2024 –</b><span>Senior Legal Consultant (UNICEF), Child Protection Institute, Ministry of Human Rights.</span></li>
-        <li><b>2015 –</b><span>Founding Partner, Faraz, Haider, Moazzam &amp; Co., Islamabad.</span></li>
-      </ul>
-    </div>
-
-    <div class="modal-section">
-      <h4>Selected Experience</h4>
-      <p>Special Prosecutor, FIA Mega-Corruption and Sugar Scam Cases (2020 – 2022). Special Prosecutor, General (R) Pervez Musharraf High Treason matter (2014 – 2019). Certified Mediation Counsel (CIArb, UK) and court-appointed arbitrator in commercial arbitrations.</p>
-      <p>Reported judgments on company law and SECP jurisdiction (2019 CLD 931), rental laws of Islamabad (2018 YLR 222), high-treason procedure (2014 PCr.LJ 684; 2015 PCr.LJ 1) and pre-emption law (2020 CLC 2016).</p>
-    </div>
-
-    <div class="modal-section">
-      <h4>Areas of Practice</h4>
-      <p>Civil &amp; Property · Commercial · Rent &amp; Election · White-Collar Crime · Immigration · Constitutional · Arbitration &amp; Mediation.</p>
-    </div>
-
-    <div class="modal-foot">
-      <a href="mailto:moazzam_10@hotmail.com">moazzam_10@hotmail.com</a>
-      <span>+92 334 7788442</span>
-      <span>House 13-A, Street 37, F-8/1, Islamabad</span>
-    </div>
-  </div>
-</div>
-
 <script>
-  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
-    document.getElementById('navlinks').classList.remove('open');
-  }));
-  const nav=document.getElementById('nav');
-  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)});
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
 
-  function tick(){
-    const opts={timeZone:'Asia/Karachi',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false};
-    document.getElementById('clockTime').textContent=new Intl.DateTimeFormat('en-GB',opts).format(new Date());
-  }
-  tick();setInterval(tick,1000);
+  // Nav toggle
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+  );
 
-  // ── PROFILE MODALS ──
-  function openModal(id){
-    const m=document.getElementById('modal-'+id);
-    if(!m)return;
-    m.classList.add('open');
-    document.body.classList.add('modal-open');
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('formBtn').textContent = 'Message Sent — Thank You';
+    e.target.reset();
   }
-  function closeModal(m){
-    m.classList.remove('open');
-    document.body.classList.remove('modal-open');
-  }
-  document.querySelectorAll('.profile-row').forEach(row=>{
-    row.addEventListener('click',()=>openModal(row.dataset.profile));
-  });
-  document.querySelectorAll('.modal').forEach(m=>{
-    m.addEventListener('click',e=>{ if(e.target===m) closeModal(m); });
-    m.querySelector('.modal-close').addEventListener('click',()=>closeModal(m));
-  });
-  document.addEventListener('keydown',e=>{
-    if(e.key==='Escape') document.querySelectorAll('.modal.open').forEach(closeModal);
-  });
 </script>
-
 </body>
 </html>
