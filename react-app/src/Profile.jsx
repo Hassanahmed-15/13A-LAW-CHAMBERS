@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
 import { memberBySlug, members } from './members'
+import { ScalesLogo } from './Home'
 
 const ScalesWatermark = () => (
   <svg className="prof-hero-wm" viewBox="0 0 220 280" fill="none" stroke="currentColor" strokeLinecap="round" aria-hidden="true">
@@ -73,8 +74,11 @@ export default function Profile() {
       <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
         <div className="nav-inner">
           <Link to="/" className="brand">
-            13A Law Chambers
-            <span>Advocates · Islamabad</span>
+            <ScalesLogo size={26} className="brand-logo" />
+            <div className="brand-text">
+              13A Law Chambers
+              <span>Advocates &amp; Legal Consultants · Islamabad</span>
+            </div>
           </Link>
           <Link to="/#members" className="nav-back">← All Members</Link>
         </div>

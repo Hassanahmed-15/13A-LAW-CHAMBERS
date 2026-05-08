@@ -45,10 +45,12 @@ img{display:block;max-width:100%}
   height:72px;
 }
 .brand{
-  font-family:var(--serif);font-size:19px;font-weight:500;
-  color:var(--ink);letter-spacing:.01em;line-height:1.2;
+  display:flex;align-items:center;gap:10px;
+  color:var(--ink);line-height:1.2;text-decoration:none;
 }
-.brand span{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-family:var(--sans);margin-top:1px;font-weight:500}
+.brand-logo{color:var(--gold);flex-shrink:0}
+.brand-text{font-family:var(--serif);font-size:18px;font-weight:500;letter-spacing:.01em}
+.brand-text span{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-family:var(--sans);margin-top:2px;font-weight:500}
 .nav-links{display:flex;align-items:center;gap:36px}
 .nav-links a{
   font-size:13px;font-weight:500;letter-spacing:.04em;
@@ -90,22 +92,26 @@ img{display:block;max-width:100%}
   min-height:100vh;
   display:flex;flex-direction:column;justify-content:center;
   padding:120px clamp(24px,6vw,96px) 80px;
-  background:var(--bg);
+  background:linear-gradient(160deg, #0E1116 0%, #131820 55%, #0E1116 100%);
   position:relative;overflow:hidden;
   border-bottom:1px solid var(--line);
   isolation:isolate;
 }
-.hero::before{
-  content:"";position:absolute;inset:0;z-index:-2;
-  background:url('/sc-hero.jpg') center 30%/cover no-repeat;
-  filter:contrast(1.05) saturate(.85);
+/* Islamabad skyline watermark positioned at bottom */
+.hero-skyline-wm{
+  position:absolute;bottom:0;left:0;right:0;
+  width:100%;height:auto;
+  color:var(--gold);
+  opacity:.12;
+  pointer-events:none;
+  z-index:0;
 }
-.hero::after{
-  content:"";position:absolute;inset:0;z-index:-1;
-  background:
-    linear-gradient(180deg, rgba(14,17,22,.25) 0%, rgba(14,17,22,.55) 55%, rgba(14,17,22,.95) 100%),
-    linear-gradient(90deg, rgba(14,17,22,.78) 0%, rgba(14,17,22,.20) 45%, rgba(14,17,22,.55) 100%);
+/* Scales logo accent in hero */
+.hero-scales-wrap{
+  margin:36px 0 0;
+  display:flex;align-items:center;gap:14px;
 }
+.hero-scales{color:var(--gold);opacity:.7}
 .hero-label{
   font-family:var(--sans);font-size:11px;font-weight:600;
   letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
@@ -346,11 +352,10 @@ footer{
   font-family:var(--serif);font-size:26px;font-weight:400;
   color:var(--ink);margin-bottom:6px;letter-spacing:.01em;
 }
-.foot-tagline{
-  font-family:var(--sans);font-size:10px;font-weight:600;
-  letter-spacing:.24em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:20px;
-}
+.foot-brand-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.foot-logo{color:var(--gold);flex-shrink:0;margin-top:3px}
+.foot-brand{font-family:var(--serif);font-size:24px;font-weight:400;color:var(--ink);letter-spacing:.01em;margin:0}
+.foot-tagline{font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:3px}
 .foot-note{font-size:13px;color:rgba(232,236,241,.45);line-height:1.8}
 .foot-col h5{
   font-family:var(--sans);font-size:10px;font-weight:600;
