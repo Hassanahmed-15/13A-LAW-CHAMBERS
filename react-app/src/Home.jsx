@@ -174,7 +174,9 @@ export default function Home() {
         <div className="nav-inner">
           {/* 1. Updated brand: logo + name + subtitle */}
           <Link to="/" className="brand">
-            <ScalesLogo size={28} className="brand-logo" />
+            <div className="brand-mark" aria-hidden="true">
+              <ScalesLogo size={22} className="brand-logo" />
+            </div>
             <div className="brand-text">
               13A Law Chambers
               <span>Advocates &amp; Legal Consultants · Islamabad</span>
@@ -200,14 +202,15 @@ export default function Home() {
       <header className="hero hero--skyline">
         {/* 6. Islamabad skyline as hero background watermark */}
         <IslamabadSkyline className="hero-skyline-wm" />
-        <div className="hero-label">Established Chambers&ensp;·&ensp;Islamabad</div>
-        <h1 className="hero-title">13A<br /><em>Law Chambers</em></h1>
+        <div className="hero-kicker">Established Chambers</div>
+        <div className="hero-brand-lockup">
+          <div className="hero-logo-badge" aria-hidden="true">
+            <ScalesLogo size={64} className="hero-scales" />
+          </div>
+          <h1 className="hero-title">13A Law Chambers</h1>
+        </div>
         <div className="hero-divider" />
         <p className="hero-sub">A shared chambers of independent advocates, committed to rigorous counsel and principled advocacy across the courts of Pakistan.</p>
-        {/* 4. Scales logo in hero */}
-        <div className="hero-scales-wrap">
-          <ScalesLogo size={56} className="hero-scales" />
-        </div>
         <div className="hero-meta">
           <div className="hero-meta-item"><strong>Jurisdiction</strong><span>Supreme Court of Pakistan</span></div>
           <div className="hero-meta-item"><strong>Location</strong><span>F-8/1, Islamabad</span></div>
@@ -226,12 +229,6 @@ export default function Home() {
               <p>13A Law Chambers is a shared chambers in Islamabad, bringing together advocates of the Supreme Court of Pakistan who choose to practise side by side under a common roof.</p>
               <p>Each member maintains their own clients, their own files, and their own professional standards — supported by a collegiate environment that encourages exchange, scrutiny, and a shared commitment to the rule of law.</p>
               <p>Where a matter benefits from collaboration, members may, with the client's informed consent, work jointly on a brief. Otherwise, every advocate practises in their own right and on their own responsibility.</p>
-            </Reveal>
-            <Reveal className="notice-box">
-              <h4>Important Notice</h4>
-              <p>13A Law Chambers is a shared chambers arrangement. Each lawyer practises independently and maintains their own client relationships and professional responsibilities. We are not a partnership or law firm, and no lawyer here is liable for the work or conduct of any other.</p>
-              <p>Where appropriate and with the informed consent of the client, one or more advocates may be engaged or may collaborate on a particular matter. Any such engagement is matter-specific and does not create a partnership, joint venture, or any continuing professional association.</p>
-              <p>Nothing on this website shall be construed as indicating the existence of a partnership, joint venture, or any other form of professional association between the occupants of these chambers.</p>
             </Reveal>
           </div>
         </div>
@@ -341,6 +338,19 @@ export default function Home() {
               <button type="submit">{sent ? 'Message Sent — Thank You' : 'Send Message'}</button>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* ── IMPORTANT NOTICE (moved near page bottom) ── */}
+      <section id="notice">
+        <div className="container">
+          <div className="sec-label">Important Notice</div>
+          <Reveal className="notice-box notice-box--bottom">
+            <h4>Important Notice</h4>
+            <p>13A Law Chambers is a shared chambers arrangement. Each lawyer practises independently and maintains their own client relationships and professional responsibilities. We are not a partnership or law firm, and no lawyer here is liable for the work or conduct of any other.</p>
+            <p>Where appropriate and with the informed consent of the client, one or more advocates may be engaged or may collaborate on a particular matter. Any such engagement is matter-specific and does not create a partnership, joint venture, or any continuing professional association.</p>
+            <p>Nothing on this website shall be construed as indicating the existence of a partnership, joint venture, or any other form of professional association between the occupants of these chambers.</p>
+          </Reveal>
         </div>
       </section>
 

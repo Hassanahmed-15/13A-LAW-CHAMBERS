@@ -20,6 +20,10 @@ const ScalesWatermark = () => (
 
 function Sidebar({ member }) {
   const others = members.filter(x => x.slug !== member.slug)
+  const linkedIn = member.sidebar
+    .flatMap(card => card.body || [])
+    .find(item => item.type === 'a' && item.href && item.href.includes('linkedin.com'))
+
   return (
     <aside className="prof-sidebar">
       {member.sidebar.map((card, i) => (
@@ -30,8 +34,8 @@ function Sidebar({ member }) {
             if (it.type === 'p-muted')  return <p key={j} className="muted">{it.text}</p>
             if (it.type === 'a') {
               return it.external
-                ? <a key={j} href={it.href} target="_blank" rel="noopener noreferrer">{it.text}</a>
-                : <a key={j} href={it.href}>{it.text}</a>
+                ? <a key={j} className="prof-link" href={it.href} target="_blank" rel="noopener noreferrer">{it.text}</a>
+                : <a key={j} className="prof-link" href={it.href}>{it.text}</a>
             }
             return null
           })}
@@ -40,12 +44,20 @@ function Sidebar({ member }) {
       <div className="sidebar-card">
         <h4>Chambers</h4>
         <p>House No. 13-A, Street 37<br />Sector F-8/1, Islamabad</p>
-        <Link to="/#contact" style={{ marginTop: 12, fontSize: 13, color: 'var(--gold)' }}>Make an Enquiry →</Link>
+        <Link to="/#contact" className="prof-link prof-link--cta">Make an Enquiry →</Link>
       </div>
+      {linkedIn && (
+        <div className="sidebar-card">
+          <h4>Full Profile</h4>
+          <a className="prof-link prof-link--cta" href={linkedIn.href} target="_blank" rel="noopener noreferrer">
+            View on LinkedIn →
+          </a>
+        </div>
+      )}
       <div className="sidebar-card">
         <h4>All Members</h4>
         {others.map(o => (
-          <Link key={o.slug} to={`/profile/${o.slug}`}>{o.name}</Link>
+          <Link key={o.slug} to={`/profile/${o.slug}`} className="prof-link">{o.name}</Link>
         ))}
       </div>
     </aside>
@@ -105,24 +117,12 @@ export default function Profile() {
 
       <div className="prof-content">
         <main>
-          {member.sections.map((s, i) => (
-            <div className="prof-section" key={i}>
-              <div className="section-label">{s.label}</div>
-              <h3>{s.h}</h3>
-              {s.paragraphs && s.paragraphs.map((p, j) => <p key={j}>{p}</p>)}
-              {s.timeline && (
-                <ul className="timeline">
-                  {s.timeline.map((t, j) => (
-                    <li key={j}>
-                      <div className="timeline-year">{t.year}</div>
-                      <div className="timeline-role">{t.role}</div>
-                      <div className="timeline-org">{t.org}</div>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))}
+          <div className="prof-section">
+            <div className="section-label">Profile</div>
+            <h3>Short Professional Profile</h3>
+            <p>{member.summary}</p>
+            <p>For detailed experience and full background, please use the LinkedIn profile link.</p>
+          </div>
         </main>
         <Sidebar member={member} />
       </div>
