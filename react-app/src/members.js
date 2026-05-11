@@ -7,6 +7,7 @@ export const members = [
     avatar: '/IMG_2320.JPG',
     photo: '/IMG_2320.JPG',
     summary: "Called to the Bar by Lincoln's Inn in 2001, with over two decades at the intersection of litigation, regulatory practice, corporate advisory and alternative dispute resolution.",
+    profileIntro: "Natalya Kamal is a seasoned Supreme Court advocate known for combining strategic courtroom advocacy with commercially sound advisory work. Her practice bridges public law, regulation and technology-facing industries, making her a trusted counsel for high-stakes and complex mandates.",
     tags: ['Constitutional', 'Regulatory', 'Telecommunications', 'Corporate & Commercial', 'Technology & IP', 'Mediation & Arbitration'],
     sections: [
       {
@@ -53,6 +54,7 @@ export const members = [
     cardRole: 'Advocate, Supreme Court of Pakistan',
     role: 'Advocate, Supreme Court of Pakistan',
     summary: 'A founding partner with a leading dispute resolution and corporate advisory practice, acting for federal and provincial agencies and major private clients in high-value commercial and infrastructure matters.',
+    profileIntro: 'Syed Riaz Hussain brings a strong blend of litigation depth and transactional judgment, with substantial experience in infrastructure, regulatory and public-sector matters. Clients value his ability to navigate sensitive disputes with precision, discipline and practical results.',
     tags: ['Construction & Infrastructure', 'Dispute Resolution', 'IT & Telecommunications', 'Commercial Litigation', 'Judicial Review'],
     sections: [
       {
@@ -97,6 +99,7 @@ export const members = [
     cardRole: 'Advocate, High Court · LL.B. (Hons.), LL.M.',
     role: 'Advocate, High Court · LL.B. (Hons.), LL.M.',
     summary: 'A barrister of dual UK qualifications and broad commercial practice, with experience spanning constitutional litigation, public prosecution and advisory work for the Federal Government.',
+    profileIntro: 'Syed Faraz Raza advises and appears in matters that sit at the intersection of constitutional questions, commercial risk and public governance. His profile reflects a disciplined advocacy style backed by policy insight from senior government-facing legal roles.',
     tags: ['Civil & Corporate', 'Property', 'Banking', 'Commercial Litigation', 'International Law', 'Constitutional'],
     sections: [
       {
@@ -135,6 +138,7 @@ export const members = [
     cardRole: 'Advocate, Supreme Court of Pakistan',
     role: 'Advocate, Supreme Court of Pakistan',
     summary: 'A second-generation advocate of the Supreme Court of Pakistan, with a broad commercial and constitutional practice and senior advisory roles in Government and the United Nations system.',
+    profileIntro: 'Moazzam Habib maintains a broad, solution-oriented practice across commercial, constitutional and regulatory forums, supported by experience in government and international institutional assignments. His approach emphasizes clarity, responsiveness and outcome-focused representation.',
     tags: ['Civil & Property', 'Commercial', 'Immigration', 'White-Collar Crime', 'Arbitration & Mediation', 'Constitutional'],
     sections: [
       {

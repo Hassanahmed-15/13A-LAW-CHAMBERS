@@ -202,7 +202,6 @@ export default function Home() {
       <header className="hero hero--skyline">
         {/* 6. Islamabad skyline as hero background watermark */}
         <IslamabadSkyline className="hero-skyline-wm" />
-        <div className="hero-kicker">Established Chambers</div>
         <div className="hero-brand-lockup">
           <div className="hero-logo-badge" aria-hidden="true">
             <ScalesLogo size={64} className="hero-scales" />
@@ -271,7 +270,7 @@ export default function Home() {
                   <div className="member-name">{m.name}</div>
                   <div className="member-role">{m.cardRole}</div>
                 </div>
-                <div className="member-arrow">→</div>
+                <div className="member-arrow">Read Profile</div>
               </Reveal>
             ))}
           </div>
