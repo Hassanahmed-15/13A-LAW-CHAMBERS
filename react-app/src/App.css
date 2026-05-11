@@ -1,15 +1,15 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  /* ── Rich burgundy theme with ivory highlights ── */
-  --bg:       #13090D;
-  --bg-2:     #1C0F15;
-  --bg-3:     #281821;
-  --ink:      #F4EEE8;
-  --ink-2:    #E7D8CB;
-  --body:     #C8B6A8;
-  --muted:    #927A6A;
-  --gold:     #D2A679;
-  --gold-lt:  #E2C39E;
+  /* ── Deep navy theme with skyline accents ── */
+  --bg:       #050B14;
+  --bg-2:     #0A1220;
+  --bg-3:     #111E31;
+  --ink:      #E8EEF8;
+  --ink-2:    #CDD8EA;
+  --body:     #AAB7CC;
+  --muted:    #77839A;
+  --gold:     #7DA9E8;
+  --gold-lt:  #A9C5EE;
   --line:     rgba(0,0,0,.56);
   --line-2:   rgba(0,0,0,.72);
   --serif:    'Inter', system-ui, sans-serif;
@@ -101,7 +101,7 @@ img{display:block;max-width:100%}
   min-height:100vh;
   display:flex;flex-direction:column;justify-content:center;
   padding:120px clamp(24px,6vw,96px) 80px;
-  background:radial-gradient(circle at 12% 20%, rgba(210,166,121,.18), transparent 36%), linear-gradient(165deg, #13090D 0%, #231018 55%, #13090D 100%);
+  background:radial-gradient(circle at 14% 18%, rgba(125,169,232,.2), transparent 38%), linear-gradient(165deg, #050B14 0%, #101A2B 55%, #050B14 100%);
   position:relative;overflow:hidden;
   border-bottom:1px solid var(--line);
   isolation:isolate;
@@ -124,7 +124,7 @@ img{display:block;max-width:100%}
 .hero-logo-badge{
   width:84px;height:84px;border-radius:50%;flex-shrink:0;
   border:1px solid rgba(0,0,0,.78);
-  background:radial-gradient(circle at 30% 20%, rgba(210,166,121,.26), rgba(28,15,21,.5) 45%, rgba(19,9,13,.9));
+  background:radial-gradient(circle at 30% 20%, rgba(125,169,232,.28), rgba(10,18,32,.5) 45%, rgba(5,11,20,.9));
   display:grid;place-items:center;
   box-shadow:0 8px 24px rgba(0,0,0,.52);
 }
@@ -190,7 +190,7 @@ section:last-of-type{border-bottom:none}
   font-weight:400;line-height:1.1;letter-spacing:-.01em;
   color:var(--ink);margin-bottom:0;
 }
-.sec-title em{font-style:italic;color:var(--ink-2)}
+.sec-title em{font-style:normal;color:var(--ink-2)}
 .sec-lede{
   font-size:17px;color:var(--body);line-height:1.75;
   max-width:620px;margin-top:20px;
@@ -198,6 +198,16 @@ section:last-of-type{border-bottom:none}
 
 /* ABOUT */
 #about{background:var(--bg);position:relative}
+#about::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:linear-gradient(180deg, rgba(5,11,20,.82), rgba(5,11,20,.92)), url('/band-monument.jpg');
+  background-size:cover;
+  background-position:center 58%;
+  opacity:.24;
+  pointer-events:none;
+}
 .about-grid{
   margin-top:56px;
   max-width:860px;
@@ -353,7 +363,7 @@ form button:hover{background:transparent;color:var(--ink)}
 
 /* FOOTER */
 footer{
-  background:#0C0609;
+  background:#050A12;
   color:rgba(232,236,241,.65);
   padding:72px clamp(24px,6vw,96px) 32px;
   border-top:1px solid var(--line);
@@ -412,7 +422,7 @@ footer{
   background:linear-gradient(180deg, rgba(14,17,22,.08) 0%, rgba(14,17,22,.38) 52%, rgba(14,17,22,.9) 100%);
 }
 .imgband-caption{
-  font-family:var(--serif);font-style:italic;
+  font-family:var(--serif);font-style:normal;
   font-size:clamp(20px,2.4vw,28px);
   color:var(--ink);max-width:680px;line-height:1.4;
   text-shadow:0 2px 24px rgba(0,0,0,.5);

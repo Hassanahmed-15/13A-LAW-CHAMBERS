@@ -119,7 +119,7 @@ export default function Profile() {
         <main>
           <div className="prof-section">
             <div className="section-label">Profile</div>
-            <h3>Short Professional Profile</h3>
+            <h3>Profile Overview</h3>
             <p>{member.summary}</p>
             {member.profileIntro && <p className="prof-highlight">{member.profileIntro}</p>}
             <p>For detailed experience and full background, please use the LinkedIn profile link.</p>
