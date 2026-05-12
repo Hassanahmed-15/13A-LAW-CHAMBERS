@@ -13,8 +13,8 @@ export default function About() {
               <p>Each member maintains their own clients, their own files, and their own professional standards — supported by a collegiate environment that encourages exchange, scrutiny, and a shared commitment to the rule of law.</p>
               <p>Where a matter benefits from collaboration, members may, with the client's informed consent, work jointly on a brief. Otherwise, every advocate practises in their own right and on their own responsibility.</p>
             </Reveal>
+            <Reveal className="about-image-band" aria-label="13A Law Chambers garden" />
           </div>
-          <Reveal className="about-image-band" aria-label="13A Law Chambers garden" />
         </div>
       </section>
     </PageShell>
