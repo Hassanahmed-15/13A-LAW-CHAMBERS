@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
 import { memberBySlug, members } from './members'
-import { ScalesLogo } from './Home'
+import { ScalesLogo } from './SiteChrome'
 
 const ScalesWatermark = () => (
   <svg className="prof-hero-wm" viewBox="0 0 220 280" fill="none" stroke="currentColor" strokeLinecap="round" aria-hidden="true">
@@ -44,7 +44,7 @@ function Sidebar({ member }) {
       <div className="sidebar-card">
         <h4>Chambers</h4>
         <p>House No. 13-A, Street 37<br />Sector F-8/1, Islamabad</p>
-        <Link to="/#contact" className="prof-link prof-link--cta">Make an Enquiry →</Link>
+        <Link to="/contact" className="prof-link prof-link--cta">Make an Enquiry →</Link>
       </div>
       {linkedIn && (
         <div className="sidebar-card">
@@ -92,7 +92,7 @@ export default function Profile() {
               <span>Advocates &amp; Legal Consultants · Islamabad</span>
             </div>
           </Link>
-          <Link to="/#members" className="nav-back">← All Members</Link>
+          <Link to="/members" className="nav-back">← All Members</Link>
         </div>
       </nav>
 
@@ -127,18 +127,6 @@ export default function Profile() {
         </main>
         <Sidebar member={member} />
       </div>
-
-      <footer className="prof-footer">
-        <div className="foot-inner">
-          <div className="foot-brand">13A Law Chambers</div>
-          <div className="foot-links">
-            <Link to="/#about">About</Link>
-            <Link to="/#members">Members</Link>
-            <Link to="/#practice">Practice</Link>
-            <Link to="/#contact">Contact</Link>
-          </div>
-        </div>
-      </footer>
     </>
   )
 }

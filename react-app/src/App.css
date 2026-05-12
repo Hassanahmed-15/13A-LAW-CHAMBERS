@@ -28,6 +28,11 @@ body{
 }
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
+.route-fade{animation:route-fade .42s ease both}
+@keyframes route-fade{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}
+}
 
 /* NAV */
 .nav{
@@ -73,6 +78,8 @@ img{display:block;max-width:100%}
 }
 .nav-links a:hover{opacity:1}
 .nav-links a:hover::after{width:100%}
+.nav-links a.active{opacity:1;color:var(--gold-lt)}
+.nav-links a.active::after{width:100%}
 .nav-cta{
   min-width:112px;
   height:38px;
@@ -86,6 +93,10 @@ img{display:block;max-width:100%}
 .nav-cta:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;color:var(--ink)}
 .nav-toggle svg{display:block}
+@media(max-width:1040px){
+  .nav-links{gap:22px}
+  .nav-links a{font-size:12px}
+}
 @media(max-width:860px){
   .nav-links{
     display:none;flex-direction:column;gap:0;
@@ -188,6 +199,7 @@ section{
   position:relative;overflow:hidden;
 }
 section:last-of-type{border-bottom:none}
+.first-page-section{padding-top:160px;min-height:calc(100vh - 1px)}
 .container{max-width:1200px;margin:0 auto;position:relative;z-index:2}
 .sec-label{
   font-family:var(--sans);font-size:10px;font-weight:600;
@@ -213,10 +225,12 @@ section:last-of-type{border-bottom:none}
   content:"";
   position:absolute;
   inset:0;
-  background-image:linear-gradient(180deg, rgba(5,11,20,.82), rgba(5,11,20,.92)), url('/band-monument.jpg');
+  background-image:
+    linear-gradient(180deg, rgba(5,11,20,.82), rgba(5,11,20,.92)),
+    url('/band-monument.jpg');
   background-size:cover;
   background-position:center 58%;
-  opacity:.24;
+  opacity:.18;
   pointer-events:none;
 }
 .about-grid{
@@ -230,6 +244,21 @@ section:last-of-type{border-bottom:none}
 .about-text p:first-child{
   font-family:var(--serif);font-size:21px;color:var(--ink);
   line-height:1.6;margin-bottom:24px;
+}
+.about-image-band{
+  margin-top:60px;
+  width:100%;
+  aspect-ratio:16/6.2;
+  background:
+    linear-gradient(180deg, rgba(5,11,20,.08), rgba(5,11,20,.34)),
+    url('/chambers-garden.jpeg');
+  background-size:cover;
+  background-position:center 50%;
+  border:1px solid rgba(0,0,0,.72);
+  box-shadow:0 20px 56px rgba(0,0,0,.38);
+}
+@media(max-width:700px){
+  .about-image-band{aspect-ratio:4/3;margin-top:44px}
 }
 .notice-box{
   background:var(--bg-2);
@@ -534,4 +563,5 @@ footer{
   .hero-brand-lockup{flex-direction:column;gap:18px;align-items:flex-start}
   .hero-logo-badge{width:124px;height:124px}
   .hero-title{font-size:clamp(30px,8vw,40px);line-height:1.04;white-space:nowrap}
+  .first-page-section{padding-top:132px}
 }
