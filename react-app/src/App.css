@@ -109,7 +109,7 @@ img{display:block;max-width:100%}
   background:
     linear-gradient(90deg, rgba(5,11,20,.96) 0%, rgba(8,15,27,.91) 48%, rgba(5,11,20,.74) 100%),
     radial-gradient(circle at 14% 18%, rgba(125,169,232,.16), transparent 38%),
-    url('/hero-justice.jpg');
+    url('/hero-justice.webp');
   background-size:cover;
   background-position:center 42%;
   position:relative;overflow:hidden;
