@@ -18,12 +18,8 @@ export default function Contact() {
           <div className="contact-grid">
             <Reveal className="contact-items">
               <div className="contact-item">
-                <strong>Chambers</strong>
-                <p>House No. 13-A, Street No. 37<br />Sector F-8/1, Islamabad, Pakistan</p>
-              </div>
-              <div className="contact-item">
                 <strong>General Enquiries</strong>
-                <a href="mailto:info@13A-LawChambers.com">info@13A-LawChambers.com</a>
+                <a href="mailto:info@13alawchambers.com">info@13alawchambers.com</a>
               </div>
               <div className="contact-item">
                 <strong>Telephone</strong>

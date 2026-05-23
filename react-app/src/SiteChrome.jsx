@@ -102,7 +102,7 @@ export function Footer() {
       <div className="foot-grid">
         <div>
           <div className="foot-brand-row">
-            <ScalesLogo size={22} className="foot-logo" />
+            <ScalesLogo size={26} className="foot-logo" />
             <div>
               <div className="foot-brand">13A Law Chambers</div>
               <div className="foot-tagline">Advocates &amp; Legal Consultants&nbsp;·&nbsp;Islamabad</div>
@@ -124,7 +124,7 @@ export function Footer() {
           <span>House No. 13-A, Street 37</span>
           <span>Sector F-8/1, Islamabad</span>
           <span>Pakistan</span>
-          <a href="mailto:info@13A-LawChambers.com" style={{ marginTop: 8 }}>info@13A-LawChambers.com</a>
+          <a href="mailto:info@13alawchambers.com" style={{ marginTop: 8 }}>info@13alawchambers.com</a>
         </div>
       </div>
       <div className="foot-bottom">

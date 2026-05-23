@@ -44,7 +44,7 @@ export const members = [
       { h: 'Called to the Bar', body: [{ type: 'p', text: "Lincoln's Inn, London" }, { type: 'p-muted', text: '2001' }] },
       { h: 'Contact', body: [
         { type: 'a', href: 'https://www.linkedin.com/in/natalya-kamal-alam/', text: 'LinkedIn Profile', external: true },
-        { type: 'a', href: 'https://natalyakamal.wordpress.com', text: 'natalyakamal.wordpress.com', external: true },
+        { type: 'a', href: 'mailto:info@13alawchambers.com', text: 'info@13alawchambers.com' },
       ]},
     ],
   },

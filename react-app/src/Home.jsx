@@ -15,7 +15,7 @@ export default function Home() {
             <h1 className="hero-title">13A Law Chambers</h1>
           </div>
           <div className="hero-divider" />
-          <p className="hero-sub">A shared chambers of independent advocates, committed to rigorous counsel and principled advocacy across the courts of Pakistan.</p>
+          <p className="hero-sub">A leading chamber of advocates, committed to rigorous counsel and principled advocacy across the courts of Pakistan.</p>
         </header>
       </main>
       <Footer />

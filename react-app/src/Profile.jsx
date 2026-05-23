@@ -41,11 +41,6 @@ function Sidebar({ member }) {
           })}
         </div>
       ))}
-      <div className="sidebar-card">
-        <h4>Chambers</h4>
-        <p>House No. 13-A, Street 37<br />Sector F-8/1, Islamabad</p>
-        <Link to="/contact" className="prof-link prof-link--cta">Make an Enquiry →</Link>
-      </div>
       {linkedIn && (
         <div className="sidebar-card">
           <h4>Full Profile</h4>
@@ -119,10 +114,8 @@ export default function Profile() {
         <main>
           <div className="prof-section">
             <div className="section-label">Profile</div>
-            <h3>Profile Overview</h3>
-            <p>{member.summary}</p>
-            {member.profileIntro && <p className="prof-highlight">{member.profileIntro}</p>}
-            <p>For detailed experience and full background, please use the LinkedIn profile link.</p>
+            <h3>Overview</h3>
+            <p>{[member.profileIntro, member.summary].filter(Boolean).join(' ')}</p>
           </div>
         </main>
         <Sidebar member={member} />
