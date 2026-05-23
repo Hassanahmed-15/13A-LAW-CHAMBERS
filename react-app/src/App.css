@@ -253,7 +253,7 @@ section:last-of-type{border-bottom:none}
   aspect-ratio:4/3;
   background:
     linear-gradient(180deg, rgba(5,11,20,.02), rgba(5,11,20,.18)),
-    url('/chambers-garden.jpeg');
+    url('/chambers-upload.webp');
   background-size:cover;
   background-position:center 52%;
   border:1px solid rgba(0,0,0,.82);
