@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PageShell, Reveal } from '../SiteChrome'
+import { PageShell, Reveal, ScalesLogo } from '../SiteChrome'
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
@@ -14,7 +14,10 @@ export default function Contact() {
       <section id="contact" className="page-section first-page-section">
         <div className="container">
           <div className="sec-label">Contact</div>
-          <h2 className="sec-title">Get <em>in touch.</em></h2>
+          <div className="sec-title-lockup">
+            <div className="sec-title-badge" aria-hidden="true"><ScalesLogo /></div>
+            <h2 className="sec-title">Get <em>in touch.</em></h2>
+          </div>
           <div className="contact-grid">
             <Reveal className="contact-items">
               <div className="contact-item">

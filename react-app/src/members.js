@@ -41,7 +41,16 @@ export const members = [
       },
     ],
     sidebar: [
-      { h: 'Called to the Bar', body: [{ type: 'p', text: "Lincoln's Inn, London" }, { type: 'p-muted', text: '2001' }] },
+      { h: 'Qualifications', body: [
+        { type: 'p', text: "Called to the Bar, Lincoln's Inn, London" },
+        { type: 'p-muted', text: '2001' },
+      ]},
+      { h: 'Certifications', body: [
+        { type: 'p', text: 'Accredited Mediator' },
+        { type: 'p-muted', text: 'Ministry of Law & Justice, Government of Pakistan' },
+        { type: 'p', text: 'Associate Arbitrator' },
+        { type: 'p-muted', text: 'ADR ODR International' },
+      ]},
       { h: 'Contact', body: [
         { type: 'a', href: 'https://www.linkedin.com/in/natalya-kamal-alam/', text: 'LinkedIn Profile', external: true },
         { type: 'a', href: 'mailto:info@13alawchambers.com', text: 'info@13alawchambers.com' },
@@ -86,7 +95,16 @@ export const members = [
       },
     ],
     sidebar: [
-      { h: 'Qualifications', body: [{ type: 'p', text: 'LL.B. (Hons.), University of London' }, { type: 'p', text: 'SRA Qualified (England & Wales)' }] },
+      { h: 'Qualifications', body: [
+        { type: 'p', text: 'LL.B. (Hons.), University of London' },
+        { type: 'p-muted', text: '2007 – 2010' },
+        { type: 'p', text: 'SRA Qualified (England & Wales)' },
+        { type: 'p-muted', text: '2014' },
+      ]},
+      { h: 'Certifications', body: [
+        { type: 'p', text: 'Solicitors Regulation Authority' },
+        { type: 'p-muted', text: 'Qualified Lawyers Transfer Scheme, England & Wales' },
+      ]},
       { h: 'Contact', body: [
         { type: 'a', href: 'mailto:syed.riaz@live.com', text: 'syed.riaz@live.com' },
         { type: 'p', text: '+92 301 8681953' },
@@ -127,7 +145,16 @@ export const members = [
       },
     ],
     sidebar: [
-      { h: 'Education', body: [{ type: 'p', text: 'LL.M., King’s College London' }, { type: 'p', text: 'LL.B. (Hons.), University of Leicester' }] },
+      { h: 'Qualifications', body: [
+        { type: 'p', text: 'LL.M., King’s College London' },
+        { type: 'p-muted', text: '2009 – 2010' },
+        { type: 'p', text: 'LL.B. (Hons.), University of Leicester' },
+        { type: 'p-muted', text: '2006 – 2009' },
+      ]},
+      { h: 'Certifications', body: [
+        { type: 'p', text: 'Advocate, High Court' },
+        { type: 'p-muted', text: 'Enrolled, Pakistan Bar Council' },
+      ]},
       { h: 'Contact', body: [
         { type: 'a', href: 'mailto:raza.faraz@gmail.com', text: 'raza.faraz@gmail.com' },
         { type: 'p', text: '+92 321 5171400' },
@@ -173,6 +200,12 @@ export const members = [
       },
     ],
     sidebar: [
+      { h: 'Qualifications', body: [
+        { type: 'p', text: 'B.A. LL.B. (Hons.), University of the Punjab' },
+        { type: 'p-muted', text: '2006 – 2011' },
+        { type: 'p', text: 'Diploma in International Affairs, University of the Punjab' },
+        { type: 'p-muted', text: '2009 – 2010' },
+      ]},
       { h: 'Certifications', body: [
         { type: 'p', text: 'Certified Mediation Counsel' },
         { type: 'p-muted', text: 'Chartered Institute of Arbitrators (CIArb), UK' },

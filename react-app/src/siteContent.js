@@ -5,4 +5,6 @@ export const practiceAreas = [
   { num: '04', name: 'Regulatory & Telecoms', desc: 'Telecommunications, media, competition, public procurement and energy regulation before sectoral regulators and tribunals.' },
   { num: '05', name: 'Arbitration & ADR', desc: 'Domestic and international arbitration, mediation and enforcement of awards, including FIDIC and commercial disputes.' },
   { num: '06', name: 'International Law', desc: 'Cross-border disputes, treaty obligations, international trade, bilateral investment treaties and representation before international forums.' },
+  { num: '07', name: 'Industrial Relations', desc: 'Labour and employment disputes, industrial tribunals, collective bargaining matters and representation before the National Industrial Relations Commission.' },
+  { num: '08', name: 'Energy', desc: 'Oil, gas, power and renewables — advisory and disputes covering licensing, tariff and regulatory matters before sectoral authorities and the courts.' },
 ]

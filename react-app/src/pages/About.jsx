@@ -1,4 +1,4 @@
-import { PageShell, Reveal } from '../SiteChrome'
+import { PageShell, Reveal, ScalesLogo } from '../SiteChrome'
 
 export default function About() {
   return (
@@ -6,7 +6,10 @@ export default function About() {
       <section id="about" className="page-section first-page-section">
         <div className="container">
           <div className="sec-label">About</div>
-          <h2 className="sec-title">Independence.<br /><em>Shared standards.</em></h2>
+          <div className="sec-title-lockup">
+            <div className="sec-title-badge" aria-hidden="true"><ScalesLogo /></div>
+            <h2 className="sec-title">Independence.<br /><em>Shared standards.</em></h2>
+          </div>
           <div className="about-grid">
             <Reveal className="about-text">
               <p>13A Law Chambers is a shared chambers in Islamabad, bringing together advocates of the Supreme Court of Pakistan who choose to practise side by side under a common roof.</p>

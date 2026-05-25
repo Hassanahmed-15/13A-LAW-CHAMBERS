@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { members } from '../members'
-import { PageShell, Reveal } from '../SiteChrome'
+import { PageShell, Reveal, ScalesLogo } from '../SiteChrome'
 
 export default function Members() {
   return (
@@ -21,7 +21,10 @@ export default function Members() {
         </svg>
         <div className="container">
           <div className="sec-label">Members of Chambers</div>
-          <h2 className="sec-title">Members.</h2>
+          <div className="sec-title-lockup">
+            <div className="sec-title-badge" aria-hidden="true"><ScalesLogo /></div>
+            <h2 className="sec-title">Members.</h2>
+          </div>
           <p className="sec-lede">Each member practises independently. Select a name to view their full profile and experience.</p>
           <div className="member-list">
             {members.map(m => (
