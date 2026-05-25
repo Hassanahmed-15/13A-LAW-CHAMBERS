@@ -64,7 +64,7 @@ export const members = [
     role: 'Advocate, Supreme Court of Pakistan',
     summary: 'A founding partner with a leading dispute resolution and corporate advisory practice, acting for federal and provincial agencies and major private clients in high-value commercial and infrastructure matters.',
     profileIntro: 'Syed Riaz Hussain brings a strong blend of litigation depth and transactional judgment, with substantial experience in infrastructure, regulatory and public-sector matters. Clients value his ability to navigate sensitive disputes with precision, discipline and practical results.',
-    tags: ['Construction & Infrastructure', 'Dispute Resolution', 'IT & Telecommunications', 'Commercial Litigation', 'Judicial Review'],
+    tags: ['Construction & Infrastructure', 'Dispute Resolution', 'IT & Telecommunications', 'Commercial Litigation', 'Judicial Review', 'Industrial Relations', 'Energy'],
     sections: [
       {
         label: 'Education',
@@ -119,7 +119,7 @@ export const members = [
     avatar: '/faraz-raza.webp',
     photo: '/faraz-raza.webp',
     summary: 'A barrister of dual UK qualifications and broad commercial practice, with experience spanning constitutional litigation, public prosecution and advisory work for the Federal Government.',
-    profileIntro: 'Syed Faraz Raza advises and appears in matters that sit at the intersection of constitutional questions, commercial risk and public governance. His profile reflects a disciplined advocacy style backed by policy insight from senior government-facing legal roles.',
+    profileIntro: 'Syed Faraz Raza read law at the University of Leicester (LL.B.) and King’s College, London (LL.M.). In 2011, he returned to Pakistan and began practice of law with Syed Jamshed Ali, former judge of the Supreme Court of Pakistan. Concurrently, he also served as Legal Associate to the Commission on Written Off Loans constituted by the Supreme Court of Pakistan.\n\nIn 2013, he joined Muhammad Akram Sheikh, Senior Advocate Supreme Court of Pakistan, as Senior Associate. Concurrently, he was also appointed as Special Public Prosecutor by the Ministry of Interior in Complaint No. 1 of 2013 titled Federal Government of Pakistan vs. General (R) Pervez Musharraf. Concurrently, from 2015 to 2019, Syed Faraz Raza also served as Visiting Faculty of Law (LLB Program) at the Roots School of Law (TMUC).\n\nIn 2018, Syed Faraz Raza began his private practice of law and founded the law firm titled Faraz, Haider, Moazzam & Co. In private practice, he focusses on civil and corporate litigation. In 2019, he was appointed as Legal Advisor to the Ministry of Foreign Affairs, on Management Pay Scale Position. He served at the Ministry until 2024, and rejoined his private legal practice.',
     tags: ['Civil & Corporate', 'Property', 'Banking', 'Commercial Litigation', 'International Law', 'Constitutional'],
     sections: [
       {

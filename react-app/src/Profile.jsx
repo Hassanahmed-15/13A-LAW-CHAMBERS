@@ -115,7 +115,9 @@ export default function Profile() {
           <div className="prof-section">
             <div className="section-label">Profile</div>
             <h3>Overview</h3>
-            <p>{[member.profileIntro, member.summary].filter(Boolean).join(' ')}</p>
+            {(member.profileIntro || member.summary)
+              .split(/\n\n+/)
+              .map((para, i) => <p key={i}>{para}</p>)}
           </div>
         </main>
         <Sidebar member={member} />
