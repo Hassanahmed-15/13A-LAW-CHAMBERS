@@ -457,6 +457,9 @@ footer{
   margin-bottom:10px;transition:color .2s;
 }
 .foot-col a:hover{color:var(--gold-lt)}
+.foot-socials{display:flex;gap:14px;margin-top:18px}
+.foot-socials a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin:0;border:1px solid rgba(255,255,255,.12);border-radius:50%;color:rgba(232,236,241,.6);transition:color .2s,border-color .2s}
+.foot-socials a:hover{color:var(--gold-lt);border-color:var(--gold)}
 .foot-bottom{
   max-width:1200px;margin:28px auto 0;
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;

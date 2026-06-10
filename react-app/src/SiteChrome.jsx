@@ -125,6 +125,25 @@ export function Footer() {
           <span>Sector F-8/1, Islamabad</span>
           <span>Pakistan</span>
           <a href="mailto:info@13alawchambers.com" style={{ marginTop: 8 }}>info@13alawchambers.com</a>
+          <div className="foot-socials">
+            <a href="https://www.facebook.com/share/1LgpgL9duP/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94Z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/13alawchambers" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5.5" />
+                <circle cx="12" cy="12" r="4.2" />
+                <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a href="https://share.google/u2qBONgThShi5T9Pe" target="_blank" rel="noopener noreferrer" aria-label="Google Business Profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 10.2v3.9h5.45c-.24 1.4-1.66 4.12-5.45 4.12-3.28 0-5.96-2.72-5.96-6.07S8.72 6.07 12 6.07c1.87 0 3.12.8 3.84 1.48l2.62-2.52C16.78 3.47 14.6 2.6 12 2.6 6.83 2.6 2.64 6.79 2.64 12S6.83 21.4 12 21.4c5.46 0 9.08-3.84 9.08-9.25 0-.62-.07-1.1-.15-1.57H12Z"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
       <div className="foot-bottom">
