@@ -21,10 +21,6 @@ export default function Contact() {
           <div className="contact-grid">
             <Reveal className="contact-items">
               <div className="contact-item">
-                <strong>General Enquiries</strong>
-                <a href="mailto:info@13alawchambers.com">info@13alawchambers.com</a>
-              </div>
-              <div className="contact-item">
                 <strong>Telephone</strong>
                 <p>+92 334 7788442</p>
               </div>

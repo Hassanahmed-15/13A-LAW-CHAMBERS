@@ -124,7 +124,6 @@ export function Footer() {
           <span>House No. 13-A, Street 37</span>
           <span>Sector F-8/1, Islamabad</span>
           <span>Pakistan</span>
-          <a href="mailto:info@13alawchambers.com" style={{ marginTop: 8 }}>info@13alawchambers.com</a>
           <div className="foot-socials">
             <a href="https://www.facebook.com/share/1LgpgL9duP/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

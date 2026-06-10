@@ -53,7 +53,6 @@ export const members = [
       ]},
       { h: 'Contact', body: [
         { type: 'a', href: 'https://www.linkedin.com/in/natalya-kamal-alam/', text: 'LinkedIn Profile', external: true },
-        { type: 'a', href: 'mailto:info@13alawchambers.com', text: 'info@13alawchambers.com' },
       ]},
     ],
   },
