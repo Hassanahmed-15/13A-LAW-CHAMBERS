@@ -21,10 +21,6 @@ export default function Contact() {
           <div className="contact-grid">
             <Reveal className="contact-items">
               <div className="contact-item">
-                <strong>Telephone</strong>
-                <p>+92 334 7788442</p>
-              </div>
-              <div className="contact-item">
                 <strong>Office Hours</strong>
                 <p>Monday - Friday&nbsp;·&nbsp;9:00 am - 6:00 pm</p>
               </div>

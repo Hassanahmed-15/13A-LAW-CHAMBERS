@@ -158,6 +158,7 @@ export const members = [
       ]},
       { h: 'Contact', body: [
         { type: 'a', href: 'mailto:raza.faraz@gmail.com', text: 'raza.faraz@gmail.com' },
+        { type: 'a', href: 'https://www.linkedin.com/in/syed-faraz-raza-5851a7254', text: 'LinkedIn Profile', external: true },
         { type: 'p', text: '+92 321 5171400' },
       ]},
     ],
@@ -216,6 +217,7 @@ export const members = [
       ]},
       { h: 'Contact', body: [
         { type: 'a', href: 'mailto:moazzam_10@hotmail.com', text: 'moazzam_10@hotmail.com' },
+        { type: 'a', href: 'https://www.linkedin.com/in/moazzam-habib-66a53b60', text: 'LinkedIn Profile', external: true },
         { type: 'p', text: '+92 334 7788442' },
       ]},
     ],
