@@ -1,4 +1,46 @@
 {
+  "redirects": [
+    {
+      "source": "/profile/natalya",
+      "destination": "/lawyers/natalya-kamal",
+      "permanent": true
+    },
+    {
+      "source": "/profile/natalya-kamal",
+      "destination": "/lawyers/natalya-kamal",
+      "permanent": true
+    },
+    {
+      "source": "/profile/riaz",
+      "destination": "/lawyers/syed-riaz-hussain",
+      "permanent": true
+    },
+    {
+      "source": "/profile/syed-riaz-hussain",
+      "destination": "/lawyers/syed-riaz-hussain",
+      "permanent": true
+    },
+    {
+      "source": "/profile/faraz",
+      "destination": "/lawyers/syed-faraz-raza",
+      "permanent": true
+    },
+    {
+      "source": "/profile/syed-faraz-raza",
+      "destination": "/lawyers/syed-faraz-raza",
+      "permanent": true
+    },
+    {
+      "source": "/profile/moazzam",
+      "destination": "/lawyers/moazzam-habib",
+      "permanent": true
+    },
+    {
+      "source": "/profile/moazzam-habib",
+      "destination": "/lawyers/moazzam-habib",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]

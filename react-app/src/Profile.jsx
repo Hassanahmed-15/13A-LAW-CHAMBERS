@@ -178,7 +178,7 @@ export default function Profile() {
   useEffect(() => {
     if (!member) return
 
-    const title = `${member.name} | ${member.role} | 13A Law Chambers`
+    const title = `${member.name} | Lawyer in Islamabad | 13A Law Chambers`
     const description = buildDescription(member)
 
     document.title = title
