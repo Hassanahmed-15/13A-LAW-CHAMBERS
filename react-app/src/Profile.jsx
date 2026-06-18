@@ -1,7 +1,112 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams, Navigate } from 'react-router-dom'
-import { memberBySlug, members } from './members'
+import { Link, useLocation, useParams, Navigate } from 'react-router-dom'
+import { memberBySlug, memberProfilePath, members } from './members'
 import { ScalesLogo } from './SiteChrome'
+
+const SITE_ORIGIN = 'https://www.13alawchambers.com'
+const OFFICE_ADDRESS = 'House No. 13-A, Street 37, Sector F-8/1, Islamabad, Pakistan'
+
+function setMeta(name, content, attr = 'name') {
+  let el = document.head.querySelector(`meta[${attr}="${name}"]`)
+  if (!el) {
+    el = document.createElement('meta')
+    el.setAttribute(attr, name)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('content', content)
+}
+
+function setCanonical(href) {
+  let el = document.head.querySelector('link[rel="canonical"]')
+  if (!el) {
+    el = document.createElement('link')
+    el.setAttribute('rel', 'canonical')
+    document.head.appendChild(el)
+  }
+  el.setAttribute('href', href)
+}
+
+function getContact(member, prefix) {
+  return member.sidebar
+    .flatMap(card => card.body || [])
+    .find(item => item.type === 'a' && item.href?.startsWith(prefix))
+}
+
+function plainText(text) {
+  return text.replace(/\s+/g, ' ').trim()
+}
+
+function buildDescription(member) {
+  return plainText(`${member.name}, ${member.role} at 13A Law Chambers in Islamabad. ${member.summary}`)
+}
+
+function ProfileStructuredData({ member, canonicalUrl }) {
+  const email = getContact(member, 'mailto:')?.href.replace('mailto:', '')
+  const sameAs = member.sidebar
+    .flatMap(card => card.body || [])
+    .filter(item => item.type === 'a' && item.external)
+    .map(item => item.href)
+
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'LegalService',
+    '@id': `${canonicalUrl}#profile`,
+    name: member.name,
+    url: canonicalUrl,
+    image: `${SITE_ORIGIN}${member.photo}`,
+    description: buildDescription(member),
+    areaServed: ['Islamabad', 'Pakistan'],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'House No. 13-A, Street 37, Sector F-8/1',
+      addressLocality: 'Islamabad',
+      addressCountry: 'PK',
+    },
+    member: {
+      '@type': 'Person',
+      name: member.name,
+      jobTitle: member.role,
+      image: `${SITE_ORIGIN}${member.photo}`,
+      url: canonicalUrl,
+      email,
+      sameAs,
+      knowsAbout: member.tags,
+      worksFor: {
+        '@type': 'LegalService',
+        name: '13A Law Chambers',
+        url: SITE_ORIGIN,
+      },
+    },
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  )
+}
+
+function ProfileSection({ section }) {
+  return (
+    <div className="prof-section">
+      <div className="section-label">{section.label}</div>
+      <h3>{section.h}</h3>
+      {section.paragraphs?.map((para, i) => <p key={i}>{para}</p>)}
+      {section.timeline && (
+        <ol className="timeline">
+          {section.timeline.map((item, i) => (
+            <li key={`${item.year}-${i}`}>
+              <div className="timeline-year">{item.year}</div>
+              <div className="timeline-role">{item.role}</div>
+              <div className="timeline-org">{item.org}</div>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
+  )
+}
 
 const ScalesWatermark = () => (
   <svg className="prof-hero-wm" viewBox="0 0 220 280" fill="none" stroke="currentColor" strokeLinecap="round" aria-hidden="true">
@@ -52,7 +157,7 @@ function Sidebar({ member }) {
       <div className="sidebar-card">
         <h4>All Members</h4>
         {others.map(o => (
-          <Link key={o.slug} to={`/profile/${o.slug}`} className="prof-link">{o.name}</Link>
+          <Link key={o.slug} to={memberProfilePath(o)} className="prof-link">{o.name}</Link>
         ))}
       </div>
     </aside>
@@ -61,12 +166,31 @@ function Sidebar({ member }) {
 
 export default function Profile() {
   const { slug } = useParams()
+  const location = useLocation()
   const member = memberBySlug[slug]
   const [scrolled, setScrolled] = useState(false)
+  const canonicalUrl = member ? `${SITE_ORIGIN}${memberProfilePath(member)}` : SITE_ORIGIN
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [slug])
+
+  useEffect(() => {
+    if (!member) return
+
+    const title = `${member.name} | ${member.role} | 13A Law Chambers`
+    const description = buildDescription(member)
+
+    document.title = title
+    setMeta('description', description)
+    setMeta('og:title', title, 'property')
+    setMeta('og:description', description, 'property')
+    setMeta('og:type', 'profile', 'property')
+    setMeta('og:url', canonicalUrl, 'property')
+    setMeta('og:image', `${SITE_ORIGIN}${member.photo}`, 'property')
+    setMeta('twitter:card', 'summary_large_image')
+    setCanonical(canonicalUrl)
+  }, [member, canonicalUrl])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -75,9 +199,11 @@ export default function Profile() {
   }, [])
 
   if (!member) return <Navigate to="/" replace />
+  if (location.pathname !== memberProfilePath(member)) return <Navigate to={memberProfilePath(member)} replace />
 
   return (
     <>
+      <ProfileStructuredData member={member} canonicalUrl={canonicalUrl} />
       <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
         <div className="nav-inner">
           <Link to="/" className="brand">
@@ -94,10 +220,14 @@ export default function Profile() {
       <section className="prof-hero">
         <ScalesWatermark />
         <div className="prof-hero-inner">
-          <div
-            className="prof-photo"
-            style={member.photo ? { backgroundImage: `url(${member.photo})` } : undefined}
-          />
+          <figure className="prof-photo">
+            {member.photo && (
+              <img
+                src={member.photo}
+                alt={`${member.name} ${member.role} headshot`}
+              />
+            )}
+          </figure>
           <div>
             <div className="prof-label">Member of Chambers</div>
             <h1 className="prof-name">{member.name}</h1>
@@ -118,6 +248,21 @@ export default function Profile() {
             {(member.profileIntro || member.summary)
               .split(/\n\n+/)
               .map((para, i) => <p key={i}>{para}</p>)}
+          </div>
+          <div className="prof-section">
+            <div className="section-label">Practice Areas</div>
+            <h3>Areas of Work</h3>
+            <div className="prof-tags prof-tags--section">
+              {member.tags.map(t => <span className="tag" key={t}>{t}</span>)}
+            </div>
+          </div>
+          {member.sections?.map(section => (
+            <ProfileSection key={`${section.label}-${section.h}`} section={section} />
+          ))}
+          <div className="prof-section">
+            <div className="section-label">Office</div>
+            <h3>Location</h3>
+            <p>{member.name} is associated with 13A Law Chambers, located at {OFFICE_ADDRESS}.</p>
           </div>
         </main>
         <Sidebar member={member} />

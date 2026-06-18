@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { members } from '../members'
+import { memberProfilePath, members } from '../members'
 import { PageShell, Reveal, ScalesLogo } from '../SiteChrome'
 
 export default function Members() {
@@ -28,7 +28,7 @@ export default function Members() {
           <p className="sec-lede">Each member practises independently. Select a name to view their full profile and experience.</p>
           <div className="member-list">
             {members.map(m => (
-              <Reveal key={m.slug} as={Link} to={`/profile/${m.slug}`} className="member-row">
+              <Reveal key={m.slug} as={Link} to={memberProfilePath(m)} className="member-row">
                 <div className="member-avatar" style={m.avatar ? { backgroundImage: `url(${m.avatar})` } : undefined} />
                 <div className="member-info">
                   <div className="member-name">{m.name}</div>

@@ -1,13 +1,14 @@
 export const members = [
   {
-    slug: 'natalya',
+    slug: 'natalya-kamal',
+    legacySlugs: ['natalya'],
     name: 'Natalya Kamal',
     cardRole: 'Barrister-at-Law · Advocate, Supreme Court',
     role: 'Barrister-at-Law · Advocate, Supreme Court of Pakistan',
     avatar: '/natalya-kamal.webp',
     photo: '/natalya-kamal.webp',
     summary: "Called to the Bar by Lincoln's Inn in 2001, with over two decades at the intersection of litigation, regulatory practice, corporate advisory and alternative dispute resolution.",
-    profileIntro: "Natalya Kamal is a seasoned Supreme Court advocate known for combining strategic courtroom advocacy with commercially sound advisory work. Her practice bridges public law, regulation and technology-facing industries, making her a trusted counsel for high-stakes and complex mandates.",
+    profileIntro: "Natalya Kamal is a seasoned Supreme Court advocate known for combining strategic courtroom advocacy with commercially sound advisory work. Her practice bridges public law, regulation and technology-facing industries, making her a trusted counsel for high-stakes and complex mandates.\n\nHer work covers a wide range of contentious and advisory matters, including constitutional petitions, commercial disputes, regulatory proceedings, banking, employment, property, consumer protection, cyber-crime and environmental issues. This breadth allows her to approach disputes with an understanding of both litigation strategy and the business, institutional and reputational considerations that often sit behind a legal problem.\n\nNatalya has also developed a substantial practice in telecommunications, media, competition, public procurement and energy regulation. Alongside her litigation work, she advises companies, technology businesses and start-ups on legal structure, corporate compliance, intellectual property and sector-specific regulatory questions. Her appointments as an accredited mediator, associate arbitrator and external ombudsperson reflect a practice that extends beyond courtroom advocacy into structured dispute resolution, governance and institutional accountability.",
     tags: ['Constitutional', 'Regulatory', 'Telecommunications', 'Corporate & Commercial', 'Technology & IP', 'Mediation & Arbitration'],
     sections: [
       {
@@ -57,14 +58,15 @@ export const members = [
     ],
   },
   {
-    slug: 'riaz',
+    slug: 'syed-riaz-hussain',
+    legacySlugs: ['riaz'],
     name: 'Syed Riaz Hussain',
     cardRole: 'Advocate, Supreme Court of Pakistan',
     role: 'Advocate, Supreme Court of Pakistan',
-    avatar: '/riaz-hussain.webp',
-    photo: '/riaz-hussain.webp',
+    avatar: '/syed-riaz-hussain.webp',
+    photo: '/syed-riaz-hussain.webp',
     summary: 'A founding partner with a leading dispute resolution and corporate advisory practice, acting for federal and provincial agencies and major private clients in high-value commercial and infrastructure matters.',
-    profileIntro: 'Syed Riaz Hussain brings a strong blend of litigation depth and transactional judgment, with substantial experience in infrastructure, regulatory and public-sector matters. Clients value his ability to navigate sensitive disputes with precision, discipline and practical results.',
+    profileIntro: 'Syed Riaz Hussain brings a strong blend of litigation depth and transactional judgment, with substantial experience in infrastructure, regulatory and public-sector matters. Clients value his ability to navigate sensitive disputes with precision, discipline and practical results.\n\nHis practice includes construction and infrastructure disputes, commercial litigation, judicial review, industrial relations, energy, information technology and telecommunications matters. He has acted in mandates involving federal and provincial government agencies as well as major private-sector clients, bringing together knowledge of public law procedure, contractual interpretation and dispute resolution strategy.\n\nBefore his current practice, Syed Riaz Hussain worked with established chambers and law firms in Islamabad, where he handled commercial arbitration, corporate litigation, construction and real estate disputes, white-collar crime, mergers and acquisitions, telecommunications, oil and gas, mining and criminal appeals. He has also taught Trusts and Jurisprudence to University of London external programme students, adding an academic dimension to his litigation and advisory work.\n\nHis qualifications include an LL.B. (Honours) from the University of London and completion of the Qualified Lawyers Transfer Scheme through the Solicitors Regulation Authority of England and Wales. That combination of Pakistani litigation experience and exposure to English legal training supports his work in complex commercial and infrastructure disputes.',
     tags: ['Construction & Infrastructure', 'Dispute Resolution', 'IT & Telecommunications', 'Commercial Litigation', 'Judicial Review', 'Industrial Relations', 'Energy'],
     sections: [
       {
@@ -113,12 +115,13 @@ export const members = [
     ],
   },
   {
-    slug: 'faraz',
+    slug: 'syed-faraz-raza',
+    legacySlugs: ['faraz'],
     name: 'Syed Faraz Raza',
     cardRole: 'Advocate, High Court · LL.B. (Hons.), LL.M.',
     role: 'Advocate, High Court · LL.B. (Hons.), LL.M.',
-    avatar: '/faraz-raza.webp',
-    photo: '/faraz-raza.webp',
+    avatar: '/syed-faraz-raza.webp',
+    photo: '/syed-faraz-raza.webp',
     summary: 'An Advocate of the High Court with UK qualifications and over 15 years of legal experience in civil and commercial litigation, public prosecution and advisory roles for the Federal Government.',
     profileIntro: 'Syed Faraz Raza read law at the University of Leicester (LL.B.) and King’s College, London (LL.M.). In 2011, he returned to Pakistan and began practice of law with Syed Jamshed Ali, former judge of the Supreme Court of Pakistan. Concurrently, he also served as Legal Associate to the Commission on Written Off Loans constituted by the Supreme Court of Pakistan.\n\nIn 2013, he joined Muhammad Akram Sheikh, Senior Advocate Supreme Court of Pakistan, as Senior Associate. Concurrently, he was also appointed as Special Public Prosecutor by the Ministry of Interior in Complaint No. 1 of 2013 titled Federal Government of Pakistan vs. General (R) Pervez Musharraf. Concurrently, from 2015 to 2019, Syed Faraz Raza also served as Visiting Faculty of Law (LLB Program) at the Roots School of Law (TMUC).\n\nIn 2018, Syed Faraz Raza began his private practice of law and founded the law firm titled Faraz, Haider, Moazzam & Co. In private practice, he focusses on civil and corporate litigation. In 2019, he was appointed as Legal Advisor to the Ministry of Foreign Affairs, on Management Pay Scale Position. He served at the Ministry until 2024, and rejoined his private legal practice.',
     tags: ['Civil & Corporate', 'Property', 'Banking', 'Commercial Litigation', 'International Law', 'Constitutional'],
@@ -164,14 +167,15 @@ export const members = [
     ],
   },
   {
-    slug: 'moazzam',
+    slug: 'moazzam-habib',
+    legacySlugs: ['moazzam'],
     name: 'Moazzam Habib',
     cardRole: 'Advocate, Supreme Court of Pakistan',
     role: 'Advocate, Supreme Court of Pakistan',
     avatar: '/moazzam-habib.webp',
     photo: '/moazzam-habib.webp',
     summary: 'A second-generation advocate of the Supreme Court of Pakistan, with a broad commercial and constitutional practice and senior advisory roles in Government and the United Nations system.',
-    profileIntro: 'Moazzam Habib maintains a broad, solution-oriented practice across commercial, constitutional and regulatory forums, supported by experience in government and international institutional assignments. His approach emphasizes clarity, responsiveness and outcome-focused representation.',
+    profileIntro: 'Moazzam Habib maintains a broad, solution-oriented practice across commercial, constitutional and regulatory forums, supported by experience in government and international institutional assignments. His approach emphasizes clarity, responsiveness and outcome-focused representation.\n\nHis practice includes civil and property disputes, commercial litigation, rent matters, election law, white-collar crime, immigration, arbitration, mediation and constitutional work. As a second-generation advocate and founding partner of Faraz, Haider, Moazzam & Co., Islamabad, he brings long-running courtroom experience together with advisory work for public institutions and development-sector assignments.\n\nMoazzam Habib has served as Legal Advisor and Legal Head to the Directorate General Immigration & Passports in the Ministry of Interior, Government of Pakistan, and as Senior Legal Consultant for UNICEF at the Child Protection Institute under the Ministry of Human Rights. These roles sit alongside his private legal practice and give him practical exposure to public administration, regulatory decision-making and institutional legal risk.\n\nHis selected experience includes service as Special Prosecutor in FIA mega-corruption and sugar scam cases and in the General (R) Pervez Musharraf high treason matter. He is also a Certified Mediation Counsel through the Chartered Institute of Arbitrators (CIArb), UK, and has acted as a court-appointed arbitrator in commercial arbitrations.',
     tags: ['Civil & Property', 'Commercial', 'Immigration', 'White-Collar Crime', 'Arbitration & Mediation', 'Constitutional'],
     sections: [
       {
@@ -224,4 +228,8 @@ export const members = [
   },
 ]
 
-export const memberBySlug = Object.fromEntries(members.map(m => [m.slug, m]))
+export const memberBySlug = Object.fromEntries(
+  members.flatMap(m => [m.slug, ...(m.legacySlugs || [])].map(slug => [slug, m]))
+)
+
+export const memberProfilePath = member => `/lawyers/${member.slug}`

@@ -17,6 +17,7 @@ export default function App() {
         <Route path="/practice" element={<Practice />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/notice" element={<Notice />} />
+        <Route path="/lawyers/:slug" element={<Profile />} />
         <Route path="/profile/:slug" element={<Profile />} />
       </Routes>
     </BrowserRouter>
