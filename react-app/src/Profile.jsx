@@ -4,7 +4,6 @@ import { memberBySlug, memberProfilePath, members } from './members'
 import { ScalesLogo } from './SiteChrome'
 
 const SITE_ORIGIN = 'https://www.13alawchambers.com'
-const OFFICE_ADDRESS = 'House No. 13-A, Street 37, Sector F-8/1, Islamabad, Pakistan'
 
 function setMeta(name, content, attr = 'name') {
   let el = document.head.querySelector(`meta[${attr}="${name}"]`)
@@ -84,27 +83,6 @@ function ProfileStructuredData({ member, canonicalUrl }) {
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
-  )
-}
-
-function ProfileSection({ section }) {
-  return (
-    <div className="prof-section">
-      <div className="section-label">{section.label}</div>
-      <h3>{section.h}</h3>
-      {section.paragraphs?.map((para, i) => <p key={i}>{para}</p>)}
-      {section.timeline && (
-        <ol className="timeline">
-          {section.timeline.map((item, i) => (
-            <li key={`${item.year}-${i}`}>
-              <div className="timeline-year">{item.year}</div>
-              <div className="timeline-role">{item.role}</div>
-              <div className="timeline-org">{item.org}</div>
-            </li>
-          ))}
-        </ol>
-      )}
-    </div>
   )
 }
 
@@ -220,14 +198,10 @@ export default function Profile() {
       <section className="prof-hero">
         <ScalesWatermark />
         <div className="prof-hero-inner">
-          <figure className="prof-photo">
-            {member.photo && (
-              <img
-                src={member.photo}
-                alt={`${member.name} ${member.role} headshot`}
-              />
-            )}
-          </figure>
+          <div
+            className="prof-photo"
+            style={member.photo ? { backgroundImage: `url(${member.photo})` } : undefined}
+          />
           <div>
             <div className="prof-label">Member of Chambers</div>
             <h1 className="prof-name">{member.name}</h1>
@@ -248,21 +222,6 @@ export default function Profile() {
             {(member.profileIntro || member.summary)
               .split(/\n\n+/)
               .map((para, i) => <p key={i}>{para}</p>)}
-          </div>
-          <div className="prof-section">
-            <div className="section-label">Practice Areas</div>
-            <h3>Areas of Work</h3>
-            <div className="prof-tags prof-tags--section">
-              {member.tags.map(t => <span className="tag" key={t}>{t}</span>)}
-            </div>
-          </div>
-          {member.sections?.map(section => (
-            <ProfileSection key={`${section.label}-${section.h}`} section={section} />
-          ))}
-          <div className="prof-section">
-            <div className="section-label">Office</div>
-            <h3>Location</h3>
-            <p>{member.name} is associated with 13A Law Chambers, located at {OFFICE_ADDRESS}.</p>
           </div>
         </main>
         <Sidebar member={member} />
